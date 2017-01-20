@@ -1,0 +1,14 @@
+!!! 5
+%head
+  %title= @page_title
+  = stylesheet_link_tag 'application'
+
+  = include_gon
+  = javascript_include_tag 'application'
+  = csrf_meta_tags
+
+%body
+  = render :partial => 'shared/inner_header'
+  .container-fluid
+    = yield
+    #backbone-content

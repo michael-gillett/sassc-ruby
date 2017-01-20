@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "Generating configs for go_server [development]..."
+scp -r -p rampmaster.liveramp.net:/apps/deploy/fodor/development/apex/* ./config/
+chmod o-rwx ./config/*
