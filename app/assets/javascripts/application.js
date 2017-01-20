@@ -10,5 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require subdomain_routes
 //= require jquery
-//= require bootstrap
+//= require bootstrap-sprockets

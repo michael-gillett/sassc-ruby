@@ -1,7 +1,7 @@
 namespace :gem do
   task :update_gemfile_dot_lock do
     require 'digest'
-    bundle_update_gems = 'rldb rap_support rails_logger'
+    bundle_update_gems = 'rldb rap_support rails_logger rapleaf_lib rapleaf_types'
 
     hash_before = Digest::MD5.hexdigest(File.read('Gemfile.lock'))
 
