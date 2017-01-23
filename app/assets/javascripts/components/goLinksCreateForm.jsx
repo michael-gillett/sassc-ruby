@@ -1,16 +1,11 @@
-import { UiHeader, UiLoadingComponent } from 'liveramp-ui-toolkit';
-import TaxonomyEndpointConstants from 'constants/taxonomyEndpointConstants';
-import MacroTable from './macroTable';
-import EndpointInfo from 'components/endpointInfo';
-import EndpointConfig from 'components/endpointConfig';
-import EndpointProperties from 'components/endpointProperties';
-import TaxonomyEndpointActions from 'actions/taxonomyEndpointActions';
-import EndpointPropertiesActions from 'actions/endpointPropertiesActions';
+import { UiHeader, UiInput } from 'liveramp-ui-toolkit';
+import GoLinksConstants from 'constants/goLinksConstants';
+import GoLinksActions from 'actions/goLinksActions';
 
-var TaxonomyEndpointCreateForm = React.createClass ({
+var GoLinksCreateForm = React.createClass ({
 
   getInitialState() {
-    return { thriftValid: false, showMacros: false };
+    //
   },
 
   render () {
@@ -125,15 +120,14 @@ var TaxonomyEndpointCreateForm = React.createClass ({
 
 const mapStateToProps = (state) => {
   return {
-    taxonomyEndpoint: state.taxonomyEndpoint,
+    goLinks: state.goLinks,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    taxonomyEndpointActions: Redux.bindActionCreators(TaxonomyEndpointActions, dispatch),
-    endpointPropertiesActions: Redux.bindActionCreators(EndpointPropertiesActions, dispatch),
+    goLinksActions: Redux.bindActionCreators(GoLinksActions, dispatch)
   };
 };
 
-export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TaxonomyEndpointCreateForm);
+export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(GoLinksCreateForm);

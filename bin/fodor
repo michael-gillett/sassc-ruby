@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo "Generating configs for taxonomy_endpoint_ui [development]..."
+echo "Generating configs for go_links_ui [development]..."
 scp -r -p rampmaster.liveramp.net:/apps/deploy/fodor/development/apex/* ./config/
 chmod o-rwx ./config/*

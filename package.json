@@ -1,7 +1,7 @@
 {
-  "name": "taxonomy_endpoint_ui",
+  "name": "go_links_ui",
   "version": "0.1.0",
-  "author": "Taxonomy Endpoint UI",
+  "author": "Go Links UI",
   "scripts": {
     "build": "npm install; webpack"
   },

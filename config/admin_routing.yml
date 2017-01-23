@@ -16,6 +16,6 @@ endpoint:
 customerlink:
   url: localhost:3005
 
-taxonomy_endpoint:
+go_links:
   url: localhost:3006
 

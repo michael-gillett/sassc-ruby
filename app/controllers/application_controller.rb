@@ -1,3 +1,3 @@
 class ApplicationController < ActionController::Base
-  logger_filter :taxonomy_endpoint_ui
+  logger_filter :go_links_ui
 end

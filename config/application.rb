@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module TaxonomyEndpointUi
+module GoLinksUi
   class Application < Rails::Application
     config.autoload_paths.concat(Rap_support.get_autoload_dirs)
     # Settings in config/environments/* take precedence over those specified here.

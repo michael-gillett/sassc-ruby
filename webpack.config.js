@@ -6,7 +6,7 @@ var _ = require('underscore');
 
 var defaultConfig = {
   entry: {
-    taxonomyEndpointUi: path.resolve('./app/assets/javascripts/reactMain')
+    goLinksUi: path.resolve('./app/assets/javascripts/reactMain')
   },
   output: {
     path: require('path').resolve('./app/assets/javascripts'),
