@@ -34,8 +34,8 @@ function GoLinksReducer(state = defaultState, action) {
     //     someStoreElement: { $set: action.type }
     //   });
 
-    // default:
-    //   return state;
+    default:
+      return state;
   }
 }
 

@@ -1,69 +1,75 @@
-import TaxonomyEndpointActions from 'actions/taxonomyEndpointActions';
+import GoLinksActions from 'actions/goLinksActions';
 import AlertActions from 'actions/alertActions';
-import TaxonomyEndpointConstants from 'constants/taxonomyEndpointConstants';
+import GoLinksConstants from 'constants/goLinksConstants';
+import GoLinksGlossaryTable from 'components/goLinksGlossaryTable';
+import GoLinksCreateForm from 'components/goLinksCreateForm';
 import { UiAlert, UiLoadingComponent } from 'liveramp-ui-toolkit';
 
-const TaxonomyEndpointApp = React.createClass({
+const GoLinksApp = React.createClass({
 
   componentDidMount () {
-    this.props.taxonomyEndpointActions.fetchTaxonomyEndpoints();
+    // this.props.taxonomyEndpointActions.fetchTaxonomyEndpoints();
   },
 
   render () {
     return (
-      <div className='col-xs-10 col-xs-offset-1'>
-        { this.props.alerts.showing &&
-          <UiAlert
-            handleClose={this.props.alertActions.closeAlert}
-            message={this.props.alerts.message}
-            type={this.props.alerts.alertType}
-            permanent={this.props.alerts.permanent}
-          />
-        }
-        { this.getBody() }
+      // <div className='col-xs-10 col-xs-offset-1'>
+      //   { this.props.alerts.showing &&
+      //     <UiAlert
+      //       handleClose={this.props.alertActions.closeAlert}
+      //       message={this.props.alerts.message}
+      //       type={this.props.alerts.alertType}
+      //       permanent={this.props.alerts.permanent}
+      //     />
+      //   }
+      //   { this.getBody() }
+      // </div>
+      <div className='go-links-form-table'>
+        <GoLinksCreateForm />
+        <GoLinksGlossaryTable />
       </div>
     );
   },
 
-  getBody() {
-    if (this.loadedEndpointsSuccessfully()) {
-      return this.props.children;
-    } else if (this.failedToLoadEndpoints()) {
-      return <UiLoadingComponent
-        type='error'
-        message={<p>{"Failed to load endpoints. Click to retry."}</p>}
-        retryCallback={this.props.taxonomyEndpointActions.fetchTaxonomyEndpoints}
-        />;
-    } else {
-      return <UiLoadingComponent/>;
-    }
-  },
+  // getBody() {
+  //   if (this.loadedEndpointsSuccessfully()) {
+  //     return this.props.children;
+  //   } else if (this.failedToLoadEndpoints()) {
+  //     return <UiLoadingComponent
+  //       type='error'
+  //       message={<p>{"Failed to load endpoints. Click to retry."}</p>}
+  //       retryCallback={this.props.taxonomyEndpointActions.fetchTaxonomyEndpoints}
+  //       />;
+  //   } else {
+  //     return <UiLoadingComponent/>;
+  //   }
+  // },
 
-  loadedEndpointsSuccessfully() {
-    return this.props.taxonomyEndpoint.endpointFetchStatus === TaxonomyEndpointConstants.ENDPOINT_LIST_FETCH_SUCCESS;
-  },
+  // loadedEndpointsSuccessfully() {
+  //   return this.props.taxonomyEndpoint.endpointFetchStatus === TaxonomyEndpointConstants.ENDPOINT_LIST_FETCH_SUCCESS;
+  // },
 
-  failedToLoadEndpoints() {
-    return this.props.taxonomyEndpoint.endpointFetchStatus === TaxonomyEndpointConstants.ENDPOINT_LIST_FETCH_FAILURE;
-  },
+  // failedToLoadEndpoints() {
+  //   return this.props.taxonomyEndpoint.endpointFetchStatus === TaxonomyEndpointConstants.ENDPOINT_LIST_FETCH_FAILURE;
+  // },
 
-  leaveTaxonomyEndpointUi () {
-    window.location.href = TaxonomyEndpointConstants.ADMIN_URL;
-  },
+  // leaveTaxonomyEndpointUi () {
+  //   window.location.href = TaxonomyEndpointConstants.ADMIN_URL;
+  // },
 });
 
 const mapStateToProps = function(state) {
   return {
     alerts: state.alerts,
-    taxonomyEndpoint: state.taxonomyEndpoint,
+    goLinks: state.goLinks,
   };
 };
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    taxonomyEndpointActions: Redux.bindActionCreators(TaxonomyEndpointActions, dispatch),
+    goLinksActions: Redux.bindActionCreators(GoLinksActions, dispatch),
     alertActions: Redux.bindActionCreators(AlertActions, dispatch),
   };
 };
 
-export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(TaxonomyEndpointApp);
+export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(GoLinksApp);
