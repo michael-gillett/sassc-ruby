@@ -3,122 +3,96 @@ import AlertActions from 'actions/alertActions';
 import GoLinksActions from 'actions/goLinksActions';
 
 const keyMap = {
-  id: {
-    columnName: 'Employee ID',
+  alias: {
+    columnName: 'Alias',
     sortable: true,
     width: 1,
-    display: (id) => {
+    display: (alias) => {
       return (
-        <span>ID: {id}</span>
+        <span>{alias}</span>
       );
     }
   },
-  name: {
-    columnName: 'Name',
+  url: {
+    columnName: 'URL',
     sortable: true,
-    width: 1,
-    justification: 'center',
-    display: (name, element) => {
+    width: 1.5,
+    display: (url) => {
       return (
-        <span>{`${name} - ${element['id']}`}</span>
+        <span><a href={url}> {url} </a> </span>
       );
-    },
-    tooltipDisplay: (name) => {
-      return `Arbor and Circulate: ${name}`
     }
   },
-  gender: {
-    columnName: 'Gender Gender Gender Gender Gender Gender',
+  description: {
+    columnName: 'Description',
     sortable: true,
     width: 1,
     tooltipDisplay: (name, element) => {
       return element.id
     }
   },
-  company: {
-    columnName: <UiIcon icon='desktop' dimensions={[20, 20]} color='select-green' />,
-    columnHeaderTooltip: () => {
-      return 'Web Reach'
-    },
-    sortable: true,
-    justification: 'center',
-    width: 1,
-    display: (company) => {
-      return (
-        <span>{company}</span>
-      );
-    }
-  },
-  email: {
-    columnName: 'Email EmailEmailEmailEmailEmailEmailEmailEmail',
+  actions: {
+    columnName: " Edit/Delete",
     sortable: false,
-    width: 1,
-    display: (email) => {
+    justification: 'center',
+    width: 0.5,
+    display: () => {
       return (
-        <span>{email}</span>
+        <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' />
+        // <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' />
       );
     }
   }
 }
 
-const childComponent = (person) => {
+const childComponent = (goLink) => {
   return (
     <div style={{paddingLeft: '30px'}}>
-      <h1>{person.name}</h1>
+      <span>{goLink.description}</span>
     </div>
   );
 }
 
-const people = [
+const goLinks = [
   {
-    "id": 2995,
-    "age": 39,
-    "name": "Payne Luna",
-    "gender": "male",
-    "company": "SKINSERVE",
-    "email": "payneluna@skinserve.com",
-    "phone": "+1 (893) 570-2872"
+    "id": "kb",
+    "alias": "kb",
+    "url": "https://support.liveramp.com",
+    "description": "The base of all knowledge.",
+    "owner": "Each and every one of us."
   },
   {
-    "id": 2996,
-    "age": 36,
-    "name": "Small Blair",
-    "gender": "male",
-    "company": "MEDIOT",
-    "email": "smallblair@mediot.com",
-    "phone": "+1 (904) 424-3388"
+    "id": "turntbot",
+    "alias": "turntbot",
+    "url": "https://turntbot.com",
+    "description": "Let's get turnt.",
+    "owner": "Andy"
   },
   {
-    "id": 2997,
-    "age": 23,
-    "name": "Shanna Mosley",
-    "gender": "female",
-    "company": "CUBIX",
-    "email": "shannamosley@cubix.com",
-    "phone": "+1 (853) 490-3052"
+    "id":"gdocs",
+    "alias": "gdocs",
+    "url": "https://docs.google.com",
+    "description": "Because go/gdocs is shorter that docs.google.com",
+    "owner": "Sergey Brin & Larry Page"
+  }, 
+  {
+    "id": "sfofficemap",
+    "alias": "sfofficemap",
+    "url": "https://support.liveramp.com/pages/viewpage.action?pageId=1769611",
+    "description": "SF Office map",
+    "owner": "Sherif"
   },
   {
-    "id": 2998,
-    "age": 23,
-    "name": "Sullivan Padilla",
-    "gender": "male",
-    "company": "CHILLIUM",
-    "email": "sullivanpadilla@chillium.com",
-    "phone": "+1 (919) 580-2352"
-  },
-  {
-    "id": 2999,
-    "age": 26,
-    "name": "Alice James",
-    "gender": "female",
-    "company": "RECRISYS",
-    "email": "alicejames@recrisys.com",
-    "phone": "+1 (935) 418-3230"
+    "id": "okta",
+    "alias": "okta",
+    "url": "https://acxiom.okta.com/",
+    "description": "Login portal",
+    "owner": "Sherif"
   }
 ];
 
-const columnOrder = ['id', 'name', 'gender', 'company', 'email'];
-const columnsToShow = ['id', 'name', 'gender', 'company', 'email'];
+const columnOrder = ['alias', 'url', 'description', 'actions'];
+const columnsToShow = ['alias', 'url', 'description', 'actions'];
 
 const sidebarOptions = {
   sections: [
@@ -137,8 +111,8 @@ const GoLinksGlossaryTable = React.createClass({
       showTable: true,
       tableSearchValue: "",
       selectedRows: [],
-      shownElements: people.slice(0, 2),
-      elements: people,
+      shownElements: goLinks.slice(0, 2),
+      elements: goLinks,
       selectAllChecked: false,
       totalElements: 3000,
       columnsToShow: columnsToShow,
@@ -166,18 +140,18 @@ const GoLinksGlossaryTable = React.createClass({
             haveChildren={true}
             expandedRows={this.state.expanded}
             childComponent={childComponent}
-            headerFilterGroup={<div>FILTER GROUP </div>}
-            headerButtonGroup={<div>BUTTON GROUP </div>}
+            headerFilterGroup={<div></div>}
+            headerButtonGroup={<div></div>}
             elements={this.state.shownElements}
             loadMoreElements={this.loadMoreElements}
-            hasMoreElements={this.state.shownElements.length < 3000}
+            hasMoreElements={this.state.shownElements.length < 5}
             selectAllChecked={this.state.selectAllChecked}
             handleSelectAllChange={this.handleSelectAllChange}
             elementKeyMap={keyMap}
             handleShowHideColumn={this.handleShowHideColumn}
             elementName={"stellar employee"}
             detailView={this.detailView}
-            showCheckboxes={true}
+            showCheckboxes={false}
             columnOrder={columnOrder}
             columnSortedBy={this.state.columnSortedBy}
             sortOrderAscending={this.state.sortOrderAscending}
@@ -242,13 +216,13 @@ const GoLinksGlossaryTable = React.createClass({
     console.log(this.state.tableSearchValue);
   },
 
-  toggleChildren(id) {
-    console.log(id);
+  toggleChildren(alias) {
+    console.log(alias);
     var expanded = this.state.expanded;
-    if (!(_.contains(this.state.expanded, id))) {
-      expanded.push(id);
+    if (!(_.contains(this.state.expanded, alias))) {
+      expanded.push(alias);
     } else {
-      var idx = _.indexOf(expanded, id);
+      var idx = _.indexOf(expanded, alias);
       expanded.splice(idx, 1);
     }
     this.setState({
@@ -283,9 +257,9 @@ const GoLinksGlossaryTable = React.createClass({
     return (
       <div style={{position: 'relative', top: '-30px', height: '100%', backgroundColor: '#d8d8d8'}}>
         <UiHeader textTitle={element.name} />
-        <h2>{element.email}</h2>
-        <h2>{element.company}</h2>
-        <h2>{element.gender}</h2>
+        <h2>{element.alias}</h2>
+        <h2>{element.owner}</h2>
+        <h2>{element.description}</h2>
       </div>
     );
   },
