@@ -6,7 +6,7 @@ const keyMap = {
   alias: {
     columnName: 'Alias',
     sortable: true,
-    width: 1,
+    width: 0.5,
     display: (alias) => {
       return (
         <span>{alias}</span>
@@ -26,10 +26,7 @@ const keyMap = {
   description: {
     columnName: 'Description',
     sortable: true,
-    width: 1,
-    tooltipDisplay: (name, element) => {
-      return element.id
-    }
+    width: 1.5,
   },
   actions: {
     columnName: " Edit/Delete",
@@ -38,8 +35,14 @@ const keyMap = {
     width: 0.5,
     display: () => {
       return (
-        <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' />
-        // <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' />
+        <div>
+          <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' />
+          
+          <UiIcon icon='edit' dimensions={[20, 20]} color='white' />
+          <UiIcon icon='edit' dimensions={[20, 20]} color='white' />
+          
+          <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={() => {console.log(GoLinksGlossaryTable) }}/>
+        </div>
       );
     }
   }
@@ -47,8 +50,8 @@ const keyMap = {
 
 const childComponent = (goLink) => {
   return (
-    <div style={{paddingLeft: '30px'}}>
-      <span>{goLink.description}</span>
+    <div style={{paddingLeft: '15px'}}>
+      <h3>{goLink.description}</h3>
     </div>
   );
 }
@@ -72,7 +75,7 @@ const goLinks = [
     "id":"gdocs",
     "alias": "gdocs",
     "url": "https://docs.google.com",
-    "description": "Because go/gdocs is shorter that docs.google.com",
+    "description": "Because go/gdocs is shorter than docs.google.com",
     "owner": "Sergey Brin & Larry Page"
   }, 
   {
@@ -94,16 +97,6 @@ const goLinks = [
 const columnOrder = ['alias', 'url', 'description', 'actions'];
 const columnsToShow = ['alias', 'url', 'description', 'actions'];
 
-const sidebarOptions = {
-  sections: [
-    { label: 'information', smallIcon: true },
-    { label: 'price'},
-    { label: 'restricted-use' },
-    { label: 'whitelist' },
-    { label: 'blacklist' },
-    { label: 'statistics', tall: true, tooltipText: 'Segment Statistics' }
-  ]
-};
 
 const GoLinksGlossaryTable = React.createClass({
   getInitialState() {
@@ -117,67 +110,50 @@ const GoLinksGlossaryTable = React.createClass({
       totalElements: 3000,
       columnsToShow: columnsToShow,
       expanded: [],
-      columnSortedBy: "id",
+      columnSortedBy: "alias",
       sortOrderAscending: true
     });
   },
 
   //change initialFetchComplete to false to see loading rows
   render () {
-    if(this.state.showTable) {   
-      return (
-        <div>
-          <button onClick={() => this.props.goLinksActions.redirect("/create")} className="button">
-            + Create Link
-          </button>
-
-          <div className="button" onClick={this.toggleTable}>Hide</div>
-          <UiTable
-            title={"LiveRamp Employees"}
-            initialFetchComplete={true}
-            selectedRows={this.state.selectedRows}
-            handleCheckboxChange={this.handleCheckboxChange}
-            haveChildren={true}
-            expandedRows={this.state.expanded}
-            childComponent={childComponent}
-            headerFilterGroup={<div></div>}
-            headerButtonGroup={<div></div>}
-            elements={this.state.shownElements}
-            loadMoreElements={this.loadMoreElements}
-            hasMoreElements={this.state.shownElements.length < 5}
-            selectAllChecked={this.state.selectAllChecked}
-            handleSelectAllChange={this.handleSelectAllChange}
-            elementKeyMap={keyMap}
-            handleShowHideColumn={this.handleShowHideColumn}
-            elementName={"stellar employee"}
-            detailView={this.detailView}
-            showCheckboxes={false}
-            columnOrder={columnOrder}
-            columnSortedBy={this.state.columnSortedBy}
-            sortOrderAscending={this.state.sortOrderAscending}
-            handleColumnSort={this.handleColumnSort}
-            toggleChildren={this.toggleChildren}
-            totalRows={this.state.totalElements}
-            columnsToShow={this.state.columnsToShow}
-            searchValue={this.state.tableSearchValue}
-            handleSearchChange={this.handleSearchChange}
-            handleSearchEnter={this.handleSearchEnter}
-            loadingRowsCount={3}
-            sidebarOptions={sidebarOptions}
-            />
-        </div>
-      );
-    } else {
-      return (
-        <div className="button" onClick={this.toggleTable}>Show</div>
-      );
-    }
-  },
-
-  toggleTable() {
-    this.setState({
-      showTable: !this.state.showTable
-    })
+    return (
+      <div>
+        <button onClick={() => this.props.goLinksActions.redirect("/create")} className="button">
+          + Create Link
+        </button>
+        <UiTable
+          title={"Go/ Links Glossary"}
+          initialFetchComplete={true}
+          selectedRows={this.state.selectedRows}
+          haveChildren={true}
+          expandedRows={this.state.expanded}
+          childComponent={childComponent}
+          headerFilterGroup={<div></div>}
+          headerButtonGroup={<div></div>}
+          elements={this.state.shownElements}
+          loadMoreElements={this.loadMoreElements}
+          hasMoreElements={this.state.shownElements.length < 5}
+          handleSelectAllChange={this.handleSelectAllChange}
+          elementKeyMap={keyMap}
+          handleShowHideColumn={this.handleShowHideColumn}
+          elementName={"stellar Go/ link"}
+          hideDetail={true}
+          showCheckboxes={false}
+          columnOrder={columnOrder}
+          columnSortedBy={this.state.columnSortedBy}
+          sortOrderAscending={this.state.sortOrderAscending}
+          handleColumnSort={this.handleColumnSort}
+          toggleChildren={this.toggleChildren}
+          totalRows={this.state.totalElements}
+          columnsToShow={this.state.columnsToShow}
+          searchValue={this.state.tableSearchValue}
+          handleSearchChange={this.handleSearchChange}
+          handleSearchEnter={this.handleSearchEnter}
+          loadingRowsCount={3}
+          />
+      </div>
+    );
   },
 
   handleCheckboxChange(id, checked) {
@@ -216,13 +192,12 @@ const GoLinksGlossaryTable = React.createClass({
     console.log(this.state.tableSearchValue);
   },
 
-  toggleChildren(alias) {
-    console.log(alias);
+  toggleChildren(id) {
     var expanded = this.state.expanded;
-    if (!(_.contains(this.state.expanded, alias))) {
-      expanded.push(alias);
+    if (!(_.contains(this.state.expanded, id))) {
+      expanded.push(id);
     } else {
-      var idx = _.indexOf(expanded, alias);
+      var idx = _.indexOf(expanded, id);
       expanded.splice(idx, 1);
     }
     this.setState({
@@ -231,9 +206,7 @@ const GoLinksGlossaryTable = React.createClass({
   },
 
   loadMoreElements(i) {
-    this.setState({
-      shownElements: this.state.elements.slice(0, 50*(i + 1))
-    });
+    this.props.goLinksActions.getAll();
   },
 
   handleSelectAllChange(id, checked) {
@@ -256,10 +229,7 @@ const GoLinksGlossaryTable = React.createClass({
     console.log("-----");
     return (
       <div style={{position: 'relative', top: '-30px', height: '100%', backgroundColor: '#d8d8d8'}}>
-        <UiHeader textTitle={element.name} />
-        <h2>{element.alias}</h2>
-        <h2>{element.owner}</h2>
-        <h2>{element.description}</h2>
+        <UiHeader textTitle={element.alias} />
       </div>
     );
   },
@@ -294,7 +264,11 @@ const GoLinksGlossaryTable = React.createClass({
     this.setState({
       columnsToShow: newColumns
     });
-  }
+  },
+
+  handleDeleteClick(){
+    console.log("Delete clicked ref");
+  } 
 });
 
 const mapStateToProps = function(state) {
