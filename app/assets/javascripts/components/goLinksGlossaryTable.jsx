@@ -56,43 +56,43 @@ const childComponent = (goLink) => {
   );
 }
 
-const goLinks = [
-  {
-    "id": "kb",
-    "alias": "kb",
-    "url": "https://support.liveramp.com",
-    "description": "The base of all knowledge.",
-    "owner": "Each and every one of us."
-  },
-  {
-    "id": "turntbot",
-    "alias": "turntbot",
-    "url": "https://turntbot.com",
-    "description": "Let's get turnt.",
-    "owner": "Andy"
-  },
-  {
-    "id":"gdocs",
-    "alias": "gdocs",
-    "url": "https://docs.google.com",
-    "description": "Because go/gdocs is shorter than docs.google.com",
-    "owner": "Sergey Brin & Larry Page"
-  }, 
-  {
-    "id": "sfofficemap",
-    "alias": "sfofficemap",
-    "url": "https://support.liveramp.com/pages/viewpage.action?pageId=1769611",
-    "description": "SF Office map",
-    "owner": "Sherif"
-  },
-  {
-    "id": "okta",
-    "alias": "okta",
-    "url": "https://acxiom.okta.com/",
-    "description": "Login portal",
-    "owner": "Sherif"
-  }
-];
+// const goLinks = [
+//   {
+//     "id": "kb",
+//     "alias": "kb",
+//     "url": "https://support.liveramp.com",
+//     "description": "The base of all knowledge.",
+//     "owner": "Each and every one of us."
+//   },
+//   {
+//     "id": "turntbot",
+//     "alias": "turntbot",
+//     "url": "https://turntbot.com",
+//     "description": "Let's get turnt.",
+//     "owner": "Andy"
+//   },
+//   {
+//     "id":"gdocs",
+//     "alias": "gdocs",
+//     "url": "https://docs.google.com",
+//     "description": "Because go/gdocs is shorter than docs.google.com",
+//     "owner": "Sergey Brin & Larry Page"
+//   }, 
+//   {
+//     "id": "sfofficemap",
+//     "alias": "sfofficemap",
+//     "url": "https://support.liveramp.com/pages/viewpage.action?pageId=1769611",
+//     "description": "SF Office map",
+//     "owner": "Sherif"
+//   },
+//   {
+//     "id": "okta",
+//     "alias": "okta",
+//     "url": "https://acxiom.okta.com/",
+//     "description": "Login portal",
+//     "owner": "Sherif"
+//   }
+// ];
 
 const columnOrder = ['alias', 'url', 'description', 'actions'];
 const columnsToShow = ['alias', 'url', 'description', 'actions'];
@@ -104,8 +104,8 @@ const GoLinksGlossaryTable = React.createClass({
       showTable: true,
       tableSearchValue: "",
       selectedRows: [],
-      shownElements: goLinks.slice(0, 2),
-      elements: goLinks,
+      shownElements: this.props.goLinks.goLinksList,
+      elements: this.props.goLinks.goLinksList,
       selectAllChecked: false,
       totalElements: 3000,
       columnsToShow: columnsToShow,
@@ -132,8 +132,8 @@ const GoLinksGlossaryTable = React.createClass({
           headerFilterGroup={<div></div>}
           headerButtonGroup={<div></div>}
           elements={this.state.shownElements}
-          loadMoreElements={this.loadMoreElements}
-          hasMoreElements={this.state.shownElements.length < 5}
+          loadMoreElements={function(){}}
+          hasMoreElements={false}
           handleSelectAllChange={this.handleSelectAllChange}
           elementKeyMap={keyMap}
           handleShowHideColumn={this.handleShowHideColumn}

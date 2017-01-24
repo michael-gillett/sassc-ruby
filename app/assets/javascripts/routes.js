@@ -414,9 +414,12 @@ Based on Rails routes of GoLinksUi::Application
     };
     namespace(root, "Routes");
     root.Routes = {
-// api_all => /api/all(.:format)
+// api_go_link => /api/go_links/:id(.:format)
+  // function(id, options)
+  api_go_link_path: Utils.route(["id"], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"go_links",false],[2,[7,"/",false],[2,[3,"id",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]]]], {}),
+// api_go_links => /api/go_links(.:format)
   // function(options)
-  api_all_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"all",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], {}),
+  api_go_links_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"go_links",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], {}),
 // root => /
   // function(options)
   root_path: Utils.route([], [], [7,"/",false], {})}
