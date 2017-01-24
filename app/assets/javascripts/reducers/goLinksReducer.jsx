@@ -4,19 +4,12 @@ const defaultState = {
 
   // Some examples of store elements
 
-  // originalEndpointList: {}, // looks like an object filled with newEndpointData referenced by id: { 1: newEndpointData{}, 2: newEndpointData{}}
-  // goLinks: {
-  //   someId: null,
-  //   someName: "",
-  //   segmentBodyFormat: "",
-  //   protocol: "",
-  //   status: "",
-  //   thriftModel: {},
-  //   protocolAttributes: {},
-  //   requiredTaxonomyProperties: {},
-  //   detailsFetchStatus: "",
-  //   savingStatus: "", // only present in newEndpointData
-  // },
+  goLinksList: [], // looks like an object filled with newEndpointData referenced by id: { 1: newEndpointData{}, 2: newEndpointData{}}
+  goLinksCreateForm: {
+    alias: "",
+    url: "",
+    description: "",
+  },
 }
 
 function GoLinksReducer(state = defaultState, action) {
@@ -33,7 +26,25 @@ function GoLinksReducer(state = defaultState, action) {
     //   return update(state, {
     //     someStoreElement: { $set: action.type }
     //   });
-
+    
+    case GoLinksConstants.SET_ALIAS:
+      return update(state, {
+        goLinksCreateForm: {
+          alias: { $set: action.alias }
+        }
+      });
+    case GoLinksConstants.SET_URL:
+      return update(state, {
+        goLinksCreateForm: {
+          url: { $set: action.url }
+        }
+      });
+    case GoLinksConstants.SET_DESCRIPTION:
+      return update(state, {
+        goLinksCreateForm: {
+          description: { $set: action.description }
+        }
+      });
     default:
       return state;
   }
