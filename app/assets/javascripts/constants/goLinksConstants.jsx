@@ -1,4 +1,5 @@
 export default {
+
   SET_ALIAS: "SET_ALIAS",
   SET_URL: "SET_URL",
   SET_DESCRIPTION: "SET_DESCRIPTION",

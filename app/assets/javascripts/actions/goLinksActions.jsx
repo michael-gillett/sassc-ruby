@@ -1,5 +1,5 @@
 import AlertsConstants from 'constants/alertsConstants';
-import GoLinksConstants from 'constants/goLinksConstants';
+import GoLinksConstants from 'constants/goLinksConstants'
 import AlertActions from 'actions/alertActions';
 import { push } from 'react-router-redux';
 
