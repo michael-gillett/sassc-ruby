@@ -15,7 +15,8 @@ $(function() {
       <Router history={history}>
         <Route path="/" component={GoLinksApp}>
           <IndexRoute component={GoLinksGlossaryTable}/>
-          <Route path="create" component={GoLinksCreateForm}/>       
+          <Route path="create" component={GoLinksCreateForm}/>
+          <Route path="*" component={GoLinksGlossaryTable}/>
         </Route>
       </Router>
     </ReactRedux.Provider>,
