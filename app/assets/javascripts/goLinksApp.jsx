@@ -22,28 +22,27 @@ const GoLinksApp = React.createClass({
       //       permanent={this.props.alerts.permanent}
       //     />
       //   }
-      //   { this.getBody() }
       // </div>
       <div className='go-links-form-table'>
-        <GoLinksCreateForm />
-        <GoLinksGlossaryTable />
+        { this.getBody() }
       </div>
     );
   },
 
-  // getBody() {
-  //   if (this.loadedEndpointsSuccessfully()) {
-  //     return this.props.children;
-  //   } else if (this.failedToLoadEndpoints()) {
-  //     return <UiLoadingComponent
-  //       type='error'
-  //       message={<p>{"Failed to load endpoints. Click to retry."}</p>}
-  //       retryCallback={this.props.taxonomyEndpointActions.fetchTaxonomyEndpoints}
-  //       />;
-  //   } else {
-  //     return <UiLoadingComponent/>;
-  //   }
-  // },
+  getBody() {
+    // if (this.loadedEndpointsSuccessfully()) {
+    //   return this.props.children;
+    // } else if (this.failedToLoadEndpoints()) {
+    //   return <UiLoadingComponent
+    //     type='error'
+    //     message={<p>{"Failed to load endpoints. Click to retry."}</p>}
+    //     retryCallback={this.props.taxonomyEndpointActions.fetchTaxonomyEndpoints}
+    //     />;
+    // } else {
+    //   return <UiLoadingComponent/>;
+    // }
+    return this.props.children;
+  },
 
   // loadedEndpointsSuccessfully() {
   //   return this.props.taxonomyEndpoint.endpointFetchStatus === TaxonomyEndpointConstants.ENDPOINT_LIST_FETCH_SUCCESS;

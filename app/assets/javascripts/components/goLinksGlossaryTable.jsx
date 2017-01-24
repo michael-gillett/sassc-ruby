@@ -1,4 +1,6 @@
-import { UiTable, UiInput, UiIcon, UiHeader } from 'liveramp-ui-toolkit'
+import { UiTable, UiInput, UiIcon, UiHeader } from 'liveramp-ui-toolkit';
+import AlertActions from 'actions/alertActions';
+import GoLinksActions from 'actions/goLinksActions';
 
 const keyMap = {
   id: {
@@ -135,7 +137,7 @@ const GoLinksGlossaryTable = React.createClass({
       showTable: true,
       tableSearchValue: "",
       selectedRows: [],
-      shownElements: people.slice(0, 50),
+      shownElements: people.slice(0, 2),
       elements: people,
       selectAllChecked: false,
       totalElements: 3000,
@@ -148,9 +150,13 @@ const GoLinksGlossaryTable = React.createClass({
 
   //change initialFetchComplete to false to see loading rows
   render () {
-    if(this.state.showTable) {
+    if(this.state.showTable) {   
       return (
         <div>
+          <button onClick={() => this.props.goLinksActions.redirect("/create")} className="button">
+            + Create Link
+          </button>
+
           <div className="button" onClick={this.toggleTable}>Hide</div>
           <UiTable
             title={"LiveRamp Employees"}
@@ -317,4 +323,17 @@ const GoLinksGlossaryTable = React.createClass({
   }
 });
 
-export default GoLinksGlossaryTable;
+const mapStateToProps = function(state) {
+  return {
+    goLinks: state.goLinks,
+  };
+};
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    goLinksActions: Redux.bindActionCreators(GoLinksActions, dispatch),
+    alertActions: Redux.bindActionCreators(AlertActions, dispatch),
+  };
+};
+
+export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(GoLinksGlossaryTable);

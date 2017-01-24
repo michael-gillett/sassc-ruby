@@ -1,5 +1,7 @@
 import GoLinksAppReducer from 'reducers/goLinksAppReducer';
 import GoLinksApp from './goLinksApp';
+import GoLinksCreateForm from 'components/goLinksCreateForm';
+import GoLinksGlossaryTable from 'components/goLinksGlossaryTable';
 import getStore from 'reactUtils/getStore';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -12,6 +14,8 @@ $(function() {
     <ReactRedux.Provider store={store}>
       <Router history={history}>
         <Route path="/" component={GoLinksApp}>
+          <IndexRoute component={GoLinksGlossaryTable}/>
+          <Route path="create" component={GoLinksCreateForm}/>       
         </Route>
       </Router>
     </ReactRedux.Provider>,
