@@ -3,9 +3,8 @@ import GoLinksConstants from 'constants/goLinksConstants';
 const defaultState = {
 
   // Some examples of store elements
-
   goLinksList: [],
-  goLinksCreateForm: {
+  newGoLinkData: {
     alias: "",
     url: "",
     description: "",
@@ -14,25 +13,24 @@ const defaultState = {
 }
 
 function GoLinksReducer(state = defaultState, action) {
-
-  switch (action.type) {    
+  switch (action.type) {
     case GoLinksConstants.SET_ALIAS:
       return update(state, {
-        goLinksCreateForm: {
+        newGoLinkData: {
           alias: { $set: action.alias }
         }
       });
 
     case GoLinksConstants.SET_URL:
       return update(state, {
-        goLinksCreateForm: {
+        newGoLinkData: {
           url: { $set: action.url }
         }
       });
 
     case GoLinksConstants.SET_DESCRIPTION:
       return update(state, {
-        goLinksCreateForm: {
+        newGoLinkData: {
           description: { $set: action.description }
         }
       });
