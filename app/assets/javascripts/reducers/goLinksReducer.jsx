@@ -41,9 +41,9 @@ function GoLinksReducer(state = defaultState, action) {
       });
 
     case GoLinksConstants.GO_LINKS_FETCH_SUCCESS:
-      const newlyFetchedGoLinkList = {};
+      const newlyFetchedGoLinkList = [];
       _.each(action.data, function(goLink) {
-        newlyFetchedGoLinkList[goLink.query.alias] = { url: goLink.query.url, description: goLink.query.description }
+        newlyFetchedGoLinkList.push({ id: goLink.query.alias, alias: goLink.query.alias, url: goLink.query.url, description: goLink.query.description, owner: goLink.query.owner });
       });
       return update(state, {
         goLinksList: { $set: newlyFetchedGoLinkList },

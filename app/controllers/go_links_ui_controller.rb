@@ -1,15 +1,16 @@
 class GoLinksUiController < ApplicationController
 
   def get_alias_info(alias_name)
-    { ok: true,
-      message: "",
-      query:
-      {
-        alias: "jocelyn",
-        description: "pm",
-        url: "https://liveramp.com"
-      }
-    }
+    # { ok: true,
+    #   message: "",
+    #   query:
+    #   {
+    #     alias: "jocelyn",
+    #     description: "pm",
+    #     url: "https://liveramp.com"
+    #   }
+    # }
+    { ok: false }
   end
 
   def index
