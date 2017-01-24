@@ -3,36 +3,57 @@ import GoLinksConstants from 'constants/goLinksConstants';
 const defaultState = {
 
   // Some examples of store elements
-
-  // originalEndpointList: {}, // looks like an object filled with newEndpointData referenced by id: { 1: newEndpointData{}, 2: newEndpointData{}}
-  // goLinks: {
-  //   someId: null,
-  //   someName: "",
-  //   segmentBodyFormat: "",
-  //   protocol: "",
-  //   status: "",
-  //   thriftModel: {},
-  //   protocolAttributes: {},
-  //   requiredTaxonomyProperties: {},
-  //   detailsFetchStatus: "",
-  //   savingStatus: "", // only present in newEndpointData
-  // },
+  goLinksList: [],
+  newGoLinkData: {
+    alias: "",
+    url: "",
+    description: "",
+  },
+  goLinksFetchStatus: GoLinksConstants.GO_LINKS_FETCH_LOADING
 }
 
 function GoLinksReducer(state = defaultState, action) {
-
   switch (action.type) {
-    // Examples:
+    case GoLinksConstants.SET_ALIAS:
+      return update(state, {
+        newGoLinkData: {
+          alias: { $set: action.alias }
+        }
+      });
 
-    // case GoLinksConstants.SOME_STATE:
-    //   return update(state, {
-    //     someStoreElement: { $set: GoLinksConstants.TRIGGER_SOME_OTHER_STATE }
-    //   });
+    case GoLinksConstants.SET_URL:
+      return update(state, {
+        newGoLinkData: {
+          url: { $set: action.url }
+        }
+      });
 
-    // case GoLinksConstants.SOME_STATE:
-    //   return update(state, {
-    //     someStoreElement: { $set: action.type }
-    //   });
+    case GoLinksConstants.SET_DESCRIPTION:
+      return update(state, {
+        newGoLinkData: {
+          description: { $set: action.description }
+        }
+      });
+
+    case GoLinksConstants.GO_LINKS_FETCH:
+      return update(state, {
+        goLinksFetchStatus: { $set: GoLinksConstants.GO_LINKS_FETCH_LOADING }
+      });
+
+    case GoLinksConstants.GO_LINKS_FETCH_SUCCESS:
+      const newlyFetchedGoLinkList = {};
+      _.each(action.data, function(goLink) {
+        newlyFetchedGoLinkList[goLink.query.alias] = { url: goLink.query.url, description: goLink.query.description }
+      });
+      return update(state, {
+        goLinksList: { $set: newlyFetchedGoLinkList },
+        goLinksFetchStatus: { $set: action.type }
+      });
+
+    case GoLinksConstants.GO_LINKS_FETCH_FAILURE:
+      return update(state, {
+        goLinksFetchStatus: { $set: action.type }
+      });
 
     default:
       return state;
