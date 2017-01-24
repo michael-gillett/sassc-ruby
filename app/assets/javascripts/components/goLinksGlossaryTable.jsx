@@ -107,7 +107,7 @@ const GoLinksGlossaryTable = React.createClass({
       shownElements: this.props.goLinks.goLinksList,
       elements: this.props.goLinks.goLinksList,
       selectAllChecked: false,
-      totalElements: 3000,
+      totalElements: this.props.goLinks.goLinksList.length,
       columnsToShow: columnsToShow,
       expanded: [],
       columnSortedBy: "alias",
@@ -203,10 +203,6 @@ const GoLinksGlossaryTable = React.createClass({
     this.setState({
       expanded: expanded
     });
-  },
-
-  loadMoreElements(i) {
-    this.props.goLinksActions.getAll();
   },
 
   handleSelectAllChange(id, checked) {
