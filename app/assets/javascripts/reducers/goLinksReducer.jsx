@@ -55,6 +55,24 @@ function GoLinksReducer(state = defaultState, action) {
         goLinksFetchStatus: { $set: action.type }
       });
 
+    case GoLinksConstants.POPULATE_EDIT_INFO:
+      return update(state, {
+        newGoLinkData: {
+          alias: { $set: action.goLink.alias },
+          url: { $set: action.goLink.url },
+          description: { $set: action.goLink.description }
+        }
+      });
+
+    case GoLinksConstants.CLEAR_EDIT_INFO:
+      return update(state, {
+        newGoLinkData: {
+          alias: { $set: "" },
+          url: {  $set: "" },
+          description: {  $set: "" }
+        }
+      });
+
     default:
       return state;
   }

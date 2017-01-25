@@ -22,6 +22,18 @@ const GoLinksActions = {
     }
   },
 
+  populateEditInfo: (goLink) => {
+    return (dispatch, getState) => {
+      dispatch({ type: GoLinksConstants.POPULATE_EDIT_INFO, goLink });
+    }
+  },
+
+  clearEditInfo: () => {
+    return (dispatch, getState) => {
+      dispatch({ type: GoLinksConstants.CLEAR_EDIT_INFO });
+    }
+  },
+
   fetchGoLinks: () => {
     return (dispatch, getState) => {
       dispatch({ type: GoLinksConstants.GO_LINKS_FETCH });

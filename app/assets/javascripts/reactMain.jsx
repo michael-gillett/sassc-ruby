@@ -1,6 +1,7 @@
 import GoLinksAppReducer from 'reducers/goLinksAppReducer';
 import GoLinksApp from './goLinksApp';
 import GoLinksCreateForm from 'components/goLinksCreateForm';
+import GoLinksEditForm from 'components/goLinksEditForm';
 import GoLinksGlossaryTable from 'components/goLinksGlossaryTable';
 import getStore from 'reactUtils/getStore';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -16,6 +17,7 @@ $(function() {
         <Route path="/" component={GoLinksApp}>
           <IndexRoute component={GoLinksGlossaryTable}/>
           <Route path="create" component={GoLinksCreateForm}/>
+          <Route path="edit" component={GoLinksEditForm}/>
           <Route path="*" component={GoLinksGlossaryTable}/>
         </Route>
       </Router>

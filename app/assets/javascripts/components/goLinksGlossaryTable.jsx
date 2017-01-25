@@ -2,51 +2,57 @@ import { UiTable, UiInput, UiIcon, UiHeader } from 'liveramp-ui-toolkit';
 import AlertActions from 'actions/alertActions';
 import GoLinksActions from 'actions/goLinksActions';
 
-const keyMap = {
-  alias: {
-    columnName: 'Alias',
-    sortable: true,
-    width: 0.5,
-    display: (alias) => {
-      return (
-        <span>{alias}</span>
-      );
-    }
-  },
-  url: {
-    columnName: 'URL',
-    sortable: true,
-    width: 1.5,
-    display: (url) => {
-      return (
-        <span><a href={url}> {url} </a> </span>
-      );
-    }
-  },
-  description: {
-    columnName: 'Description',
-    sortable: true,
-    width: 1.5,
-  },
-  actions: {
-    columnName: " Edit/Delete",
-    sortable: false,
-    justification: 'center',
-    width: 0.5,
-    display: () => {
-      return (
-        <div>
-          <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' />
-          
-          <UiIcon icon='edit' dimensions={[20, 20]} color='white' />
-          <UiIcon icon='edit' dimensions={[20, 20]} color='white' />
-          
-          <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={() => {console.log(GoLinksGlossaryTable) }}/>
-        </div>
-      );
+const getKeyMap = props => (
+  {
+    alias: {
+      columnName: 'Alias',
+      sortable: true,
+      width: 0.5,
+      display: (alias) => {
+        return (
+          <span>{alias}</span>
+        );
+      }
+    },
+    url: {
+      columnName: 'URL',
+      sortable: true,
+      width: 1.5,
+      display: (url) => {
+        return (
+          <span><a href={url}> {url} </a> </span>
+        );
+      }
+    },
+    description: {
+      columnName: 'Description',
+      sortable: true,
+      width: 1.5,
+    },
+    actions: {
+      columnName: " Edit/Delete",
+      sortable: false,
+      justification: 'center',
+      width: 0.5,
+      display: (value, element) => {
+        return (
+          <div>
+            <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' />
+
+            <UiIcon icon='edit' dimensions={[20, 20]} color='white' />
+            <UiIcon icon='edit' dimensions={[20, 20]} color='white' />
+
+            <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={() => { console.log(element)
+                                                                                             props.goLinksActions.populateEditInfo(element)
+                                                                                             props.goLinksActions.redirect("/edit") } }/>
+          </div>
+        );
+      }
     }
   }
-}
+);
+
+
 
 const childComponent = (goLink) => {
   return (
@@ -77,7 +83,7 @@ const childComponent = (goLink) => {
 //     "url": "https://docs.google.com",
 //     "description": "Because go/gdocs is shorter than docs.google.com",
 //     "owner": "Sergey Brin & Larry Page"
-//   }, 
+//   },
 //   {
 //     "id": "sfofficemap",
 //     "alias": "sfofficemap",
@@ -135,7 +141,7 @@ const GoLinksGlossaryTable = React.createClass({
           loadMoreElements={function(){}}
           hasMoreElements={false}
           handleSelectAllChange={this.handleSelectAllChange}
-          elementKeyMap={keyMap}
+          elementKeyMap={getKeyMap(this.props)}
           handleShowHideColumn={this.handleShowHideColumn}
           elementName={"stellar Go/ link"}
           hideDetail={true}
@@ -264,7 +270,11 @@ const GoLinksGlossaryTable = React.createClass({
 
   handleDeleteClick(){
     console.log("Delete clicked ref");
-  } 
+  },
+
+  generateKeyMap() {
+
+  },
 });
 
 const mapStateToProps = function(state) {

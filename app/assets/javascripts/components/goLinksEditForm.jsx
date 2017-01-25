@@ -1,20 +1,22 @@
 import { UiHeader, UiInput, UiIcon } from 'liveramp-ui-toolkit';
 import GoLinksConstants from 'constants/goLinksConstants';
 import GoLinksActions from 'actions/goLinksActions';
+import ValidURL from 'valid-url';
 import GoLinksForm from 'components/goLinksForm';
 
-var GoLinksCreateForm = React.createClass ({
+var GoLinksEditForm = React.createClass ({
 
   render () {
     return (
       <div className="container">
         <GoLinksForm />
         <div className="row">
-          <button onClick={() => this.props.goLinksActions.redirect("/")} className="button">
+          <button onClick={() => { this.props.goLinksActions.clearEditInfo()
+                                   this.props.goLinksActions.redirect("/") }} className="button">
             Back
           </button>
           <button onClick={() => {}} className="button">
-            Save
+            Edit
           </button>
         </div>
       </div>
@@ -34,4 +36,4 @@ const mapDispatchToProps = function(dispatch) {
   };
 };
 
-export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(GoLinksCreateForm);
+export default ReactRedux.connect(mapStateToProps, mapDispatchToProps)(GoLinksEditForm);
