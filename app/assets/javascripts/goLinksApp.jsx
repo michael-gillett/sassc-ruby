@@ -1,6 +1,7 @@
 import GoLinksActions from 'actions/goLinksActions';
 import AlertActions from 'actions/alertActions';
 import GoLinksConstants from 'constants/goLinksConstants';
+import XhrStatusConstants from 'constants/xhrStatusConstants';
 import GoLinksGlossaryTable from 'components/goLinksGlossaryTable';
 import GoLinksCreateForm from 'components/goLinksCreateForm';
 import { UiAlert, UiLoadingComponent } from 'liveramp-ui-toolkit';
@@ -43,11 +44,11 @@ const GoLinksApp = React.createClass({
   },
 
   loadedGoLinksSuccessfully() {
-    return this.props.goLinks.goLinksFetchStatus === GoLinksConstants.GO_LINKS_FETCH_SUCCESS;
+    return this.props.goLinks.goLinksFetchStatus === XhrStatusConstants.GO_LINKS_SUCCESS;
   },
 
   failedToLoadGoLinks() {
-    return this.props.goLinks.goLinksFetchStatus === GoLinksConstants.GO_LINKS_FETCH_FAILURE;
+    return this.props.goLinks.goLinksFetchStatus === XhrStatusConstants.GO_LINKS_FAILURE;
   }
 
 });

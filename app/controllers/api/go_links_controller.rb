@@ -52,7 +52,26 @@ class Api::GoLinksController < ApplicationController
   end
 
   def update # PATCH, update need to provide an id
+    response =
+    # {
+    #   ok: false,
+    #   message: "not found"
+    # }
+    {
+      ok: true,
+      query:
+      {
+        alias: "jocelyn",
+        description: "eng",
+        url: "https://facebook.com"
+      }
+    }
 
+    if response.ok
+      render json: { redirect_to: "/", go_link: response.query }, status: 200
+    else
+      render json: { message: "Failed to update go/ link.", error_message: response.message }, status: 500
+    end
   end
 
   def destroy # DELETE,
