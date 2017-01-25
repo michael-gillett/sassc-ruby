@@ -7,7 +7,7 @@ var GoLinksCreateForm = React.createClass ({
 
   render () {
     return (
-      <div className="container">
+      <div className="form">
         <GoLinksForm />
         <div className="row">
           <button onClick={() => this.props.goLinksActions.redirect("/")} className="button">

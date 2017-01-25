@@ -28,6 +28,13 @@ const GoLinksActions = {
     }
   },
 
+  populateAliasInfo: (aliasName) => {
+    const alias = aliasName.replace('/', "");
+    return (dispatch, getState) => {
+      dispatch({ type: GoLinksConstants.POPULATE_ALIAS_INFO, alias });
+    }
+  },
+
   clearEditInfo: () => {
     return (dispatch, getState) => {
       dispatch({ type: GoLinksConstants.CLEAR_EDIT_INFO });

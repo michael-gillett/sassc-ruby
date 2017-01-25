@@ -64,6 +64,13 @@ function GoLinksReducer(state = defaultState, action) {
         }
       });
 
+    case GoLinksConstants.POPULATE_ALIAS_INFO:
+      return update(state, {
+        newGoLinkData: {
+          alias: { $set: action.alias }
+        }
+      });
+
     case GoLinksConstants.CLEAR_EDIT_INFO:
       return update(state, {
         newGoLinkData: {
