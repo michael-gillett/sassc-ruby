@@ -3,48 +3,58 @@ import GoLinksConstants from 'constants/goLinksConstants';
 const defaultState = {
 
   // Some examples of store elements
-
-  goLinksList: [], // looks like an object filled with newEndpointData referenced by id: { 1: newEndpointData{}, 2: newEndpointData{}}
+  goLinksList: [],
   newGoLinkData: {
     alias: "",
     url: "",
     description: "",
   },
+  goLinksFetchStatus: GoLinksConstants.GO_LINKS_FETCH_LOADING
 }
 
 function GoLinksReducer(state = defaultState, action) {
-
   switch (action.type) {
-    // Examples:
-
-    // case GoLinksConstants.SOME_STATE:
-    //   return update(state, {
-    //     someStoreElement: { $set: GoLinksConstants.TRIGGER_SOME_OTHER_STATE }
-    //   });
-
-    // case GoLinksConstants.SOME_STATE:
-    //   return update(state, {
-    //     someStoreElement: { $set: action.type }
-    //   });
-
     case GoLinksConstants.SET_ALIAS:
       return update(state, {
         newGoLinkData: {
           alias: { $set: action.alias }
         }
       });
+
     case GoLinksConstants.SET_URL:
       return update(state, {
         newGoLinkData: {
           url: { $set: action.url }
         }
       });
+
     case GoLinksConstants.SET_DESCRIPTION:
       return update(state, {
         newGoLinkData: {
           description: { $set: action.description }
         }
       });
+
+    case GoLinksConstants.GO_LINKS_FETCH:
+      return update(state, {
+        goLinksFetchStatus: { $set: GoLinksConstants.GO_LINKS_FETCH_LOADING }
+      });
+
+    case GoLinksConstants.GO_LINKS_FETCH_SUCCESS:
+      const newlyFetchedGoLinkList = [];
+      _.each(action.data, function(goLink) {
+        newlyFetchedGoLinkList.push({ id: goLink.query.alias, alias: goLink.query.alias, url: goLink.query.url, description: goLink.query.description, owner: goLink.query.owner });
+      });
+      return update(state, {
+        goLinksList: { $set: newlyFetchedGoLinkList },
+        goLinksFetchStatus: { $set: action.type }
+      });
+
+    case GoLinksConstants.GO_LINKS_FETCH_FAILURE:
+      return update(state, {
+        goLinksFetchStatus: { $set: action.type }
+      });
+
     default:
       return state;
   }
