@@ -1,4 +1,4 @@
-import { UiHeader, UiInput, UiIcon } from 'liveramp-ui-toolkit';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import GoLinksConstants from 'constants/goLinksConstants';
 import GoLinksActions from 'actions/goLinksActions';
 import GoLinksForm from 'components/goLinksForm';
@@ -10,12 +10,14 @@ var GoLinksCreateForm = React.createClass ({
       <div className="container">
         <GoLinksForm />
         <div className="row">
-          <button onClick={() => this.props.goLinksActions.redirect("/")} className="button">
-            Back
-          </button>
-          <button onClick={() => {}} className="button">
-            Save
-          </button>
+          <ButtonGroup>
+            <Button type="submit" onClick={() => this.props.goLinksActions.redirect("/")} >
+              Cancel
+            </Button>
+            <Button type="submit" onClick={() => {}} >
+              Save
+            </Button>
+          </ButtonGroup>
         </div>
       </div>
     );
