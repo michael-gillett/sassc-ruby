@@ -15,7 +15,7 @@ var GoLinksEditForm = React.createClass ({
                                    this.props.goLinksActions.redirect("/") }} className="button">
             Back
           </button>
-          <button onClick={() => {}} className="button">
+          <button onClick={() => { this.props.goLinksActions.updateGoLink(this.props.goLinks.newGoLinkData) }} className="button">
             Edit
           </button>
         </div>
