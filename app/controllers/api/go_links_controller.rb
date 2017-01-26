@@ -113,7 +113,7 @@ class Api::GoLinksController < ApplicationController
     if response.ok
       render json: { go_link: response.query }, status: 200
     else
-      render json: { go_link: response.query, message: "Failed to delete go/ link.", error_message: response.message }, status: 500
+      render json: { go_link: response.query, message: response.message }, status: 500
     end
   end
 

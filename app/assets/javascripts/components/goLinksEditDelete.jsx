@@ -10,9 +10,9 @@ var GoLinksEditDelete = React.createClass({
 
     return (
       <div>
-        <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' onClick={() => { this.props.goLinksActions.populateEditInfo(this.props.goLink)
+        <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' onClick={() => { this.props.goLinksActions.populateEditInfo(goLink)
                                                                                         this.props.goLinksActions.redirect("/edit") } }/>
-        <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={ () => { this.confirmDelete(this.props.goLink) }}/>
+        <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={ () => { this.confirmDelete(goLink) }}/>
       </div>
     );
   },
