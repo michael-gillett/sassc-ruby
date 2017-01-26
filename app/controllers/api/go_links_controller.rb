@@ -48,10 +48,25 @@ class Api::GoLinksController < ApplicationController
     # { ok: false }
   end
 
-  def create # POST, add new link
+  def create
+    response =
+    {
+      ok: true,
+      query:
+      {
+        alias: "jeanne",
+        description: "eng",
+        url: "https://liveramp.com"
+      }
+    }
+    if response.ok
+      render json: { redirect_to: "/", go_link: response.query }, status: 200
+    else
+      render json: { message: "Failed to save go/ link.", error_message: response.message }, status: 500
+    end
   end
 
-  def update # PATCH, update need to provide an id
+  def update
     response =
     # {
     #   ok: false,
@@ -74,7 +89,23 @@ class Api::GoLinksController < ApplicationController
     end
   end
 
-  def destroy # DELETE,
+  def destroy
+    response =
+    {
+      ok: true,
+      query:
+      {
+        alias: "jocelyn",
+        description: "eng",
+        url: "https://facebook.com"
+      }
+    }
+
+    if response.ok
+      render json: { go_link: response.query }, status: 200
+    else
+      render json: { message: "Failed to delete go/ link.", error_message: response.message }, status: 500
+    end
   end
 
 end

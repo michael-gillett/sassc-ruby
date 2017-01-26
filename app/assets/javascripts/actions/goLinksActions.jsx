@@ -66,6 +66,52 @@ const GoLinksActions = {
     };
   },
 
+  createGoLink: (goLink) => {
+    return (dispatch, getState) => {
+      dispatch({ type: GoLinksConstants.GO_LINK_SAVING });
+      $.ajax({
+        url: '/api/go_links/',
+        type: 'POST',
+        data: goLink,
+        success (data) {
+          dispatch({ type: XhrStatusConstants.SAVE_SUCCESS, data });
+          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, "Go/ Link saved successfully!"));
+          dispatch(push(`${data.redirect_to}`));
+        },
+        error (error) {
+          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, "Go/ Link alias already exists! Please enter a unique alias."));
+          dispatch({ type: XhrStatusConstants.SAVE_FAILURE });
+        }
+      });
+    };
+  },
+
+  deleteAlert: (goLink) => {
+    return (dispatch, getState) => {
+      dispatch({ type: GoLinksConstants.DELETE_CONFIRMATION });
+      dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, "Are you sure you want to delete this go/ link?", true))
+    };
+  },
+
+  deleteGoLink: (goLink) => {
+    return (dispatch, getState) => {
+      dispatch({ type: GoLinksConstants.GO_LINK_DELETING });
+      $.ajax({
+        url: '/api/go_links/' + goLink.alias,
+        type: 'DELETE',
+        data: goLink,
+        success (data) {
+          dispatch({ type: XhrStatusConstants.DELETE_SUCCESS, data });
+          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, "Go/ Link deleted successfully!"));
+        },
+        error (error) {
+          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, "Go/ Link failed to delete. Try again."));
+          dispatch({ type: XhrStatusConstants.DELETE_FAILURE });
+        }
+      });
+    };
+  },
+
   redirect: (route) => {
     return push(route);
   },

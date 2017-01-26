@@ -43,13 +43,17 @@ const GoLinksApp = React.createClass({
     return this.props.children;
   },
 
+  deleteConfirmationNeeded() {
+    return this.props.goLinks.goLinksDeleteStatus === GoLinksConstants.DELETE_CONFIRMATION;
+  },
+
   loadedGoLinksSuccessfully() {
     return this.props.goLinks.goLinksFetchStatus === XhrStatusConstants.GO_LINKS_SUCCESS;
   },
 
   failedToLoadGoLinks() {
     return this.props.goLinks.goLinksFetchStatus === XhrStatusConstants.GO_LINKS_FAILURE;
-  }
+  },
 
 });
 

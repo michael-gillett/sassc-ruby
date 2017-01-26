@@ -1,4 +1,5 @@
 import GoLinksConstants from 'constants/goLinksConstants';
+import AlertsConstants from 'constants/alertsConstants';
 import XhrStatusConstants from 'constants/xhrStatusConstants';
 
 const defaultState = {
@@ -10,11 +11,17 @@ const defaultState = {
   },
   goLinksFetchStatus: XhrStatusConstants.GO_LINKS_LOADING,
   goLinkSaveStatus: "",
+  goLinkDeleteStatus: "",
 }
 
 const updateGoLinksList = (originalGoLinksList, updatedGoLink) => {
   originalGoLinksList[updatedGoLink.alias] = updatedGoLink;
   return originalGoLinksList;
+}
+
+const deleteFromGoLinksList = (originalGoLinksList, deletedGoLink) => {
+  const updatedGoLinksList = _.omit(originalGoLinksList, deletedGoLink.alias);
+  return updatedGoLinksList;
 }
 
 function GoLinksReducer(state = defaultState, action) {
@@ -56,14 +63,12 @@ function GoLinksReducer(state = defaultState, action) {
       });
 
     case XhrStatusConstants.GO_LINKS_FAILURE:
-      debugger
       return update(state, {
         goLinksFetchStatus: { $set: action.type }
       });
 
     case GoLinksConstants.GO_LINK_UPDATING:
     case XhrStatusConstants.UPDATE_FAILURE:
-      debugger
       return update(state, {
         goLinkSaveStatus: { $set: action.state }
       });
@@ -74,6 +79,39 @@ function GoLinksReducer(state = defaultState, action) {
         goLinksList: { $set: updateGoLinksList(state.goLinksList, newlyUpdatedGoLink) },
         newGoLinkData: { $set: defaultState.newGoLinkData },
         goLinkSaveStatus: { $set: defaultState.goLinkSaveStatus }
+      });
+
+    case GoLinksConstants.GO_LINK_SAVING:
+    case XhrStatusConstants.SAVE_FAILURE:
+      return update(state, {
+        goLinkSaveStatus: { $set: action.state }
+      });
+
+    case XhrStatusConstants.SAVE_SUCCESS:
+      const newGoLink = action.data.go_link
+      return update(state, {
+        goLinksList: { $set: updateGoLinksList(state.goLinksList, newGoLink) },
+        newGoLinkData: { $set: defaultState.newGoLinkData },
+        goLinkSaveStatus: { $set: defaultState.goLinkSaveStatus }
+      });
+
+    case GoLinksConstants.GO_LINK_DELETING:
+    case XhrStatusConstants.DELETE_FAILURE:
+      return update(state, {
+        goLinkDeleteStatus: { $set: action.state }
+      });
+
+    case XhrStatusConstants.DELETE_SUCCESS:
+      const deletedGoLink = action.data.go_link
+      return update(state, {
+        goLinksList: { $set: deleteFromGoLinksList(state.goLinksList, deletedGoLink) },
+        newGoLinkData: { $set: defaultState.newGoLinkData },
+        goLinkDeleteStatus: { $set: defaultState.goLinkDeleteStatus }
+      });
+
+    case GoLinksConstants.DELETE_CONFIRMATION:
+      return update(state, {
+        goLinkDeleteStatus: { $set: action.state }
       });
 
     case GoLinksConstants.POPULATE_EDIT_INFO:

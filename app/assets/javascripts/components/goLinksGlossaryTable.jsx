@@ -1,6 +1,7 @@
 import { UiTable, UiInput, UiIcon, UiHeader } from 'liveramp-ui-toolkit';
 import AlertActions from 'actions/alertActions';
 import GoLinksActions from 'actions/goLinksActions';
+import AlertsConstants from 'constants/alertsConstants';
 
 const getKeyMap = props => (
   {
@@ -30,7 +31,7 @@ const getKeyMap = props => (
       width: 1.5,
     },
     actions: {
-      columnName: " Edit/Delete",
+      columnName: 'Edit/Delete',
       sortable: false,
       justification: 'center',
       width: 0.5,
@@ -39,7 +40,7 @@ const getKeyMap = props => (
           <div>
             <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' onClick={() => { props.goLinksActions.populateEditInfo(element)
                                                                                             props.goLinksActions.redirect("/edit") } }/>
-            <UiIcon icon='trash' dimensions={[20, 20]} color='select-green'/>
+            <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={ () => { confirmDelete(element, props) }}/>
           </div>
         );
       }
@@ -47,7 +48,21 @@ const getKeyMap = props => (
   }
 );
 
+const closeAlertAndDelete = (goLink, props) => {
+  props.alertActions.closeAlert();
+  props.goLinksActions.deleteGoLink(goLink);
+}
 
+const confirmDelete = (goLink, props) => {
+  const message = (
+    <p>Are you sure you want to delete this go/link?
+      <span onClick={closeAlertAndDelete(goLink, props)} className='delete-go-link-confirmation'>
+         Click here to delete.
+      </span>
+    </p>
+  );
+  return props.alertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, message, true);
+}
 
 const childComponent = (goLink) => {
   return (
@@ -56,44 +71,6 @@ const childComponent = (goLink) => {
     </div>
   );
 }
-
-// const goLinks = [
-//   {
-//     "id": "kb",
-//     "alias": "kb",
-//     "url": "https://support.liveramp.com",
-//     "description": "The base of all knowledge.",
-//     "owner": "Each and every one of us."
-//   },
-//   {
-//     "id": "turntbot",
-//     "alias": "turntbot",
-//     "url": "https://turntbot.com",
-//     "description": "Let's get turnt.",
-//     "owner": "Andy"
-//   },
-//   {
-//     "id":"gdocs",
-//     "alias": "gdocs",
-//     "url": "https://docs.google.com",
-//     "description": "Because go/gdocs is shorter than docs.google.com",
-//     "owner": "Sergey Brin & Larry Page"
-//   },
-//   {
-//     "id": "sfofficemap",
-//     "alias": "sfofficemap",
-//     "url": "https://support.liveramp.com/pages/viewpage.action?pageId=1769611",
-//     "description": "SF Office map",
-//     "owner": "Sherif"
-//   },
-//   {
-//     "id": "okta",
-//     "alias": "okta",
-//     "url": "https://acxiom.okta.com/",
-//     "description": "Login portal",
-//     "owner": "Sherif"
-//   }
-// ];
 
 const columnOrder = ['alias', 'url', 'description', 'actions'];
 const columnsToShow = ['alias', 'url', 'description', 'actions'];
@@ -106,7 +83,6 @@ const GoLinksGlossaryTable = React.createClass({
       tableSearchValue: "",
       selectedRows: [],
       shownElements: _.values(this.props.goLinks.goLinksList),
-      elements: _.values(this.props.goLinks.goLinksList),
       selectAllChecked: false,
       totalElements: this.props.goLinks.goLinksList.size,
       columnsToShow: columnsToShow,
@@ -116,7 +92,6 @@ const GoLinksGlossaryTable = React.createClass({
     });
   },
 
-  //change initialFetchComplete to false to see loading rows
   render () {
     return (
       <div>
@@ -129,7 +104,7 @@ const GoLinksGlossaryTable = React.createClass({
           childComponent={childComponent}
           headerFilterGroup={<div></div>}
           headerButtonGroup={this.createButton()}
-          elements={this.state.shownElements}
+          elements={_.values(this.props.goLinks.goLinksList)}
           loadMoreElements={function(){}}
           hasMoreElements={false}
           handleSelectAllChange={this.handleSelectAllChange}
@@ -268,7 +243,7 @@ const GoLinksGlossaryTable = React.createClass({
     return (
       <button onClick={() => { this.props.goLinksActions.populateAliasInfo(window.location.pathname)
                                this.props.goLinksActions.redirect("/create")} } className="button">
-        + Create Link
+        + Create Go/ Link
       </button>
     );
   },
