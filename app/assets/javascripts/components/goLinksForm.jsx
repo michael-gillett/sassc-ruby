@@ -7,7 +7,11 @@ import ValidURL from 'valid-url';
 class FieldGroup extends React.Component {
   render () {
     return (
-      <FormGroup controlId={this.props.id}>
+      <FormGroup
+        controlId={this.props.id}
+        validationState={this.props.validationState}
+        bsSize="lg"
+      >
         <ControlLabel>{this.props.label}</ControlLabel>
         {this.props.addon && <InputGroup>
           <InputGroup.Addon>{this.props.addon}</InputGroup.Addon>
@@ -21,17 +25,30 @@ class FieldGroup extends React.Component {
 }
 
 var GoLinksForm = React.createClass ({
+  validateAlias(alias) {
+    debugger
+    if (alias.length > 0) {
+      var re = /[a-z0-9_-]*/i;
+      var m = alias.match(re)[0];
+      return (m.length == alias.length) ? null : "error";
+    }
+  },
+
+  validateUrl(url) {
+    return ValidURL.isWebUri(url) ? "success" : "error" ;
+  },
+
   render () {
     return (
       <div className="row">
         <FieldGroup
           id="alias"
-          label="Go/ alias"
+          label="Alias"
           help="Aliases must be lowercase, with no space, and unique."
           type="text"
           addon="go/"
           value={this.props.goLinks.newGoLinkData.alias}
-          valid={this.props.goLinks.newGoLinkData.alias != ""}
+          validationState={this.validateAlias(this.props.goLinks.newGoLinkData.alias)}
           placeholder="e.g. shared_document"
           onChange={ (e) => { this.props.goLinksActions.setAlias(e.target.value); } }
         />
@@ -41,7 +58,7 @@ var GoLinksForm = React.createClass ({
           help="What is your alias redirecting to?"
           type="text"
           value={this.props.goLinks.newGoLinkData.url}
-          valid={!this.props.goLinks.newGoLinkData.url || ValidURL.isWebUri(this.props.goLinks.newGoLinkData.url)}
+          validationState={this.validateUrl(this.props.goLinks.newGoLinkData.url)}
           placeholder="http://..."
           onChange={ (e) => { this.props.goLinksActions.setUrl(e.target.value); } }
         />

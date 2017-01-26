@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button, ButtonGroup, Col, PageHeader } from 'react-bootstrap';
 import GoLinksConstants from 'constants/goLinksConstants';
 import GoLinksActions from 'actions/goLinksActions';
 import GoLinksForm from 'components/goLinksForm';
@@ -7,10 +7,18 @@ var GoLinksCreateForm = React.createClass ({
 
   render () {
     return (
-      <div className="container">
+      <Col
+        id="main-container"
+        lg={8}
+        lgOffset={2}
+        md={10}
+        mdOffset={1}
+        sm={12}
+      >
+        <PageHeader><strong>Create a go/ link</strong></PageHeader>
         <GoLinksForm />
         <div className="row">
-          <ButtonGroup>
+          <ButtonGroup bsSize="large">
             <Button type="submit" onClick={() => this.props.goLinksActions.redirect("/")} >
               Cancel
             </Button>
@@ -19,7 +27,7 @@ var GoLinksCreateForm = React.createClass ({
             </Button>
           </ButtonGroup>
         </div>
-      </div>
+        </Col>
     );
   }
 });
