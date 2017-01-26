@@ -52,8 +52,8 @@ function GoLinksReducer(state = defaultState, action) {
         goLinksFetchStatus: { $set: XhrStatusConstants.GO_LINKS_LOADING }
       });
 
-    case XhrStatusConstants.GO_LINKS_SUCCESS:
-      const newlyFetchedGoLinkList = {};
+    case XhrStatusConstants.GO_LINKS.SUCCESS:
+      const newlyFetchedGoLinkList = [];
       _.each(action.data, function(goLink) {
         newlyFetchedGoLinkList[goLink.query.alias] = { id: goLink.query.alias, alias: goLink.query.alias, url: goLink.query.url, description: goLink.query.description, owner: goLink.query.owner };
       });
@@ -62,7 +62,7 @@ function GoLinksReducer(state = defaultState, action) {
         goLinksFetchStatus: { $set: action.type }
       });
 
-    case XhrStatusConstants.GO_LINKS_FAILURE:
+    case XhrStatusConstants.GO_LINKS.FAILURE:
       return update(state, {
         goLinksFetchStatus: { $set: action.type }
       });

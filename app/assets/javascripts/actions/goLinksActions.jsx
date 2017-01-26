@@ -37,10 +37,10 @@ const GoLinksActions = {
         url: '/api/go_links',
         type: 'GET',
         success (data) {
-          dispatch({ type: XhrStatusConstants.GO_LINKS_SUCCESS, data });
+          dispatch({ type: XhrStatusConstants.GO_LINKS.SUCCESS, data });
         },
         error (error) {
-          dispatch({ type: XhrStatusConstants.GO_LINKS_FAILURE });
+          dispatch({ type: XhrStatusConstants.GO_LINKS.FAILURE });
         }
       });
     };
@@ -55,13 +55,13 @@ const GoLinksActions = {
         data: goLink,
         success (data) {
           let updateSuccessMessage = <p>Go/{data.go_link.alias} updated successfully!</p>;
-          dispatch({ type: XhrStatusConstants.UPDATE_SUCCESS, data });
+          dispatch({ type: XhrStatusConstants.UPDATE.SUCCESS, data });
           dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, updateSuccessMessage));
           dispatch(push(`${data.redirect_to}`));
         },
         error (error) {
           dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, "Go/ Link failed to update. Try again."));
-          dispatch({ type: XhrStatusConstants.UPDATE_FAILURE });
+          dispatch({ type: XhrStatusConstants.UPDATE.FAILURE });
         }
       });
     };
@@ -76,22 +76,15 @@ const GoLinksActions = {
         data: goLink,
         success (data) {
           let saveSuccessMessage = <p>Go/{data.go_link.alias} saved successfully!</p>;
-          dispatch({ type: XhrStatusConstants.SAVE_SUCCESS, data });
+          dispatch({ type: XhrStatusConstants.SAVE.SUCCESS, data });
           dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, saveSuccessMessage));
           dispatch(push(`${data.redirect_to}`));
         },
         error (error) {
           dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, "Go/ Link alias already exists! Please enter a unique alias."));
-          dispatch({ type: XhrStatusConstants.SAVE_FAILURE });
+          dispatch({ type: XhrStatusConstants.SAVE.FAILURE });
         }
       });
-    };
-  },
-
-  deleteAlert: (goLink) => {
-    return (dispatch, getState) => {
-      dispatch({ type: GoLinksConstants.DELETE_CONFIRMATION });
-      dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, "Are you sure you want to delete this go/ link?", true))
     };
   },
 
@@ -104,12 +97,12 @@ const GoLinksActions = {
         data: goLink,
         success (data) {
           let deleteSuccessMessage = <p>Go/{data.go_link.alias} deleted successfully!</p>;
-          dispatch({ type: XhrStatusConstants.DELETE_SUCCESS, data });
+          dispatch({ type: XhrStatusConstants.DELETE.SUCCESS, data });
           dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, deleteSuccessMessage));
         },
         error (error) {
           dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, "Go/ Link failed to delete. Try again."));
-          dispatch({ type: XhrStatusConstants.DELETE_FAILURE });
+          dispatch({ type: XhrStatusConstants.DELETE.FAILURE });
         }
       });
     };
