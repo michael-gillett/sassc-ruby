@@ -1,4 +1,5 @@
 import GoLinksConstants from 'constants/goLinksConstants';
+import XhrStatusConstants from 'constants/xhrStatusConstants';
 
 const defaultState = {
 
@@ -40,7 +41,7 @@ function GoLinksReducer(state = defaultState, action) {
         goLinksFetchStatus: { $set: GoLinksConstants.GO_LINKS_FETCH_LOADING }
       });
 
-    case GoLinksConstants.GO_LINKS_FETCH_SUCCESS:
+    case XhrStatusConstants.GO_LINKS.SUCCESS:
       const newlyFetchedGoLinkList = [];
       _.each(action.data, function(goLink) {
         newlyFetchedGoLinkList.push({ id: goLink.query.alias, alias: goLink.query.alias, url: goLink.query.url, description: goLink.query.description, owner: goLink.query.owner });
@@ -50,7 +51,7 @@ function GoLinksReducer(state = defaultState, action) {
         goLinksFetchStatus: { $set: action.type }
       });
 
-    case GoLinksConstants.GO_LINKS_FETCH_FAILURE:
+    case XhrStatusConstants.GO_LINKS.FAILURE:
       return update(state, {
         goLinksFetchStatus: { $set: action.type }
       });
