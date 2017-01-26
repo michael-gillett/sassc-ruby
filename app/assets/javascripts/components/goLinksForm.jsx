@@ -40,7 +40,9 @@ var GoLinksForm = React.createClass ({
   },
 
   disableState() {
-    return this.validateAlias(this.props.goLinks.newGoLinkData.alias) != null || this.validateUrl(this.props.goLinks.newGoLinkData.url) != null
+    var aliasValid = !this.validateAlias(this.props.goLinks.newGoLinkData.alias);
+    var urlValid = !this.validateUrl(this.props.goLinks.newGoLinkData.url);
+    return !aliasValid || !urlValid ;
   },
 
   render () {
