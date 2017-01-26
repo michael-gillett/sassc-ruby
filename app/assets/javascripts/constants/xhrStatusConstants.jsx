@@ -1,0 +1,7 @@
+export default {
+  GO_LINKS: {
+    LOADING: "GO_LINKS_LOADING",
+    SUCCESS: "GO_LINKS_SUCCESS",
+    FAILURE: "GO_LINKS_FAILURE",
+  },
+};

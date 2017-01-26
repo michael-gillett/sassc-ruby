@@ -22,7 +22,7 @@ class GoLinksUiController < ApplicationController
     if go_alias
       go_link = get_alias_info(go_alias)
       if go_link.ok
-        redirect_to go_link.query.url, status: 302
+        redirect_to go_link.query.url
       end
     else
       render :index
