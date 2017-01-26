@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Col, PageHeader } from 'react-bootstrap';
+import { Col, PageHeader } from 'react-bootstrap';
 import GoLinksConstants from 'constants/goLinksConstants';
 import GoLinksActions from 'actions/goLinksActions';
 import GoLinksForm from 'components/goLinksForm';
@@ -17,16 +17,6 @@ var GoLinksCreateForm = React.createClass ({
       >
         <PageHeader><strong>Create a go/ link</strong></PageHeader>
         <GoLinksForm />
-        <div className="row">
-          <ButtonGroup bsSize="large">
-            <Button type="submit" onClick={() => this.props.goLinksActions.redirect("/")} >
-              Cancel
-            </Button>
-            <Button type="submit" onClick={() => {}} >
-              Save
-            </Button>
-          </ButtonGroup>
-        </div>
       </Col>
     );
   }

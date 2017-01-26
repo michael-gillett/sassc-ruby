@@ -1,4 +1,4 @@
-import { FormGroup, ControlLabel, FormControl, HelpBlock, InputGroup } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, InputGroup, Button, ButtonGroup } from 'react-bootstrap';
 import { UiHeader, UiInput } from 'liveramp-ui-toolkit';
 import GoLinksConstants from 'constants/goLinksConstants';
 import GoLinksActions from 'actions/goLinksActions';
@@ -26,16 +26,21 @@ class FieldGroup extends React.Component {
 
 var GoLinksForm = React.createClass ({
   validateAlias(alias) {
-    debugger
     if (alias.length > 0) {
       var re = /[a-z0-9_-]*/i;
       var m = alias.match(re)[0];
       return (m.length == alias.length) ? null : "error";
+    } else {
+      return "error";
     }
   },
 
   validateUrl(url) {
-    return ValidURL.isWebUri(url) ? "success" : "error" ;
+    return ValidURL.isWebUri(url) ? null : "error" ;
+  },
+
+  disableState() {
+    return this.validateAlias(this.props.goLinks.newGoLinkData.alias) != null || this.validateUrl(this.props.goLinks.newGoLinkData.url) != null
   },
 
   render () {
@@ -72,6 +77,18 @@ var GoLinksForm = React.createClass ({
           placeholder=""
           onChange={ (e) => { this.props.goLinksActions.setDescription(e.target.value); } }
         />
+        <ButtonGroup bsSize="large">
+          <Button onClick={() => this.props.goLinksActions.redirect("/")} >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            onClick={() => {}}
+            disabled={this.disableState()}
+          >
+            Save
+          </Button>
+        </ButtonGroup>
       </div>
     )
   }
