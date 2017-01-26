@@ -16,7 +16,10 @@ var GoLinksCreateForm = React.createClass ({
         sm={12}
       >
         <PageHeader><strong>Create a go/ link</strong></PageHeader>
-        <GoLinksForm />
+        <GoLinksForm
+          submitButtonText="Save"
+          submitButtonAction={() => { }}
+        />
       </Col>
     );
   }
