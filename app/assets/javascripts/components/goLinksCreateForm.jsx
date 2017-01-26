@@ -27,7 +27,7 @@ var GoLinksCreateForm = React.createClass ({
             </Button>
           </ButtonGroup>
         </div>
-        </Col>
+      </Col>
     );
   }
 });

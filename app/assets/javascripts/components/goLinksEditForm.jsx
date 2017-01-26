@@ -8,7 +8,7 @@ var GoLinksEditForm = React.createClass ({
 
   render () {
     return (
-      <div className="container">
+      <div className="form">
         <GoLinksForm />
         <div className="row">
           <button onClick={() => { this.props.goLinksActions.clearEditInfo()

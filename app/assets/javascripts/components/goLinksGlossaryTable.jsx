@@ -37,14 +37,9 @@ const getKeyMap = props => (
       display: (value, element) => {
         return (
           <div>
-            <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' />
-
-            <UiIcon icon='edit' dimensions={[20, 20]} color='white' />
-            <UiIcon icon='edit' dimensions={[20, 20]} color='white' />
-
-            <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={() => { console.log(element)
-                                                                                             props.goLinksActions.populateEditInfo(element)
-                                                                                             props.goLinksActions.redirect("/edit") } }/>
+            <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' onClick={() => { props.goLinksActions.populateEditInfo(element)
+                                                                                            props.goLinksActions.redirect("/edit") } }/>
+            <UiIcon icon='trash' dimensions={[20, 20]} color='select-green'/>
           </div>
         );
       }
@@ -125,9 +120,6 @@ const GoLinksGlossaryTable = React.createClass({
   render () {
     return (
       <div>
-        <button onClick={() => this.props.goLinksActions.redirect("/create")} className="button">
-          + Create Link
-        </button>
         <UiTable
           title={"Go/ Links Glossary"}
           initialFetchComplete={true}
@@ -136,7 +128,7 @@ const GoLinksGlossaryTable = React.createClass({
           expandedRows={this.state.expanded}
           childComponent={childComponent}
           headerFilterGroup={<div></div>}
-          headerButtonGroup={<div></div>}
+          headerButtonGroup={this.createButton()}
           elements={this.state.shownElements}
           loadMoreElements={function(){}}
           hasMoreElements={false}
@@ -272,8 +264,13 @@ const GoLinksGlossaryTable = React.createClass({
     console.log("Delete clicked ref");
   },
 
-  generateKeyMap() {
-
+  createButton() {
+    return (
+      <button onClick={() => { this.props.goLinksActions.populateAliasInfo(window.location.pathname)
+                               this.props.goLinksActions.redirect("/create")} } className="button">
+        + Create Link
+      </button>
+    );
   },
 });
 
