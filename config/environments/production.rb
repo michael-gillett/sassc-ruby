@@ -86,17 +86,6 @@ Rails.application.configure do
     email_format: :html
   }
 
-  # Set up Redis cache store
-  if File.exist?("#{Rails.root}/config/redis.yml")
-    redis_servers = YAML.load_file("#{Rails.root}/config/redis.yml")['redis_servers'].values
-    config.cache_store = :redis_store,
-                          redis_servers,
-                          { namespace: "cache" }
-  end
-
   config.eager_load = true
   config.log_level = :info
 end
-
-NFS_PATH = '/var/nfs/mounts/'
-CUSTOMER_HOME = NFS_PATH + 'customer_home/'

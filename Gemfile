@@ -26,9 +26,6 @@ gem 'rails', '4.2.5'
 gem 'redis-rails', '4.0.0'
 gem 'exception_notification', '~> 4.1.4'
 
-# gem 'rails_assets', git: 'git@git.liveramp.net:RailsRepos/rails_assets.git'
-# gem 'rails_assets', path: '../rails_assets'
-
 
 gem 'newrelic_rpm', '~> 3.14'
 gem 'js-routes', '~> 1.1'
@@ -42,3 +39,4 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails', '~> 6'
 gem 'httparty', '0.13.7'
+gem 'mysql2'

@@ -364,3 +364,180 @@
 [2017-01-26 11:46:57 -0800 shnada0816mac.corp.acxiom.net (26093)] ERROR : Invalid license key, please contact support@newrelic.com
 [2017-01-26 11:46:57 -0800 shnada0816mac.corp.acxiom.net (26093)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
 [2017-01-26 12:56:22 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Starting Agent shutdown
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Environment: development
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Dispatcher: webrick
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Application: development
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing Net instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:19:21 -0800 shnada0816mac.corp.acxiom.net (28725)] INFO : Finished instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Environment: development
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Dispatcher: webrick
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Application: development
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing Net instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:19:50 -0800 shnada0816mac.corp.acxiom.net (28739)] INFO : Finished instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Environment: development
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Dispatcher: webrick
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Application: development
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing Net instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:21:21 -0800 shnada0816mac.corp.acxiom.net (28753)] INFO : Finished instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Environment: development
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Dispatcher: webrick
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Application: development
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing Net instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:21:57 -0800 shnada0816mac.corp.acxiom.net (28796)] INFO : Finished instrumentation
+[2017-01-26 13:23:51 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:23:51 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:23:51 -0800 shnada0816mac.corp.acxiom.net (28825)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:23:51 -0800 shnada0816mac.corp.acxiom.net (28825)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:23:51 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Environment: development
+[2017-01-26 13:23:51 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Dispatcher: webrick
+[2017-01-26 13:23:51 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Application: development
+[2017-01-26 13:23:51 -0800 shnada0816mac.corp.acxiom.net (28825)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing Net instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:23:52 -0800 shnada0816mac.corp.acxiom.net (28825)] INFO : Finished instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Environment: development
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Dispatcher: webrick
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Application: development
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing Net instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:25:53 -0800 shnada0816mac.corp.acxiom.net (28858)] INFO : Finished instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Environment: development
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Dispatcher: webrick
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Application: development
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing Net instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:28:52 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Finished instrumentation
+[2017-01-26 13:28:53 -0800 shnada0816mac.corp.acxiom.net (30110)] INFO : Doing deferred dependency-detection before Rack startup
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Environment: development
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Dispatcher: webrick
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Application: development
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing Net instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Finished instrumentation
+[2017-01-26 13:29:00 -0800 shnada0816mac.corp.acxiom.net (30124)] INFO : Doing deferred dependency-detection before Rack startup
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Environment: development
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Dispatcher: webrick
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Application: development
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing Net instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing Redis Instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 13:29:32 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Finished instrumentation
+[2017-01-26 13:29:33 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Doing deferred dependency-detection before Rack startup
+[2017-01-26 13:29:39 -0800 shnada0816mac.corp.acxiom.net (30138)] ERROR : Invalid license key, please contact support@newrelic.com
+[2017-01-26 13:29:39 -0800 shnada0816mac.corp.acxiom.net (30138)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[2017-01-26 13:30:14 -0800 shnada0816mac.corp.acxiom.net (30138)] INFO : Starting Agent shutdown

@@ -43,16 +43,6 @@ Rails.application.configure do
   config.eager_load = false
 end
 
-require 'rap_support/core_ext/migration_extension'
-
-NFS_PATH = ''
-CUSTOMER_HOME = '/data/customer/'
-
-# Log ActiveRecord queries to STDOUT if in console
-if ['irb', 'script/rails'].include?($0)
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
-end
-
 # Disable ActiveRecord debug logging if in server
 # if ['script/rails'].include?($0)
 #   ActiveRecord::Base.logger = Logger.new('/dev/null')

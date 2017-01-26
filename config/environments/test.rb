@@ -40,8 +40,3 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
-
-require 'rap_support/core_ext/migration_extension'
-
-NFS_PATH = '../'
-CUSTOMER_HOME = NFS_PATH + 'customer/'

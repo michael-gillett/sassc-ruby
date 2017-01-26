@@ -114,6 +114,7 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
+    mysql2 (0.4.4)
     newrelic_rpm (3.16.2.321)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -258,6 +259,7 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0)
   js-routes (~> 1.1)
   letter_opener
+  mysql2
   newrelic_rpm (~> 3.14)
   passenger (~> 5.0)
   protected_attributes (~> 1.1)
