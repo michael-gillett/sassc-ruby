@@ -340,3 +340,27 @@
 [2017-01-24 15:52:25 -0800 shnada0816mac.corp.acxiom.net (9412)] ERROR : Invalid license key, please contact support@newrelic.com
 [2017-01-24 15:52:25 -0800 shnada0816mac.corp.acxiom.net (9412)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
 [2017-01-24 19:28:52 -0800 shnada0816mac.corp.acxiom.net (9412)] INFO : Starting Agent shutdown
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Starting the New Relic agent in "development" environment.
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go_links
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] WARN : Looked in these locations (based on defaults): /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/Desktop/go/go_links/config/newrelic.yml, /Users/shnada/Desktop/go/go_links/newrelic.yml, /Users/shnada/.newrelic/newrelic.yml, /Users/shnada/newrelic.yml
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Environment: development
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Dispatcher: webrick
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Application: development
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing ActiveJob instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing ActiveRecord 4+ instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing Net instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing Redis Instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing Typhoeus instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing Rails 4 Controller instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing Rails 4 view instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Installing Rails 4 Error instrumentation
+[2017-01-26 11:46:38 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Finished instrumentation
+[2017-01-26 11:46:39 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Doing deferred dependency-detection before Rack startup
+[2017-01-26 11:46:57 -0800 shnada0816mac.corp.acxiom.net (26093)] ERROR : Invalid license key, please contact support@newrelic.com
+[2017-01-26 11:46:57 -0800 shnada0816mac.corp.acxiom.net (26093)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[2017-01-26 12:56:22 -0800 shnada0816mac.corp.acxiom.net (26093)] INFO : Starting Agent shutdown

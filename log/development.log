@@ -1879,3 +1879,47 @@ Completed 200 OK in 141ms
 Started GET "/api/go_links" for ::1 at 2017-01-24 18:21:05 -0800
 Processing by Api::GoLinksController#index as */*
 Completed 200 OK in 1ms
+
+
+Started GET "/" for ::1 at 2017-01-26 11:46:55 -0800
+Processing by GoLinksUiController#index as HTML
+  Rendered go_links_ui/index.haml within layouts/application (817.8ms)
+Completed 200 OK in 1204ms
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2017-01-26 11:46:57 -0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2017-01-26 11:46:58 -0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2017-01-26 11:46:58 -0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2017-01-26 11:46:58 -0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2017-01-26 11:46:58 -0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2017-01-26 11:46:58 -0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2017-01-26 11:46:58 -0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2017-01-26 11:46:59 -0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2017-01-26 11:46:59 -0800
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2017-01-26 11:46:59 -0800
+
+
+Started GET "/assets/goLinksUi.bundle.self-3ee58bd72b09181f402b05949daa3d3cdf98150dc2fc77225de4d6bf432ba2b7.js?body=1" for ::1 at 2017-01-26 11:46:59 -0800
+
+
+Started GET "/api/go_links" for ::1 at 2017-01-26 11:46:59 -0800
+Processing by Api::GoLinksController#index as */*
+Completed 200 OK in 1ms

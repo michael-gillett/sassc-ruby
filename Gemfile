@@ -1,4 +1,4 @@
-source 'http://gemserver.liveramp.net/'
+source 'https://rubygems.org'
 
 group :development, :test do
   gem 'capybara'
@@ -18,29 +18,18 @@ group :test do
   gem 'factory_girl_rails', '~> 4.0'
 end
 
-gem 'rails_logger', :git => 'git@git.liveramp.net:RailsRepos/rails_logger.git'
 gem 'active_attr', '0.8.5'
 gem 'haml', '~> 4.0'
 gem 'gon', '~> 6.0'
 gem 'uglifier', '2.7.2'
-gem 'mysql2', '~> 0.4.2'
 gem 'rails', '4.2.5'
 gem 'redis-rails', '4.0.0'
-gem 'thrift', '0.9.3.0'
-gem 'rapleaf_lib'
-gem 'rldb', git: 'git@git.liveramp.net:MasterRepos/db_schemas.git', glob: '**/rldb.gemspec'
-# gem 'rldb', path: '../db_schemas/databases/rldb'
-gem 'liveramp_auth', git: 'git@git.liveramp.net:RailsRepos/liveramp_auth.git'
-gem 'auth_service_client', git: 'git@git.liveramp.net:RailsRepos/auth_service.git'
 gem 'exception_notification', '~> 4.1.4'
 
 # gem 'rails_assets', git: 'git@git.liveramp.net:RailsRepos/rails_assets.git'
 # gem 'rails_assets', path: '../rails_assets'
 
-gem 'subdomain_routes', git: 'git@git.liveramp.net:RailsRepos/subdomain_routes.git'
 
-gem 'rap_support'
-gem 'rapleaf_types'
 gem 'newrelic_rpm', '~> 3.14'
 gem 'js-routes', '~> 1.1'
 gem 'select2-rails', '3.5.9'
