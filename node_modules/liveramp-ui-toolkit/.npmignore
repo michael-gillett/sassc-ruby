@@ -1,0 +1,12 @@
+node_modules/
+.idea/*
+.sass-cache
+*.DS_Store
+npm-debug.log
+authors.txt
+
+*.bundle.js
+/js/components/icons.jsx
+/ui_toolkit.js
+/ui_toolkit.css
+/docs.css

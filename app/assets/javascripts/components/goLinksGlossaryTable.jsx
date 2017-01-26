@@ -37,7 +37,7 @@ const getKeyMap = props => (
       display: (value, element) => {
         return (
           <div>
-            <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' onClick={() => { props.goLinksActions.populateEditInfo(element)
+            <UiIcon icon='edit' style="margin-right:15px" dimensions={[20, 20]} color='select-green' onClick={() => { props.goLinksActions.populateEditInfo(element)
                                                                                             props.goLinksActions.redirect("/edit") } }/>
             <UiIcon icon='trash' dimensions={[20, 20]} color='select-green'/>
           </div>
