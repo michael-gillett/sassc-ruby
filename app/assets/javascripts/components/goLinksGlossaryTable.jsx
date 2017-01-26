@@ -2,6 +2,7 @@ import { UiTable, UiInput, UiIcon, UiHeader } from 'liveramp-ui-toolkit';
 import AlertActions from 'actions/alertActions';
 import GoLinksActions from 'actions/goLinksActions';
 import AlertsConstants from 'constants/alertsConstants';
+import GoLinksEditDelete from 'components/goLinksEditDelete';
 
 const getKeyMap = props => (
   {
@@ -37,32 +38,14 @@ const getKeyMap = props => (
       width: 0.5,
       display: (value, element) => {
         return (
-          <div>
-            <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' onClick={() => { props.goLinksActions.populateEditInfo(element)
-                                                                                            props.goLinksActions.redirect("/edit") } }/>
-            <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={ () => { confirmDelete(element, props) }}/>
-          </div>
+          <GoLinksEditDelete
+            goLink={element}
+          />
         );
       }
     }
   }
 );
-
-const closeAlertAndDelete = (goLink, props) => {
-  props.alertActions.closeAlert();
-  props.goLinksActions.deleteGoLink(goLink);
-}
-
-const confirmDelete = (goLink, props) => {
-  const message = (
-    <p>Are you sure you want to delete this go/link?
-      <span onClick={closeAlertAndDelete(goLink, props)} className='delete-go-link-confirmation'>
-         Click here to delete.
-      </span>
-    </p>
-  );
-  return props.alertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, message, true);
-}
 
 const childComponent = (goLink) => {
   return (

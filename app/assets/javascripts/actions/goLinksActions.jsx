@@ -54,8 +54,9 @@ const GoLinksActions = {
         type: 'PATCH',
         data: goLink,
         success (data) {
+          let updateSuccessMessage = <p>Go/{data.go_link.alias} updated successfully!</p>;
           dispatch({ type: XhrStatusConstants.UPDATE_SUCCESS, data });
-          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, "Go/ Link updated successfully!"));
+          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, updateSuccessMessage));
           dispatch(push(`${data.redirect_to}`));
         },
         error (error) {
@@ -74,8 +75,9 @@ const GoLinksActions = {
         type: 'POST',
         data: goLink,
         success (data) {
+          let saveSuccessMessage = <p>Go/{data.go_link.alias} saved successfully!</p>;
           dispatch({ type: XhrStatusConstants.SAVE_SUCCESS, data });
-          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, "Go/ Link saved successfully!"));
+          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, saveSuccessMessage));
           dispatch(push(`${data.redirect_to}`));
         },
         error (error) {
@@ -101,8 +103,9 @@ const GoLinksActions = {
         type: 'DELETE',
         data: goLink,
         success (data) {
+          let deleteSuccessMessage = <p>Go/{data.go_link.alias} deleted successfully!</p>;
           dispatch({ type: XhrStatusConstants.DELETE_SUCCESS, data });
-          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, "Go/ Link deleted successfully!"));
+          dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.SUCCESS, deleteSuccessMessage));
         },
         error (error) {
           dispatch(AlertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, "Go/ Link failed to delete. Try again."));

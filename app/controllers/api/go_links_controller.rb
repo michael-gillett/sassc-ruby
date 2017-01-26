@@ -91,8 +91,17 @@ class Api::GoLinksController < ApplicationController
 
   def destroy
     response =
-    {
-      ok: true,
+    # {
+    #   ok: true,
+    #   query:
+    #   {
+    #     alias: "jocelyn",
+    #     description: "eng",
+    #     url: "https://facebook.com"
+    #   }
+    # }
+    { ok: false,
+      message: "not found",
       query:
       {
         alias: "jocelyn",
@@ -104,7 +113,7 @@ class Api::GoLinksController < ApplicationController
     if response.ok
       render json: { go_link: response.query }, status: 200
     else
-      render json: { message: "Failed to delete go/ link.", error_message: response.message }, status: 500
+      render json: { go_link: response.query, message: "Failed to delete go/ link.", error_message: response.message }, status: 500
     end
   end
 
