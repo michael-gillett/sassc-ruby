@@ -9,7 +9,7 @@ const getKeyMap = props => (
     alias: {
       columnName: 'Alias',
       sortable: true,
-      width: 0.5,
+      width: 5,
       display: (alias) => {
         return (
           <span>{alias}</span>
@@ -18,8 +18,8 @@ const getKeyMap = props => (
     },
     url: {
       columnName: 'URL',
-      sortable: true,
-      width: 1.5,
+      sortable: false,
+      width: 7,
       display: (url) => {
         return (
           <span><a href={url}> {url} </a> </span>
@@ -28,14 +28,14 @@ const getKeyMap = props => (
     },
     description: {
       columnName: 'Description',
-      sortable: true,
-      width: 1.5,
+      sortable: false,
+      width: 7,
     },
     actions: {
       columnName: 'Edit/Delete',
       sortable: false,
       justification: 'center',
-      width: 0.5,
+      width: 5,
       display: (value, element) => {
         return (
           <GoLinksEditDelete
@@ -65,7 +65,7 @@ const GoLinksGlossaryTable = React.createClass({
       showTable: true,
       tableSearchValue: "",
       selectedRows: [],
-      shownElements: _.values(this.props.goLinks.goLinksList),
+      elements: this.props.goLinks.filteredGoLinksList,
       selectAllChecked: false,
       totalElements: this.props.goLinks.goLinksList.size,
       columnsToShow: columnsToShow,
@@ -187,20 +187,18 @@ const GoLinksGlossaryTable = React.createClass({
   },
 
   handleColumnSort (column, ordering) {
-    var newElements = _.sortBy(this.state.elements, function(element) { return element[column]; });
+    var newElements = _.sortBy(_.values(this.state.elements), function(element) { return element[column]; });
     if (!ordering) {
       newElements = newElements.reverse();
     }
     this.setState({
       elements: newElements,
-      shownElements: newElements.slice(0, this.state.shownElements.length),
       columnSortedBy: column,
       sortOrderAscending: ordering
     })
   },
 
   handleShowHideColumn(columnName, show) {
-    console.log("handling show hide column");
     if (show) {
       if (!_.contains(columnsToShow, columnName)) {
         var newColumns = this.state.columnsToShow;

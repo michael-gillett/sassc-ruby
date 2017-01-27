@@ -7,8 +7,35 @@ class Api::GoLinksController < ApplicationController
         message: "",
         query:
         {
-          alias: "jocelyn",
-          description: "pm",
+          alias: "qa",
+          description: "LR Kiunei Page",
+          url: "http://www.kiunei.com/app/#/events/ORGANIZATION/5639274879778816"
+        }
+      },
+      { ok: true,
+        message: "",
+        query:
+        {
+          alias: "expenses",
+          description: "Acxiom/LiveRamp Expense Center",
+          url: "https://wd5.myworkday.com/acxiom/d/home.htmld#selectedWorklet=501%2487"
+        }
+      },
+      { ok: true,
+        message: "",
+        query:
+        {
+          alias: "hackweek",
+          description: "What is Hackweek?",
+          url: "https://support.liveramp.com/display/CI/Hackweek"
+        }
+      },
+      { ok: true,
+        message: "",
+        query:
+        {
+          alias: "home",
+          description: "LiveRamp Home Page",
           url: "https://liveramp.com"
         }
       },
@@ -16,18 +43,62 @@ class Api::GoLinksController < ApplicationController
         message: "",
         query:
         {
-          alias: "baptiste",
-          description: "eng",
-          url: "https://facebook.com"
+          alias: "kb",
+          description: "Knowledge Base Home Page",
+          url: "https://support.liveramp.com/display/CI/LiveRamp+Internal+Resource+Center"
         }
       },
       { ok: true,
         message: "",
         query:
         {
-          alias: "sherif",
-          description: "eng",
-          url: "https://flowers.com"
+          alias: "conference_rooms",
+          description: "I can never find my conference room.",
+          url: "https://support.liveramp.com/pages/viewpage.action?pageId=1769611"
+        }
+      },
+      { ok: true,
+        message: "",
+        query:
+        {
+          alias: "armaan",
+          description: "Where is Armaan? <3",
+          url: "https://liveramp.com/whereIsArmaan"
+        }
+      },
+      { ok: true,
+        message: "",
+        query:
+        {
+          alias: "product",
+          description: "LR Product Info",
+          url: "https://support.liveramp.com/display/CI/Product+Info"
+        }
+      },      { ok: true,
+        message: "",
+        query:
+        {
+          alias: "lunch",
+          description: "Chewse Calendar Download",
+          url: "https://www.chewse.com/calendars/4f05f496-5b65-4d8f-8e03-21ad64d8cbd5"
+        }
+      },
+      { ok: true,
+        message: "",
+        query:
+        {
+          alias: "okta",
+          description: "Acxiom's OKTA Page",
+          url: "https://acxiom.okta.com"
+        }
+      },
+      { ok: true,
+        message: "",
+        query:
+        {
+          alias: "frosch",
+          description: "Acxiom's FROSCH Booking Page",
+          url: "https://client.frosch.com/FroschAdmin/FClientsSite.aspx"
         }
       }
     ]
@@ -54,9 +125,9 @@ class Api::GoLinksController < ApplicationController
       ok: true,
       query:
       {
-        alias: "jeanne",
-        description: "eng",
-        url: "https://liveramp.com"
+        alias: "engineering",
+        description: "LiveRamp Engineering",
+        url: "https://git.liveramp.net"
       }
     }
     if response.ok
@@ -76,9 +147,9 @@ class Api::GoLinksController < ApplicationController
       ok: true,
       query:
       {
-        alias: "jocelyn",
-        description: "eng",
-        url: "https://facebook.com"
+        alias: "engineering",
+        description: "LiveRamp Jenkins",
+        url: "https://jenkins.liveramp.net"
       }
     }
 
@@ -95,20 +166,11 @@ class Api::GoLinksController < ApplicationController
       ok: true,
       query:
       {
-        alias: "jocelyn",
-        description: "eng",
-        url: "https://facebook.com"
+        alias: "engineering",
+        description: "LiveRamp Jenkins",
+        url: "https://jenkins.liveramp.net"
       }
     }
-    # { ok: false,
-    #   message: "not found",
-    #   query:
-    #   {
-    #     alias: "jocelyn",
-    #     description: "eng",
-    #     url: "https://facebook.com"
-    #   }
-    # }
 
     if response.ok
       render json: { go_link: response.query }, status: 200
