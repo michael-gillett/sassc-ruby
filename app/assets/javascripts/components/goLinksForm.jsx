@@ -86,7 +86,7 @@ var GoLinksForm = React.createClass ({
           </Button>
           <Button
             type="submit"
-            onClick={() => {this.props.submitButtonAction}}
+            onClick={this.props.submitButtonAction}
             disabled={this.disableState()}
           >
             {this.props.submitButtonText}

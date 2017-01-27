@@ -87,7 +87,7 @@ const GoLinksGlossaryTable = React.createClass({
           childComponent={childComponent}
           headerFilterGroup={<div></div>}
           headerButtonGroup={this.createButton()}
-          elements={_.values(this.props.goLinks.goLinksList)}
+          elements={_.values(this.props.goLinks.filteredGoLinksList)}
           loadMoreElements={function(){}}
           hasMoreElements={false}
           handleSelectAllChange={this.handleSelectAllChange}
@@ -145,7 +145,7 @@ const GoLinksGlossaryTable = React.createClass({
   },
 
   handleSearchEnter(e) {
-    console.log(this.state.tableSearchValue);
+    this.props.goLinksActions.searchLinksList(e.target.value);
   },
 
   toggleChildren(id) {

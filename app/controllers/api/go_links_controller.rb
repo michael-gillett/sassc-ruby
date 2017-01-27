@@ -91,17 +91,8 @@ class Api::GoLinksController < ApplicationController
 
   def destroy
     response =
-    # {
-    #   ok: true,
-    #   query:
-    #   {
-    #     alias: "jocelyn",
-    #     description: "eng",
-    #     url: "https://facebook.com"
-    #   }
-    # }
-    { ok: false,
-      message: "not found",
+    {
+      ok: true,
       query:
       {
         alias: "jocelyn",
@@ -109,6 +100,15 @@ class Api::GoLinksController < ApplicationController
         url: "https://facebook.com"
       }
     }
+    # { ok: false,
+    #   message: "not found",
+    #   query:
+    #   {
+    #     alias: "jocelyn",
+    #     description: "eng",
+    #     url: "https://facebook.com"
+    #   }
+    # }
 
     if response.ok
       render json: { go_link: response.query }, status: 200

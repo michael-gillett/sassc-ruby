@@ -4,14 +4,16 @@ import XhrStatusConstants from 'constants/xhrStatusConstants';
 
 const defaultState = {
   goLinksList: {},
+  filteredGoLinksList: {},
   newGoLinkData: {
     alias: "",
     url: "",
     description: "",
   },
-  goLinksFetchStatus: XhrStatusConstants.GO_LINKS_LOADING,
+  goLinksFetchStatus: XhrStatusConstants.GO_LINKS.LOADING,
   goLinkSaveStatus: "",
   goLinkDeleteStatus: "",
+  searchValue: "",
 }
 
 const updateGoLinksList = (originalGoLinksList, updatedGoLink) => {
@@ -47,9 +49,18 @@ function GoLinksReducer(state = defaultState, action) {
         }
       });
 
+    case GoLinksConstants.UPDATE_SEARCH:
+      var filtered = _.filter(_.values(state.goLinksList), function(element) {
+        return element.alias.includes(action.searchValue) || element.url.includes(action.searchValue) || element.description.includes(action.searchValue);
+      });
+      return update(state, {
+        searchValue: { $set: action.searchValue },
+        filteredGoLinksList: { $set: filtered }
+      });
+
     case GoLinksConstants.GO_LINKS_FETCH:
       return update(state, {
-        goLinksFetchStatus: { $set: XhrStatusConstants.GO_LINKS_LOADING }
+        goLinksFetchStatus: { $set: XhrStatusConstants.GO_LINKS.LOADING }
       });
 
     case XhrStatusConstants.GO_LINKS.SUCCESS:
@@ -59,7 +70,8 @@ function GoLinksReducer(state = defaultState, action) {
       });
       return update(state, {
         goLinksList: { $set: newlyFetchedGoLinkList },
-        goLinksFetchStatus: { $set: action.type }
+        filteredGoLinksList: { $set: newlyFetchedGoLinkList },
+        goLinksFetchStatus: { $set: action.type },
       });
 
     case XhrStatusConstants.GO_LINKS.FAILURE:
@@ -68,12 +80,12 @@ function GoLinksReducer(state = defaultState, action) {
       });
 
     case GoLinksConstants.GO_LINK_UPDATING:
-    case XhrStatusConstants.UPDATE_FAILURE:
+    case XhrStatusConstants.UPDATE.FAILURE:
       return update(state, {
         goLinkSaveStatus: { $set: action.state }
       });
 
-    case XhrStatusConstants.UPDATE_SUCCESS:
+    case XhrStatusConstants.UPDATE.SUCCESS:
       const newlyUpdatedGoLink = action.data.go_link
       return update(state, {
         goLinksList: { $set: updateGoLinksList(state.goLinksList, newlyUpdatedGoLink) },
@@ -82,36 +94,35 @@ function GoLinksReducer(state = defaultState, action) {
       });
 
     case GoLinksConstants.GO_LINK_SAVING:
-    case XhrStatusConstants.SAVE_FAILURE:
+    case XhrStatusConstants.SAVE.FAILURE:
       return update(state, {
         goLinkSaveStatus: { $set: action.state }
       });
 
-    case XhrStatusConstants.SAVE_SUCCESS:
+    case XhrStatusConstants.SAVE.SUCCESS:
       const newGoLink = action.data.go_link
+      const updatedList = updateGoLinksList(state.goLinksList, newGoLink)
       return update(state, {
-        goLinksList: { $set: updateGoLinksList(state.goLinksList, newGoLink) },
+        goLinksList: { $set: updatedList },
+        filteredGoLinksList: { $set: updatedList },
         newGoLinkData: { $set: defaultState.newGoLinkData },
         goLinkSaveStatus: { $set: defaultState.goLinkSaveStatus }
       });
 
     case GoLinksConstants.GO_LINK_DELETING:
-    case XhrStatusConstants.DELETE_FAILURE:
+    case XhrStatusConstants.DELETE.FAILURE:
       return update(state, {
         goLinkDeleteStatus: { $set: action.state }
       });
 
-    case XhrStatusConstants.DELETE_SUCCESS:
+    case XhrStatusConstants.DELETE.SUCCESS:
       const deletedGoLink = action.data.go_link
+      const deletedUpdateList = deleteFromGoLinksList(state.goLinksList, deletedGoLink)
       return update(state, {
-        goLinksList: { $set: deleteFromGoLinksList(state.goLinksList, deletedGoLink) },
+        goLinksList: { $set: deletedUpdateList },
+        filteredGoLinksList: { $set: deletedUpdateList },
         newGoLinkData: { $set: defaultState.newGoLinkData },
         goLinkDeleteStatus: { $set: defaultState.goLinkDeleteStatus }
-      });
-
-    case GoLinksConstants.DELETE_CONFIRMATION:
-      return update(state, {
-        goLinkDeleteStatus: { $set: action.state }
       });
 
     case GoLinksConstants.POPULATE_EDIT_INFO:

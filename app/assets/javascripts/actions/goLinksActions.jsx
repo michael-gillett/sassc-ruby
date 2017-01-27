@@ -30,6 +30,10 @@ const GoLinksActions = {
     return { type: GoLinksConstants.CLEAR_EDIT_INFO };
   },
 
+  searchLinksList: (searchValue) => {
+    return { type: GoLinksConstants.UPDATE_SEARCH, searchValue };
+  },
+
   fetchGoLinks: () => {
     return (dispatch, getState) => {
       dispatch({ type: GoLinksConstants.GO_LINKS_FETCH });
