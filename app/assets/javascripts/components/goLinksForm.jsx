@@ -80,7 +80,8 @@ var GoLinksForm = React.createClass ({
           onChange={ (e) => { this.props.goLinksActions.setDescription(e.target.value); } }
         />
         <ButtonGroup bsSize="large">
-          <Button onClick={() => this.props.goLinksActions.redirect("/")} >
+          <Button onClick={() => {  this.props.goLinksActions.clearEditInfo()
+                                    this.props.goLinksActions.redirect("/") }}>
             Cancel
           </Button>
           <Button

@@ -1,4 +1,4 @@
-import { UiHeader, UiInput, UiIcon } from 'liveramp-ui-toolkit';
+import { Col, PageHeader } from 'react-bootstrap';
 import GoLinksConstants from 'constants/goLinksConstants';
 import GoLinksActions from 'actions/goLinksActions';
 import ValidURL from 'valid-url';
@@ -8,18 +8,20 @@ var GoLinksEditForm = React.createClass ({
 
   render () {
     return (
-      <div className="form">
-        <GoLinksForm />
-        <div className="row">
-          <button onClick={() => { this.props.goLinksActions.clearEditInfo()
-                                   this.props.goLinksActions.redirect("/") }} className="button">
-            Back
-          </button>
-          <button onClick={() => {}} className="button">
-            Edit
-          </button>
-        </div>
-      </div>
+      <Col
+        id="main-container"
+        lg={8}
+        lgOffset={2}
+        md={10}
+        mdOffset={1}
+        sm={12}
+      >
+        <PageHeader><strong>Edit go/ link.</strong></PageHeader>
+        <GoLinksForm
+          submitButtonText="Edit"
+          submitButtonAction={() => { this.props.goLinksActions.updateGoLink(this.props.goLinks.newGoLinkData) }}
+        />
+      </Col>
     );
   }
 });
