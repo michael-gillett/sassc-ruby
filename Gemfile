@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 group :development, :test do
   gem 'capybara'
-  gem 'database_cleaner', '1.4.1'
   gem 'headless', '1.0.2'
   gem 'pry-byebug'
   gem 'pry-rails'
@@ -39,4 +38,3 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails', '~> 6'
 gem 'httparty', '0.13.7'
-gem 'mysql2'

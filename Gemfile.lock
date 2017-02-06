@@ -59,7 +59,6 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
     concurrent-ruby (1.0.2)
-    database_cleaner (1.4.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     exception_notification (4.1.4)
@@ -114,7 +113,6 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
-    mysql2 (0.4.4)
     newrelic_rpm (3.16.2.321)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -247,7 +245,6 @@ DEPENDENCIES
   awesome_print
   bootstrap-sass (~> 3.3)
   capybara
-  database_cleaner (= 1.4.1)
   exception_notification (~> 4.1.4)
   factory_girl_rails (~> 4.0)
   font-awesome-rails (= 4.6.3.1)
@@ -259,7 +256,6 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0)
   js-routes (~> 1.1)
   letter_opener
-  mysql2
   newrelic_rpm (~> 3.14)
   passenger (~> 5.0)
   protected_attributes (~> 1.1)
