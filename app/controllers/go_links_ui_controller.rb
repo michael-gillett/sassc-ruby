@@ -114,8 +114,8 @@ class GoLinksUiController < ApplicationController
     go_alias = params[:path]
     if go_alias
       go_link = get_alias_info(go_alias)
-      if !go_link.nil? && go_link.ok
-        redirect_to go_link.query.url
+      if !go_link.nil? && go_link[:ok]
+        redirect_to go_link.query[:url]
       end
     else
       render :index
