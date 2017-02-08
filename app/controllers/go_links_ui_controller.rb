@@ -103,7 +103,7 @@ class GoLinksUiController < ApplicationController
       }
     ]
 
-    return alias_bank.select{ |alias_info| alias_info.query.alias == alias_name }.first
+    return alias_bank.select{ |alias_info| alias_info[:query][:alias] == alias_name }.first
   end
 
   def index
