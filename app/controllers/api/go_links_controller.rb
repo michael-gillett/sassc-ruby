@@ -13,7 +13,7 @@ class Api::GoLinksController < ApplicationController
   def create
     new_link = format_link_params(params)
     response = HTTParty.put('http://wps.acxiom.com/go-api/admin',
-      body: new_link,
+      body: new_link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
 
@@ -27,7 +27,7 @@ class Api::GoLinksController < ApplicationController
   def update
     link = format_link_params(params)
     response = HTTParty.post('http://wps.acxiom.com/go-api/admin',
-      body: link,
+      body: link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
 
@@ -41,7 +41,7 @@ class Api::GoLinksController < ApplicationController
   def destroy
     link = format_link_params(params)
     response = HTTParty.delete('http://wps.acxiom.com/go-api/admin',
-      body: link,
+      body: link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
 

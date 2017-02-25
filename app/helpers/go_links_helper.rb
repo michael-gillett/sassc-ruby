@@ -10,6 +10,6 @@ module GoLinksHelper
       description: description
     }
 
-    new_link.to_json
+    new_link
   end
 end
