@@ -1949,3 +1949,57 @@ Completed 200 OK in 405ms (Views: 404.4ms | ActiveRecord: 0.0ms)
 Started GET "/api/go_links" for ::1 at 2017-01-26 13:30:00 -0800
 Processing by Api::GoLinksController#index as */*
 Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-27 10:42:27 -0800
+Processing by GoLinksUiController#index as HTML
+  Rendered go_links_ui/index.haml within layouts/application (202.5ms)
+Warning. Error encountered while saving cache d87e1b710d21e4af3e1df8e2ee1e3669137ed7e9/_base_styles.sassc: can't dump hash with default proc
+
+Warning. Error encountered while saving cache d87e1b710d21e4af3e1df8e2ee1e3669137ed7e9/_base_styles.sassc: can't dump hash with default proc
+
+Completed 200 OK in 2276ms (Views: 2275.2ms)
+
+
+Started GET "/api/go_links" for ::1 at 2017-02-27 10:42:32 -0800
+Processing by Api::GoLinksController#index as */*
+Completed 200 OK in 2352ms (Views: 0.5ms)
+
+
+Started PATCH "/api/go_links/jeanne" for ::1 at 2017-02-27 10:42:50 -0800
+Processing by Api::GoLinksController#update as */*
+  Parameters: {"alias"=>"jeanne", "url"=>"http://www.liveramp.com", "description"=>"jeanne - lr", "id"=>"jeanne"}
+Completed 200 OK in 1670ms (Views: 0.3ms)
+
+
+Started POST "/api/go_links/" for ::1 at 2017-02-27 10:43:08 -0800
+Processing by Api::GoLinksController#create as */*
+  Parameters: {"alias"=>"baptiste", "url"=>"http://www.liveramp.com", "description"=>"bap"}
+Completed 200 OK in 2077ms (Views: 0.4ms)
+
+
+Started DELETE "/api/go_links/baptiste" for ::1 at 2017-02-27 10:43:16 -0800
+Processing by Api::GoLinksController#destroy as */*
+  Parameters: {"alias"=>"baptiste", "description"=>"bap", "url"=>"http://www.liveramp.com", "owner"=>"", "id"=>"baptiste"}
+Completed 200 OK in 1739ms (Views: 0.3ms)
+
+
+Started GET "/sherif" for ::1 at 2017-02-27 10:43:21 -0800
+Processing by GoLinksUiController#index as HTML
+  Parameters: {"path"=>"sherif"}
+Redirected to https://www.alias.com2313
+Completed 302 Found in 1683ms
+
+
+Started GET "/jira" for ::1 at 2017-02-27 10:43:30 -0800
+Processing by GoLinksUiController#index as HTML
+  Parameters: {"path"=>"jira"}
+Redirected to https://jira.acxiom.com
+Completed 302 Found in 1512ms
+
+
+Started GET "/jira" for ::1 at 2017-02-27 10:43:31 -0800
+Processing by GoLinksUiController#index as HTML
+  Parameters: {"path"=>"jira"}
+Redirected to https://jira.acxiom.com
+Completed 302 Found in 2271ms
