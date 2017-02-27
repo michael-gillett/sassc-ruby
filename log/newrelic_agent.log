@@ -600,6 +600,7 @@
 [2017-02-06 14:45:17 -0800 shnada0816mac.corp.acxiom.net (45339)] INFO : Installing Rails 4 Error instrumentation
 [2017-02-06 14:45:17 -0800 shnada0816mac.corp.acxiom.net (45339)] INFO : Finished instrumentation
 [2017-02-06 14:45:17 -0800 shnada0816mac.corp.acxiom.net (45339)] INFO : Doing deferred dependency-detection before Rack startup
+<<<<<<< HEAD
 [2017-02-23 15:22:15 -0800 shnada0816mac.corp.acxiom.net (64389)] INFO : Starting the New Relic agent in "development" environment.
 [2017-02-23 15:22:15 -0800 shnada0816mac.corp.acxiom.net (64389)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
 [2017-02-23 15:22:15 -0800 shnada0816mac.corp.acxiom.net (64389)] WARN : No configuration file found. Working directory = /Users/shnada/Desktop/go/go-web2
@@ -622,3 +623,27 @@
 [2017-02-23 15:22:22 -0800 shnada0816mac.corp.acxiom.net (64389)] ERROR : Invalid license key, please contact support@newrelic.com
 [2017-02-23 15:22:22 -0800 shnada0816mac.corp.acxiom.net (64389)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
 [2017-02-23 15:22:31 -0800 shnada0816mac.corp.acxiom.net (64389)] INFO : Starting Agent shutdown
+=======
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Starting the New Relic agent in "development" environment.
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : To prevent agent startup add a NEW_RELIC_AGENT_ENABLED=false environment variable or modify the "development" section of your newrelic.yml.
+[2017-02-27 10:42:18 -0800 lr (41043)] WARN : No configuration file found. Working directory = /Users/jealee/code/go_links
+[2017-02-27 10:42:18 -0800 lr (41043)] WARN : Looked in these locations (based on defaults): /Users/jealee/code/go_links/config/newrelic.yml, /Users/jealee/code/go_links/newrelic.yml, /Users/jealee/code/go_links/config/newrelic.yml, /Users/jealee/code/go_links/newrelic.yml, /Users/jealee/.newrelic/newrelic.yml, /Users/jealee/newrelic.yml
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Environment: development
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Dispatcher: webrick
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Application: development
+[2017-02-27 10:42:18 -0800 lr (41043)] WARN : No license key found. This often means your newrelic.yml file was not found, or it lacks a section for the running environment, 'development'. You may also want to try linting your newrelic.yml to ensure it is valid YML.
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing ActiveJob instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing Net instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing deferred Rack::Builder instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing Rack::Builder middleware instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing Rails 3+ middleware instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing Redis Instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing Rails 4 Controller instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing Rails 4 view instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Installing Rails 4 Error instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Finished instrumentation
+[2017-02-27 10:42:18 -0800 lr (41043)] INFO : Doing deferred dependency-detection before Rack startup
+[2017-02-27 10:42:32 -0800 lr (41043)] ERROR : Invalid license key, please contact support@newrelic.com
+[2017-02-27 10:42:32 -0800 lr (41043)] ERROR : Visit NewRelic.com to obtain a valid license key, or to upgrade your account.
+[2017-02-27 10:43:41 -0800 lr (41043)] INFO : Starting Agent shutdown
+>>>>>>> d98aef2efcff2f2dab0d50dc43141059da995cc1
