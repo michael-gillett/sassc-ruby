@@ -1949,3 +1949,91 @@ Completed 200 OK in 405ms (Views: 404.4ms | ActiveRecord: 0.0ms)
 Started GET "/api/go_links" for ::1 at 2017-01-26 13:30:00 -0800
 Processing by Api::GoLinksController#index as */*
 Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-23 15:22:19 -0800
+Processing by GoLinksUiController#index as HTML
+  Rendered go_links_ui/index.haml within layouts/application (195.3ms)
+Warning. Error encountered while saving cache f2732efded590ab2f2f8b65c226f122c8eb84808/_base_styles.sassc: can't dump hash with default proc
+
+WARNING on line 94 of /Users/shnada/Desktop/go/go-web2/node_modules/liveramp-ui-toolkit/sass/_ui_progress_meter.sass:
+This selector doesn't have any properties and will not be rendered.
+
+WARNING on line 190 of /Users/shnada/Desktop/go/go-web2/node_modules/liveramp-ui-toolkit/sass/_ui_table.sass:
+This selector doesn't have any properties and will not be rendered.
+
+WARNING on line 197 of /Users/shnada/Desktop/go/go-web2/node_modules/liveramp-ui-toolkit/sass/_ui_table.sass:
+This selector doesn't have any properties and will not be rendered.
+
+Warning. Error encountered while saving cache f2732efded590ab2f2f8b65c226f122c8eb84808/_base_styles.sassc: can't dump hash with default proc
+
+Warning. Error encountered while saving cache f2732efded590ab2f2f8b65c226f122c8eb84808/_base_styles.sassc: can't dump hash with default proc
+
+Warning. Error encountered while saving cache f2732efded590ab2f2f8b65c226f122c8eb84808/_base_styles.sassc: can't dump hash with default proc
+
+Completed 200 OK in 6979ms (Views: 6978.6ms)
+
+
+Started GET "/assets/custom.self-133ec82ece102af36ec8d3f1c5993446d8a5486e6409721b995a8794e8ea97a1.css?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/application.self-c3fbe43670f1238d1e92281878ba604f3f1d9a4aef4ca554c2dc9452cbbc0f6b.css?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/go_links_form.self-68811abb60108ca0bad71c828ef0d3fdd514a6099c5109051d901be1307941eb.css?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/subdomain_routes.self-fc2e90f9852ca21c9a865e4c389714a3c1e8d4b6a6e429d07cd71b2fb3513a53.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/affix.self-3555752f8a930795ee9e56751a52e6871104ae85d01b3ab8363da3802a5ecc78.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/alert.self-d8b7bd612b3dcfdefb7b5539b9d5848d66ccbd3e7af8bb8d48bfb3288aaa7be8.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/button.self-e74d33ba39500940a78d6fa4d2d64f6ca7fd86d60a2149641f7fde7ba711d8a1.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/carousel.self-35d204878d906298e55bc24553e11fd89b980fc4ffe5792fe36af8c0da289c54.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/dropdown.self-e56c2ffee4618411d43ecf15c89273f6223847ad756e1cd17545d04afa732ed4.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/collapse.self-056c40532d9f0f126ec17e839f60c942f573fbd61a086e7f156306e3fc5e8c1f.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/modal.self-62463080dba6b9d024ff0a3192da0e76eacbc683194f3395047c6f5cfa0acb59.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/scrollspy.self-52afd90e8ba97d9f08617a13986e8869d6c4a45751c0bff59a6f91241e722aca.js?body=1" for ::1 at 2017-02-23 15:22:26 -0800
+
+
+Started GET "/assets/bootstrap/tab.self-dad0d5c377f9fae26394484535ebb23ccf68afae084f896af6ea4cdf8c9f6ae0.js?body=1" for ::1 at 2017-02-23 15:22:27 -0800
+
+
+Started GET "/assets/bootstrap/transition.self-3b268d4cd8c79e46ded7392885f72f64ffb5b0d49948a12b8cf9779f6163e13a.js?body=1" for ::1 at 2017-02-23 15:22:27 -0800
+
+
+Started GET "/assets/bootstrap/tooltip.self-facdc69246a072acb927ded77ff655f7c27a518b9357fddd45d119fbc8a0ab9f.js?body=1" for ::1 at 2017-02-23 15:22:27 -0800
+
+
+Started GET "/assets/bootstrap/popover.self-210cff1fb4b72b71a29b5122180cb5937c8145cd13a934dc838280f1d9607a3e.js?body=1" for ::1 at 2017-02-23 15:22:27 -0800
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2017-02-23 15:22:27 -0800
+
+
+Started GET "/assets/goLinksUi.bundle.self-3ee58bd72b09181f402b05949daa3d3cdf98150dc2fc77225de4d6bf432ba2b7.js?body=1" for ::1 at 2017-02-23 15:22:27 -0800
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2017-02-23 15:22:27 -0800
+
+
+Started GET "/api/go_links" for ::1 at 2017-02-23 15:22:27 -0800
+Processing by Api::GoLinksController#index as */*
+Completed 200 OK in 1ms (Views: 0.6ms)
