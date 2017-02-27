@@ -5,7 +5,6 @@
 Run the following commands to setup the local environment:
 
 ```
-$ bin/fodor
 $ bundle install
 $ bundle exec rails s
 ```
