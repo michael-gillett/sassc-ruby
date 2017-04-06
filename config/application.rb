@@ -1,6 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
-#   require 'rails/all'
+require 'rails/all'
 
 require 'action_view/railtie'
 require 'action_mailer/railtie'
@@ -20,7 +20,7 @@ module GoLinksUi
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Pacific Time (US & Canada)'
-    
+
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
