@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root :to => 'go_links_ui#index'
 
   resources :saml, only: [:index, :create]
+
   get 'logout' => 'application#logout'
+  get 'login' => 'application#login'
 
   namespace :api do
     resources :go_links, only: [:index, :create, :update, :destroy]

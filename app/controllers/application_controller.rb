@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  def login
+    redirect_to generate_okta_login_url
+  end
+
   private
 
   def init_active_user
