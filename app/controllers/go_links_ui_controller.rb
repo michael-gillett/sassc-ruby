@@ -14,7 +14,8 @@ class GoLinksUiController < ApplicationController
 
   def index
     gon.push(
-      env: Rails.env
+      env: Rails.env,
+      active_user: session[:active_user]
     )
 
     go_alias = params[:path]

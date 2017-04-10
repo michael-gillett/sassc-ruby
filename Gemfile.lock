@@ -110,7 +110,6 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
-    mysql2 (0.4.4)
     newrelic_rpm (3.16.2.321)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
@@ -193,6 +192,8 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    ruby-saml (1.4.1)
+      nokogiri (>= 1.5.10)
     rubyzip (1.2.0)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -254,7 +255,6 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0)
   js-routes (~> 1.1)
   letter_opener
-  mysql2
   newrelic_rpm (~> 3.14)
   passenger (~> 5.0)
   pry-byebug
@@ -263,6 +263,7 @@ DEPENDENCIES
   rails (= 5.0.0)
   redis-rails (= 5.0.1)
   rspec-rails (~> 3.0)
+  ruby-saml
   sass-rails (~> 5.0)
   select2-rails (= 3.5.9)
   selenium-webdriver

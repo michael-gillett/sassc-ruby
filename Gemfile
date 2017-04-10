@@ -22,8 +22,7 @@ gem 'gon', '~> 6.0'
 gem 'uglifier', '2.7.2'
 gem 'rails', '5.0.0'
 gem 'redis-rails', '5.0.1'
-gem 'mysql2'
-
+gem 'ruby-saml'
 
 gem 'newrelic_rpm', '~> 3.14'
 gem 'js-routes', '~> 1.1'
