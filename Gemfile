@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'https://gemserver.liveramp.net'
 
 group :development, :test do
   gem 'capybara'
