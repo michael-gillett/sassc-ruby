@@ -7,7 +7,8 @@ module GoLinksHelper
     new_link = {
       alias: alias_name,
       url: url,
-      description: description
+      description: description,
+      owner: @active_user
     }
 
     new_link

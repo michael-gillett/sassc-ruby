@@ -3,6 +3,7 @@ class Api::GoLinksController < ApplicationController
 
   # JL: Write go_links_api gem, fix error messages
   # 2/24/2017
+  before_action :init_active_user, only: [:create, :update, :destroy]
 
   def index
     response = HTTParty.get('http://wps.acxiom.com/go-api/all')

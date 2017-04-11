@@ -422,7 +422,10 @@ Based on Rails routes of GoLinksUi::Application
   api_go_links_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"go_links",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], {}),
 // root => /
   // function(options)
-  root_path: Utils.route([], [], [7,"/",false], {})}
+  root_path: Utils.route([], [], [7,"/",false], {}),
+// saml_index => /saml(.:format)
+  // function(options)
+  saml_index_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"saml",false],[1,[2,[8,".",false],[3,"format",false]],false]]], {})}
 ;
     root.Routes.options = defaults;
     root.Routes.default_serializer = function(object, prefix) {
