@@ -420,6 +420,12 @@ Based on Rails routes of GoLinksUi::Application
 // api_go_links => /api/go_links(.:format)
   // function(options)
   api_go_links_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"api",false],[2,[7,"/",false],[2,[6,"go_links",false],[1,[2,[8,".",false],[3,"format",false]],false]]]]], {}),
+// login => /login(.:format)
+  // function(options)
+  login_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"login",false],[1,[2,[8,".",false],[3,"format",false]],false]]], {}),
+// logout => /logout(.:format)
+  // function(options)
+  logout_path: Utils.route([], ["format"], [2,[7,"/",false],[2,[6,"logout",false],[1,[2,[8,".",false],[3,"format",false]],false]]], {}),
 // root => /
   // function(options)
   root_path: Utils.route([], [], [7,"/",false], {}),
