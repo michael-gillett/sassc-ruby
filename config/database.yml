@@ -1,9 +1,0 @@
-#follow this template to add your credentials
-local_db:
-  adapter: mysql2
-  username: root
-  password:
-  database: local_db
-  host: localhost
-  encoding: utf8
-  reconnect: true
