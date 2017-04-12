@@ -39,10 +39,7 @@ const getKeyMap = props => (
       display: (value, element) => {
         return (
 
-          <GoLinksEditDelete
-            goLink={element}
-          />
-
+          <GoLinksEditDelete goLink={element} />
         );
       }
     }
@@ -55,7 +52,7 @@ const childComponent = (goLink) => {
       <h3>{goLink.description}</h3>
     </div>
   );
-}
+};
 
 const columnOrder = ['alias', 'url', 'description', 'actions'];
 const columnsToShow = ['alias', 'url', 'description', 'actions'];
@@ -89,7 +86,7 @@ const GoLinksGlossaryTable = React.createClass({
           childComponent={childComponent}
           headerFilterGroup={<div></div>}
           headerButtonGroup={this.createButton()}
-          elements={_.values(this.props.goLinks.filteredGoLinksList)}
+          elements={_.values(this.state.elements)}
           loadMoreElements={function(){}}
           hasMoreElements={false}
           handleSelectAllChange={this.handleSelectAllChange}
@@ -217,7 +214,6 @@ const GoLinksGlossaryTable = React.createClass({
       columnsToShow: newColumns
     });
   },
-
   handleDeleteClick(){
     console.log("Delete clicked ref");
   },
@@ -228,7 +224,7 @@ const GoLinksGlossaryTable = React.createClass({
                                this.props.goLinksActions.redirect("/create")} } className="button">
         + Create Go/ Link
       </button>
-    );
+    );  
   },
 });
 
