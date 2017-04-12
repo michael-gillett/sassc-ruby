@@ -2,14 +2,17 @@ class ApplicationController < ActionController::Base
   include SamlHelper
 
   helper_method [:init_active_user]
+  before_action :init_active_user, only: :index
+
+  def index
+    gon.push(
+      env: Rails.env,
+      active_user: session[:active_user]
+    )
+  end
 
   def logout
     session[:active_user] = nil
-    redirect_to root_url
-  end
-
-  def login
-    redirect_to generate_okta_login_url
   end
 
   private
@@ -18,7 +21,7 @@ class ApplicationController < ActionController::Base
     if session[:active_user]
       @active_user = session[:active_user]
     else
-      return render json: {redirect_url: generate_okta_login_url}, status: 200
+      return redirect_to generate_okta_login_url
     end
   end
 

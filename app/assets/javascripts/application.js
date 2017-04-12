@@ -13,3 +13,4 @@
 //= require subdomain_routes
 //= require jquery
 //= require bootstrap-sprockets
+//= require goLinksUi.bundle.js

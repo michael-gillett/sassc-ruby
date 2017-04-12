@@ -13,20 +13,18 @@ class GoLinksUiController < ApplicationController
   end
 
   def index
-    gon.push(
-      env: Rails.env,
-      active_user: session[:active_user]
-    )
 
     go_alias = params[:path]
+
     if go_alias
       go_link = get_alias_info(go_alias)
-      if !go_link.nil? && go_link[:ok]
-        redirect_to go_link[:query][:url]
+      if !go_link.nil? && go_link[:status]
+        return redirect_to go_link[:query][:url]
       end
-    else
-      render :index
     end
+
+    return redirect_to root_url
   end
+
 
 end
