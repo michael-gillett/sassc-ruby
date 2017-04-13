@@ -39,5 +39,4 @@ gem 'db_support'
 
 gem 'mysql2', '~> 0.4.2'
 
-gem 'liveramp_updater', git: 'git@git.liveramp.net:RailsRepos/liveramp_updater.git'
 gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
