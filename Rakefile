@@ -6,4 +6,3 @@ require 'rake'
 
 Rails.application.load_tasks
 
-load 'tasks/rapleaf.rake'
