@@ -7,12 +7,23 @@ var GoLinksEditDelete = React.createClass({
   render() {
 
     const { goLink } = this.props;
+    const editDeleteDisplayClass = this.getDisabledClass(goLink);
 
     return (
       <div>
-        <UiIcon icon='edit' dimensions={[20, 20]} color='select-green' onClick={() => { this.props.goLinksActions.populateEditInfo(goLink)
-                                                                                        this.props.goLinksActions.redirect("/edit") } }/>
-        <UiIcon icon='trash' dimensions={[20, 20]} color='select-green' onClick={ () => { this.confirmDelete(goLink) }}/>
+        <UiIcon icon='edit'
+          dimensions={[20, 20]}
+          color='select-green'
+          onClick={ () => { this.props.goLinksActions.populateEditInfo(goLink)
+                           this.props.goLinksActions.redirect("/edit") } }
+          classes={ editDeleteDisplayClass }
+        />
+        <UiIcon icon='trash'
+          dimensions={[20, 20]}
+          color='select-green'
+          onClick={ () => { this.confirmDelete(goLink) } }
+          classes={ editDeleteDisplayClass }
+        />
       </div>
     );
   },
@@ -28,9 +39,13 @@ var GoLinksEditDelete = React.createClass({
     return this.props.alertActions.openAlert(AlertsConstants.ALERT_TYPES.ERROR, message, true);
   },
 
-  closeAlertAndDelete (goLink) {
+  closeAlertAndDelete(goLink) {
     this.props.alertActions.closeAlert();
     this.props.goLinksActions.deleteGoLink(goLink);
+  },
+
+  getDisabledClass(goLink) {
+    return goLink.ownedByUser ? "enabled" : "disabled";
   },
 
 });

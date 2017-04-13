@@ -1,6 +1,7 @@
-import { UiTable, UiInput, UiIcon, UiHeader } from 'liveramp-ui-toolkit';
+import { UiTable, UiInput, UiIcon, UiHeader, UiFilterGroup } from 'liveramp-ui-toolkit';
 import AlertActions from 'actions/alertActions';
 import GoLinksActions from 'actions/goLinksActions';
+import GoLinksConstants from 'constants/goLinksConstants';
 import AlertsConstants from 'constants/alertsConstants';
 import GoLinksEditDelete from 'components/goLinksEditDelete';
 
@@ -38,7 +39,6 @@ const getKeyMap = props => (
       width: 5,
       display: (value, element) => {
         return (
-
           <GoLinksEditDelete goLink={element} />
         );
       }
@@ -62,7 +62,7 @@ const GoLinksGlossaryTable = React.createClass({
   getInitialState() {
     return ({
       showTable: true,
-      tableSearchValue: "",
+      tableSearchValue: this.props.goLinks.queryParams.search_query,
       selectedRows: [],
       elements: this.props.goLinks.filteredGoLinksList,
       selectAllChecked: false,
@@ -74,7 +74,35 @@ const GoLinksGlossaryTable = React.createClass({
     });
   },
 
+  componentWillReceiveProps(newProps) {
+    let filteredList = newProps.goLinks.filteredGoLinksList;
+    this.setState({
+      elements: filteredList
+    });
+  },
+
   render () {
+    const { queryParams } = this.props.goLinks;
+    const selectedOwner = queryParams.owner;
+    const ownerOptions = GoLinksConstants.FILTER_OWNER_OPTIONS;
+
+    const filters = [
+      {
+        name: GoLinksConstants.FILTER_OWNER,
+        selectOptions: ownerOptions,
+        selected: selectedOwner,
+        isMulti: false,
+      }
+    ]
+
+    const filterGroup = (
+      <UiFilterGroup
+        filterParams={filters}
+        handleChange={this.handleFilterChange}
+        hideClearAll={true}
+      />
+    );
+
     return (
       <div>
         <UiTable
@@ -84,7 +112,7 @@ const GoLinksGlossaryTable = React.createClass({
           haveChildren={true}
           expandedRows={this.state.expanded}
           childComponent={childComponent}
-          headerFilterGroup={<div></div>}
+          headerFilterGroup={filterGroup}
           headerButtonGroup={this.createButton()}
           elements={_.values(this.state.elements)}
           loadMoreElements={function(){}}
@@ -137,6 +165,28 @@ const GoLinksGlossaryTable = React.createClass({
     }
   },
 
+  handleFilterChange(isMulti, name, selected) {
+    let newParams = {};
+    let newSelected;
+
+    if (isMulti) {
+      newSelected = selected ? selected.split(',') : [];
+    } else {
+      newSelected = selected ? selected : null;
+    }
+
+    switch(name) {
+      case GoLinksConstants.FILTER_OWNER:
+        newParams.owner = newSelected;
+        break;
+      default:
+        // nothing
+    }
+
+    this.props.goLinksActions.updateQueryParams(newParams);
+    this.props.goLinksActions.filterGoLinksList();
+  },
+
   handleSearchChange(e) {
     this.setState({
       tableSearchValue: e.target.value
@@ -144,7 +194,10 @@ const GoLinksGlossaryTable = React.createClass({
   },
 
   handleSearchEnter(e) {
-    this.props.goLinksActions.searchLinksList(e.target.value);
+    var searchValue = e.target.value;
+    this.props.goLinksActions.updateQueryParams({ search_query: searchValue });
+    // this.props.goLinksActions.filterGoLinksList();
+    this.props.goLinksActions.searchLinksList(searchValue);
   },
 
   toggleChildren(id) {
@@ -224,7 +277,7 @@ const GoLinksGlossaryTable = React.createClass({
                                this.props.goLinksActions.redirect("/create")} } className="button">
         + Create Go/ Link
       </button>
-    );  
+    );
   },
 });
 

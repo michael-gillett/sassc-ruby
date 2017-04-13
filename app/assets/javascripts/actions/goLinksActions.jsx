@@ -6,24 +6,39 @@ import { push } from 'react-router-redux';
 
 const GoLinksActions = {
   setAlias: (alias) => {
-    return { type: GoLinksConstants.SET_ALIAS, alias };
+    return {
+      type: GoLinksConstants.SET_ALIAS,
+      alias
+    };
   },
 
   setUrl: (url) => {
-    return { type: GoLinksConstants.SET_URL, url };
+    return {
+      type: GoLinksConstants.SET_URL,
+      url
+    };
   },
 
   setDescription: (description) => {
-    return { type: GoLinksConstants.SET_DESCRIPTION, description };
+    return {
+      type: GoLinksConstants.SET_DESCRIPTION,
+      description
+    };
   },
 
   populateEditInfo: (goLink) => {
-    return { type: GoLinksConstants.POPULATE_EDIT_INFO, goLink };
+    return {
+      type: GoLinksConstants.POPULATE_EDIT_INFO,
+      goLink
+    };
   },
 
   populateAliasInfo: (aliasName) => {
     const alias = aliasName.replace('/', "");
-    return { type: GoLinksConstants.POPULATE_ALIAS_INFO, alias };
+    return {
+      type: GoLinksConstants.POPULATE_ALIAS_INFO,
+      alias
+    };
   },
 
   clearEditInfo: () => {
@@ -31,7 +46,21 @@ const GoLinksActions = {
   },
 
   searchLinksList: (searchValue) => {
-    return { type: GoLinksConstants.UPDATE_SEARCH, searchValue };
+    return {
+      type: GoLinksConstants.UPDATE_SEARCH,
+      searchValue
+    };
+  },
+
+  updateQueryParams: (params) => {
+    return {
+      type: GoLinksConstants.QUERY_PARAMS_UPDATED,
+      params: params
+    }
+  },
+
+  filterGoLinksList: () => {
+    return { type: GoLinksConstants.UPDATE_FILTERED_LIST };
   },
 
   fetchGoLinks: () => {

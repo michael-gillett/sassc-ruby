@@ -14,6 +14,7 @@ const defaultState = {
   goLinkSaveStatus: "",
   goLinkDeleteStatus: "",
   searchValue: "",
+  queryParams: GoLinksConstants.DEFAULT_QUERY_PARAMS,
 }
 
 const updateGoLinksList = (originalGoLinksList, updatedGoLink) => {
@@ -24,6 +25,29 @@ const updateGoLinksList = (originalGoLinksList, updatedGoLink) => {
 const deleteFromGoLinksList = (originalGoLinksList, deletedGoLink) => {
   const updatedGoLinksList = _.omit(originalGoLinksList, deletedGoLink.alias);
   return updatedGoLinksList;
+}
+
+const filterGoLinksListByOwner = (list, ownerFilter, GoLinksConstants) => {
+  if (ownerFilter == GoLinksConstants.FILTER_OWNER_MY_LINKS) {
+    var filtered = _.filter(_.values(list), function(element) {
+      return element.ownedByUser
+    });
+    return filtered;
+  } else {
+    return list;
+  }
+}
+
+const filterGoLinksListBySearch = (list, search_query) => {
+  var filtered = _.filter(_.values(list), function(element) {
+    return element.alias.includes(search_query) || element.url.includes(search_query) || element.description.includes(search_query);
+  });
+  return filtered;
+}
+
+const filterGoLinksList = (goLinksList, queryParams, GoLinksConstants) => {
+  var list = filterGoLinksListByOwner(goLinksList, queryParams.owner, GoLinksConstants);
+  return filterGoLinksListBySearch(list, queryParams.search_query);
 }
 
 function GoLinksReducer(state = defaultState, action) {
@@ -58,6 +82,16 @@ function GoLinksReducer(state = defaultState, action) {
         filteredGoLinksList: { $set: filtered }
       });
 
+    case GoLinksConstants.QUERY_PARAMS_UPDATED:
+      return update(state, {
+        queryParams: { $merge: action.params },
+      });
+
+    case GoLinksConstants.UPDATE_FILTERED_LIST:
+      return update(state, {
+        filteredGoLinksList: { $set: filterGoLinksList(state.goLinksList, state.queryParams, GoLinksConstants) }
+      });
+
     case GoLinksConstants.GO_LINKS_FETCH:
       return update(state, {
         goLinksFetchStatus: { $set: XhrStatusConstants.GO_LINKS.LOADING }
@@ -66,7 +100,12 @@ function GoLinksReducer(state = defaultState, action) {
     case XhrStatusConstants.GO_LINKS.SUCCESS:
       const newlyFetchedGoLinkList = [];
       _.each(action.data, function(goLink) {
-        newlyFetchedGoLinkList[goLink.alias] = { id: goLink.alias, alias: goLink.alias, url: goLink.url, description: goLink.description, owner: goLink.owner };
+        newlyFetchedGoLinkList[goLink.alias] = { id: goLink.alias,
+                                                 alias: goLink.alias,
+                                                 url: goLink.url,
+                                                 description: goLink.description,
+                                                 owner: goLink.owner,
+                                                 ownedByUser: goLink.owned_by_user };
       });
       return update(state, {
         goLinksList: { $set: newlyFetchedGoLinkList },
