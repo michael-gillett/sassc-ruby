@@ -35,10 +35,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails', '~> 6'
 gem 'httparty', '0.13.7'
-gem 'rldb', git: 'git@git.liveramp.net:MasterRepos/db_schemas.git', glob: '**/rldb.gemspec'
-gem 'rap_support'
 gem 'db_support'
-gem 'rapleaf_lib'
 
 gem 'mysql2', '~> 0.4.2'
 
