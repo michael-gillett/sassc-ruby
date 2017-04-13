@@ -1,5 +1,4 @@
 source 'https://gemserver.liveramp.net'
-source 'https://rubygems.org/'
 
 group :development, :test do
   gem 'capybara'
@@ -41,4 +40,3 @@ gem 'db_support'
 gem 'mysql2', '~> 0.4.2'
 
 gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
-gem 'public_suffix'
