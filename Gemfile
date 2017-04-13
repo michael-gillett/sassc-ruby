@@ -36,3 +36,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails', '~> 6'
 gem 'httparty', '0.13.7'
 gem 'rldb', git: 'git@git.liveramp.net:MasterRepos/db_schemas.git', glob: '**/rldb.gemspec'
+gem 'rap_support'
+gem 'db_support'
+gem 'rapleaf_lib'
+
+gem 'mysql2', '~> 0.4.2'
+
+gem 'liveramp_updater', git: 'git@git.liveramp.net:RailsRepos/liveramp_updater.git'
+gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
