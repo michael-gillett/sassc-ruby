@@ -196,8 +196,7 @@ const GoLinksGlossaryTable = React.createClass({
   handleSearchEnter(e) {
     var searchValue = e.target.value;
     this.props.goLinksActions.updateQueryParams({ search_query: searchValue });
-    // this.props.goLinksActions.filterGoLinksList();
-    this.props.goLinksActions.searchLinksList(searchValue);
+    this.props.goLinksActions.filterGoLinksList();
   },
 
   toggleChildren(id) {

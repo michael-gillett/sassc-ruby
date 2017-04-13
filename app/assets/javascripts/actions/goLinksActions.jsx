@@ -45,13 +45,6 @@ const GoLinksActions = {
     return { type: GoLinksConstants.CLEAR_EDIT_INFO };
   },
 
-  searchLinksList: (searchValue) => {
-    return {
-      type: GoLinksConstants.UPDATE_SEARCH,
-      searchValue
-    };
-  },
-
   updateQueryParams: (params) => {
     return {
       type: GoLinksConstants.QUERY_PARAMS_UPDATED,

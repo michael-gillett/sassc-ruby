@@ -13,7 +13,6 @@ const defaultState = {
   goLinksFetchStatus: XhrStatusConstants.GO_LINKS.LOADING,
   goLinkSaveStatus: "",
   goLinkDeleteStatus: "",
-  searchValue: "",
   queryParams: GoLinksConstants.DEFAULT_QUERY_PARAMS,
 }
 
@@ -39,10 +38,14 @@ const filterGoLinksListByOwner = (list, ownerFilter, GoLinksConstants) => {
 }
 
 const filterGoLinksListBySearch = (list, search_query) => {
-  var filtered = _.filter(_.values(list), function(element) {
-    return element.alias.includes(search_query) || element.url.includes(search_query) || element.description.includes(search_query);
-  });
-  return filtered;
+  if (search_query.length == 0) {
+    return list;
+  } else {
+    var filtered = _.filter(_.values(list), function(element) {
+      return element.alias.includes(search_query) || element.url.includes(search_query) || element.description.includes(search_query);
+    });
+    return filtered;
+  }
 }
 
 const filterGoLinksList = (goLinksList, queryParams, GoLinksConstants) => {
@@ -71,15 +74,6 @@ function GoLinksReducer(state = defaultState, action) {
         newGoLinkData: {
           description: { $set: action.description }
         }
-      });
-
-    case GoLinksConstants.UPDATE_SEARCH:
-      var filtered = _.filter(_.values(state.goLinksList), function(element) {
-        return element.alias.includes(action.searchValue) || element.url.includes(action.searchValue) || element.description.includes(action.searchValue);
-      });
-      return update(state, {
-        searchValue: { $set: action.searchValue },
-        filteredGoLinksList: { $set: filtered }
       });
 
     case GoLinksConstants.QUERY_PARAMS_UPDATED:
