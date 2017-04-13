@@ -1,4 +1,10 @@
 GIT
+  remote: git@git.liveramp.net:RailsRepos/liveramp_updater.git
+  revision: ce212047f1a2978cc8e9f5fe52e28a427dab2937
+  specs:
+    liveramp_updater (0.1.0)
+
+GIT
   remote: git@git.liveramp.net:RailsRepos/rails_logger.git
   revision: 1da5bb5c8dbc44b858431c8a521258910a676b83
   specs:
@@ -272,6 +278,7 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0)
   js-routes (~> 1.1)
   letter_opener
+  liveramp_updater!
   mysql2 (~> 0.4.2)
   newrelic_rpm (~> 3.14)
   passenger (~> 5.0)
