@@ -83,7 +83,14 @@ Rails.application.configure do
     exception_recipients: %w{admin-errors@liveramp.com},
     email_format: :html
   }
-
+  # Set up Redis cache store
+  if File.exist?("#{Rails.root}/config/redis.yml")
+    redis_servers = YAML.load_file("#{Rails.root}/config/redis.yml")['redis_servers'].values
+    config.cache_store = :redis_store,
+                          redis_servers,
+                          { namespace: "cache" }
+  end
+  
   config.eager_load = true
   config.log_level = :info
 end
