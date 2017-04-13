@@ -1,5 +1,16 @@
 class GoLinksUiController < ApplicationController
 
+  def index
+    go_alias = params[:path]
+    if go_alias
+      go_link = get_alias_info(go_alias)
+      return redirect_to go_link[:query][:url] if !go_link.nil? && go_link[:status]
+    end
+    return redirect_to root_url
+  end
+
+  private
+
   def get_alias_info(alias_name)
     response = HTTParty.get('http://wps.acxiom.com/go-api/all')
     alias_bank = response["entities"]
@@ -11,20 +22,5 @@ class GoLinksUiController < ApplicationController
     }
     go_link_response
   end
-
-  def index
-
-    go_alias = params[:path]
-
-    if go_alias
-      go_link = get_alias_info(go_alias)
-      if !go_link.nil? && go_link[:status]
-        return redirect_to go_link[:query][:url]
-      end
-    end
-
-    return redirect_to root_url
-  end
-
 
 end

@@ -3,7 +3,7 @@ module SamlHelper
   def generate_okta_login_url
     settings = get_saml_settings
     request = OneLogin::RubySaml::Authrequest.new
-    redirect_url_with_saml_query = request.create(settings)
+    request.create(settings)
   end
 
   def get_saml_settings
@@ -12,7 +12,7 @@ module SamlHelper
     settings = OneLogin::RubySaml::Settings.new
 
     # When disabled, saml validation errors will raise an exception.
-    settings.soft = true
+    settings.soft = false
 
     #SP section
     settings.issuer                         = "http://go-links01.liveramp.net/saml" # Must match audience URI / Audience Restriction in Okta Settings for Valid Response
