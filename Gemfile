@@ -1,4 +1,5 @@
 source 'https://gemserver.liveramp.net'
+source 'https://rubygems.org/'
 
 group :development, :test do
   gem 'capybara'
@@ -17,7 +18,6 @@ group :test do
   gem 'factory_girl_rails', '~> 4.0'
 end
 
-gem 'rldb', git: 'git@git.liveramp.net:MasterRepos/db_schemas.git', glob: '**/rldb.gemspec'
 gem 'haml', '~> 4.0'
 gem 'gon', '~> 6.0'
 gem 'uglifier', '2.7.2'
@@ -40,7 +40,5 @@ gem 'db_support'
 
 gem 'mysql2', '~> 0.4.2'
 
-gem 'rap_support'
-gem 'rapleaf_lib'
 gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
 gem 'public_suffix'
