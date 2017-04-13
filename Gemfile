@@ -17,6 +17,7 @@ group :test do
   gem 'factory_girl_rails', '~> 4.0'
 end
 
+gem 'autoprefixer-rails', '6.5.3'
 gem 'haml', '~> 4.0'
 gem 'gon', '~> 6.0'
 gem 'uglifier', '2.7.2'
@@ -38,5 +39,4 @@ gem 'db_support'
 
 gem 'mysql2', '~> 0.4.2'
 
-gem 'liveramp_updater', git: 'git@git.liveramp.net:RailsRepos/liveramp_updater.git'
 gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
