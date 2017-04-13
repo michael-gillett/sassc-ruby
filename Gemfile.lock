@@ -1,16 +1,23 @@
 GIT
-  remote: git@git.liveramp.net:RailsRepos/liveramp_updater.git
-  revision: ce212047f1a2978cc8e9f5fe52e28a427dab2937
+  remote: git@git.liveramp.net:MasterRepos/db_schemas.git
+  revision: 2fc3b2340cf2f014a3b75ed6613e19be474920a1
+  glob: **/rldb.gemspec
   specs:
-    liveramp_updater (0.1.0)
-
-GIT
-  remote: git@git.liveramp.net:RailsRepos/rails_logger.git
-  revision: 1da5bb5c8dbc44b858431c8a521258910a676b83
-  specs:
-    rails_logger (1.0.0)
-      log4r
-      railties (>= 3.0)
+    rldb (1.0.0.rldb)
+      activerecord-import (= 0.15.0)
+      ancestry (~> 2.0.0)
+      auto_strip_attributes
+      cl_types
+      db_support
+      dist_types
+      ingestion_types
+      net-ldap
+      net-ssh (~> 2.4)
+      ow_types
+      rap_enum
+      rap_support
+      rapleaf_lib
+      rapleaf_types
 
 GEM
   remote: https://gemserver.liveramp.net/
@@ -47,45 +54,57 @@ GEM
       activemodel (= 5.0.0)
       activesupport (= 5.0.0)
       arel (~> 7.0)
+    activerecord-import (0.15.0)
+      activerecord (>= 3.2)
     activesupport (5.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.5.0)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.4.0)
+    american_date (1.1.1)
+    ancestry (2.0.0)
+      activerecord (>= 3.0.0)
     arel (7.1.4)
-    autoprefixer-rails (6.7.5)
+    auto_strip_attributes (2.1.0)
+      activerecord (>= 3.0)
+    autoprefixer-rails (6.5.3)
       execjs
     awesome_print (1.7.0)
-    bootstrap-sass (3.3.7)
+    backports (3.7.0)
+    bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
-    capybara (2.12.1)
-      addressable
+    capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    childprocess (0.6.2)
+    childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
+    cl_types (1.0.398)
+      rapleaf_types
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
+    curb (0.9.3)
     db_support (1.0.12)
-    diff-lcs (1.3)
+    diff-lcs (1.2.5)
+    dist_types (1.0.535)
+      rapleaf_types
     erubis (2.7.0)
     exception_notification (4.2.1)
       actionmailer (>= 4.0, < 6)
       activesupport (>= 4.0, < 6)
     execjs (2.7.0)
-    factory_girl (4.8.0)
+    factory_girl (4.7.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.8.0)
-      factory_girl (~> 4.8.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
+    fastercsv (1.5.5)
     ffi (1.9.18)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
@@ -99,17 +118,21 @@ GEM
     haml (4.0.7)
       tilt
     headless (1.0.2)
+    highline (1.6.21)
+    hpricot (0.8.6)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.8.1)
-    jquery-rails (4.2.2)
+    ingestion_types (1.0.207)
+      rapleaf_types
+    jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    js-routes (1.3.2)
+    js-routes (1.3.0)
       railties (>= 3.2)
       sprockets-rails
     json (1.8.6)
@@ -117,7 +140,6 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.4.1)
       launchy (~> 2.2)
-    log4r (1.1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -129,25 +151,27 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
-    multi_xml (0.6.0)
-    mysql2 (0.4.5)
-    newrelic_rpm (3.18.1.330)
+    multi_xml (0.5.5)
+    net-ldap (0.16.0)
+    net-ssh (2.9.4)
+    newrelic_rpm (3.16.2.321)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    passenger (5.1.2)
+    ow_types (1.0.113)
+      rapleaf_types
+    passenger (5.0.30)
       rack
       rake (>= 0.8.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.4.2)
+    pry-byebug (3.4.0)
       byebug (~> 9.0)
       pry (~> 0.10)
-    pry-rails (0.3.5)
+    pry-rails (0.3.4)
       pry (>= 0.9.10)
-    public_suffix (2.0.5)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -178,7 +202,23 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
-    redis (3.3.3)
+    rap_enum (0.0.2)
+    rap_support (0.0.139)
+      american_date
+      backports
+      curb
+      fastercsv
+      highline (~> 1.6.1)
+      hpricot
+      json
+      rapleaf_types
+      rmail
+      simpleidn
+      thrift
+    rapleaf_lib (0.0.60)
+      rap_support
+    rapleaf_types (1.0.3501)
+    redis (3.3.2)
     redis-actionpack (5.0.1)
       actionpack (>= 4.0, < 6)
       redis-rack (>= 1, < 3)
@@ -195,7 +235,8 @@ GEM
       redis-store (~> 1.2.0)
     redis-store (1.2.0)
       redis (>= 2.2)
-    request_store (1.3.2)
+    request_store (1.3.1)
+    rmail (1.1.2)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -204,7 +245,7 @@ GEM
     rspec-mocks (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.5.0)
-    rspec-rails (3.5.2)
+    rspec-rails (3.5.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -215,8 +256,8 @@ GEM
     rspec-support (3.5.0)
     ruby-saml (1.4.1)
       nokogiri (>= 1.5.10)
-    rubyzip (1.2.1)
-    sass (3.4.23)
+    rubyzip (1.2.0)
+    sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
       sass (~> 3.1)
@@ -225,16 +266,17 @@ GEM
       tilt (>= 1.1, < 3)
     select2-rails (3.5.9)
       thor (~> 0.14)
-    selenium-webdriver (3.2.1)
+    selenium-webdriver (2.53.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
-    shoulda-context (1.2.2)
+    shoulda-context (1.2.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    simpleidn (0.0.7)
     slop (3.6.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
@@ -245,13 +287,14 @@ GEM
       sprockets (>= 2.8, < 4.0)
     thor (0.19.4)
     thread_safe (0.3.6)
-    tilt (2.0.6)
+    thrift (0.10.0.0)
+    tilt (2.0.5)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    websocket (1.2.4)
+    websocket (1.2.3)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -266,7 +309,6 @@ DEPENDENCIES
   awesome_print
   bootstrap-sass (~> 3.3)
   capybara
-  db_support
   exception_notification (~> 4.1)
   factory_girl_rails (~> 4.0)
   font-awesome-rails (= 4.6.3.1)
@@ -278,16 +320,14 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0)
   js-routes (~> 1.1)
   letter_opener
-  liveramp_updater!
-  mysql2 (~> 0.4.2)
   newrelic_rpm (~> 3.14)
   passenger (~> 5.0)
   pry-byebug
   pry-rails
   rack_session_access (~> 0.1.1)
   rails (= 5.0.0)
-  rails_logger!
   redis-rails (= 5.0.1)
+  rldb!
   rspec-rails (~> 3.0)
   ruby-saml
   sass-rails (~> 5.0)
