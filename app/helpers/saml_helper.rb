@@ -15,8 +15,8 @@ module SamlHelper
     settings.soft = true
 
     #SP section
-    settings.issuer                         = "http://localhost:3000/saml" # Must match audience URI / Audience Restriction in Okta Settings for Valid Response
-    settings.assertion_consumer_service_url = "http://localhost:3000/saml" # Must match destination in Okta Settings for Valid Response
+    settings.issuer                         = "http://go-links01.liveramp.net/saml" # Must match audience URI / Audience Restriction in Okta Settings for Valid Response
+    settings.assertion_consumer_service_url = "http://go-links01.liveramp.net/saml" # Must match destination in Okta Settings for Valid Response
 
     # IdP section
     settings.idp_entity_id                  = "http://www.okta.com/exka4nz9xevBvKWga0h7" #Must match identity provider issuer in Okta.
