@@ -262,7 +262,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  autoprefixer-rails (~> 6)
   awesome_print
   bootstrap-sass (~> 3.3)
   capybara

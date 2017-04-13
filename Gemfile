@@ -33,7 +33,6 @@ gem 'jquery-ui-rails', '~> 5.0'
 gem 'sprockets-rails', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails', '~> 5.0'
-gem 'autoprefixer-rails', '~> 6'
 gem 'httparty', '0.13.7'
 gem 'db_support'
 
