@@ -28,7 +28,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'letter_opener'
   gem 'awesome_print'
-  gem 'rspec-rails', '~> 3.0'
   gem 'passenger', '~> 5.0'
   gem 'spring'
   gem 'exception_notification', '~> 4.1'
