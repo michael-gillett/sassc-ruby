@@ -94,7 +94,8 @@ function GoLinksReducer(state = defaultState, action) {
 
     case XhrStatusConstants.GO_LINKS.SUCCESS:
       const newlyFetchedGoLinkList = [];
-      _.each(action.data, function(goLink) {
+      var sortedList = _.sortBy(action.data, function(link) { return link.alias; });
+      _.each(sortedList, function(goLink) {
         newlyFetchedGoLinkList[goLink.alias] = { id: goLink.alias,
                                                  alias: goLink.alias,
                                                  url: goLink.url,
