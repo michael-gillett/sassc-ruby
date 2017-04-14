@@ -28,7 +28,6 @@ group :development, :test do
   gem 'letter_opener'
   gem 'awesome_print'
   gem 'passenger', '~> 5.0'
-  gem 'spring'
   gem 'exception_notification', '~> 4.1'
 end
 group :test do
