@@ -6,7 +6,7 @@ class Api::GoLinksController < ApplicationController
   before_action :init_active_user, only: [:create, :update, :destroy]
 
   def index
-    response = HTTParty.get('http://connect-staging-t04.liveramp.net/go_links_api')
+    response = HTTParty.get('https://connect-staging-t04.liveramp.net/go_links_api')
     alias_bank = response["entities"]
     marked_alias_bank = flag_links_owned_by_active_user(alias_bank)
     render json: marked_alias_bank
@@ -14,7 +14,7 @@ class Api::GoLinksController < ApplicationController
 
   def create
     new_link = format_link_params(params)
-    response = HTTParty.post('http://connect-staging-t04.liveramp.net/go_links_api',
+    response = HTTParty.post('https://connect-staging-t04.liveramp.net/go_links_api',
       body: new_link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
@@ -28,7 +28,7 @@ class Api::GoLinksController < ApplicationController
 
   def update
     link = format_link_params(params)
-    response = HTTParty.put('http://connect-staging-t04.liveramp.net/go_links_api/link',
+    response = HTTParty.put('https://connect-staging-t04.liveramp.net/go_links_api/link',
       body: link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
@@ -42,7 +42,7 @@ class Api::GoLinksController < ApplicationController
 
   def destroy
     link = format_link_params(params)
-    response = HTTParty.delete('http://connect-staging-t04.liveramp.net/go_links_api/link',
+    response = HTTParty.delete('https://connect-staging-t04.liveramp.net/go_links_api/link',
       body: link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
