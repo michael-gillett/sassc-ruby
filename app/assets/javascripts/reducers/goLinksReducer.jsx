@@ -17,6 +17,7 @@ const defaultState = {
 }
 
 const updateGoLinksList = (originalGoLinksList, updatedGoLink) => {
+  updatedGoLink["ownedByUser"] = true;
   originalGoLinksList[updatedGoLink.alias] = updatedGoLink;
   return originalGoLinksList;
 }
