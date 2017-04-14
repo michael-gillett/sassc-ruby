@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: go-links
+spec:
+  selector:
+    matchLabels:
+      app: go-links
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: go-links
+    spec:
+
+      containers:
+        - name: go-links-server
+          image: docker.liveramp.net:5000/go-links:latest
+          imagePullPolicy: Always
+
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "200m"
+          ports:
+            - protocol: TCP
+              containerPort: 8080
+              name: go-links-server

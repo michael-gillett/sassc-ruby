@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: "v1"
+metadata:
+  name: go-links-service
+spec:
+  type: NodePort
+  selector:
+    app: go-links
+  ports:
+  - protocol: TCP
+    port: 8080
+    nodePort: 31000
+    name: go-links-server
