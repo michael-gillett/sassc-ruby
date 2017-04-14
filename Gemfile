@@ -6,9 +6,7 @@ gem 'uglifier', '2.7.2'
 gem 'rails', '5.0.1'
 gem 'redis-rails', '5.0.1'
 gem 'ruby-saml'
-gem 'mysql2', '~> 0.4.2'
 gem 'newrelic_rpm', '~> 3.14'
-gem 'js-routes', '~> 1.1'
 gem 'select2-rails', '3.5.9'
 gem 'font-awesome-rails', '4.6.3.1'
 gem 'jquery-rails', '~> 4.1'
@@ -41,8 +39,3 @@ group :test do
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.0'
 end
-
-
-
-
-
