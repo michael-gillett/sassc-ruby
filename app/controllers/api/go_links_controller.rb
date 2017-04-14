@@ -8,8 +8,7 @@ class Api::GoLinksController < ApplicationController
   def index
     response = HTTParty.get('https://connect-staging-t04.liveramp.net/go_links_api')
     alias_bank = response["entities"]
-    marked_alias_bank = flag_links_owned_by_active_user(alias_bank)
-    render json: marked_alias_bank
+    render json: alias_bank
   end
 
   def create

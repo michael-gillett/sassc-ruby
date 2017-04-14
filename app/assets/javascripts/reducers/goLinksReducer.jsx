@@ -100,7 +100,7 @@ function GoLinksReducer(state = defaultState, action) {
                                                  url: goLink.url,
                                                  description: goLink.description,
                                                  owner: goLink.owner,
-                                                 ownedByUser: goLink.owned_by_user };
+                                                 ownedByUser: gon.active_user == goLink.owner };
       });
       return update(state, {
         goLinksList: { $set: newlyFetchedGoLinkList },

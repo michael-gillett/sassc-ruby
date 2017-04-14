@@ -4,6 +4,7 @@ import GoLinksActions from 'actions/goLinksActions';
 import GoLinksConstants from 'constants/goLinksConstants';
 import AlertsConstants from 'constants/alertsConstants';
 import GoLinksEditDelete from 'components/goLinksEditDelete';
+import GoLinksFilterGroup from 'components/goLinksFilterGroup';
 
 const getKeyMap = props => (
   {
@@ -46,14 +47,6 @@ const getKeyMap = props => (
   }
 );
 
-const childComponent = (goLink) => {
-  return (
-    <div style={{paddingLeft: '15px'}}>
-      <h3>{goLink.description}</h3>
-    </div>
-  );
-};
-
 const columnOrder = ['alias', 'url', 'description', 'actions'];
 const columnsToShow = ['alias', 'url', 'description', 'actions'];
 
@@ -85,21 +78,11 @@ const GoLinksGlossaryTable = React.createClass({
     const { queryParams } = this.props.goLinks;
     const selectedOwner = queryParams.owner;
     const ownerOptions = GoLinksConstants.FILTER_OWNER_OPTIONS;
-
-    const filters = [
-      {
-        name: GoLinksConstants.FILTER_OWNER,
-        selectOptions: ownerOptions,
-        selected: selectedOwner,
-        isMulti: false,
-      }
-    ]
-
     const filterGroup = (
-      <UiFilterGroup
-        filterParams={filters}
+      <GoLinksFilterGroup
+        selectedOwner={selectedOwner}
+        ownerOptions={ownerOptions}
         handleChange={this.handleFilterChange}
-        hideClearAll={true}
       />
     );
 
@@ -109,15 +92,13 @@ const GoLinksGlossaryTable = React.createClass({
           title={"Go/ Links Glossary"}
           initialFetchComplete={true}
           selectedRows={this.state.selectedRows}
-          haveChildren={true}
+          haveChildren={false}
           expandedRows={this.state.expanded}
-          childComponent={childComponent}
           headerFilterGroup={filterGroup}
           headerButtonGroup={this.createButton()}
           elements={_.values(this.state.elements)}
           loadMoreElements={function(){}}
           hasMoreElements={false}
-          handleSelectAllChange={this.handleSelectAllChange}
           elementKeyMap={getKeyMap(this.props)}
           handleShowHideColumn={this.handleShowHideColumn}
           elementName={"stellar Go/ link"}
@@ -137,32 +118,6 @@ const GoLinksGlossaryTable = React.createClass({
           />
       </div>
     );
-  },
-
-  handleCheckboxChange(id, checked) {
-    console.log("id: " + id + ", checked: " + checked);
-    var selectedRows;
-    if (checked) {
-      selectedRows = this.state.selectedRows;
-      selectedRows.push(id);
-    } else {
-      selectedRows = this.state.selectedRows;
-      var idx = _.indexOf(selectedRows, id);
-      if (idx > -1) {
-        selectedRows.splice(idx, 1);
-      }
-    }
-    if (selectedRows.length === this.state.totalElements) {
-      this.setState({
-        selectedRows: selectedRows,
-        selectAllChecked: true
-      });
-    } else {
-      this.setState({
-        selectedRows: selectedRows,
-        selectAllChecked: false
-      });
-    }
   },
 
   handleFilterChange(isMulti, name, selected) {
@@ -199,44 +154,6 @@ const GoLinksGlossaryTable = React.createClass({
     this.props.goLinksActions.filterGoLinksList();
   },
 
-  toggleChildren(id) {
-    var expanded = this.state.expanded;
-    if (!(_.contains(this.state.expanded, id))) {
-      expanded.push(id);
-    } else {
-      var idx = _.indexOf(expanded, id);
-      expanded.splice(idx, 1);
-    }
-    this.setState({
-      expanded: expanded
-    });
-  },
-
-  handleSelectAllChange(id, checked) {
-    if (checked) {
-      this.setState({
-        selectAllChecked: true,
-        selectedRows: _.map(this.state.elements, (el) => {return el.id;})
-      });
-    } else {
-      this.setState({
-        selectAllChecked: false,
-        selectedRows: []
-      });
-    }
-  },
-
-  detailView (element) {
-    console.log("detail view");
-    console.log(element);
-    console.log("-----");
-    return (
-      <div style={{position: 'relative', top: '-30px', height: '100%', backgroundColor: '#d8d8d8'}}>
-        <UiHeader textTitle={element.alias} />
-      </div>
-    );
-  },
-
   handleColumnSort (column, ordering) {
     var newElements = _.sortBy(_.values(this.state.elements), function(element) { return element[column]; });
     if (!ordering) {
@@ -265,9 +182,6 @@ const GoLinksGlossaryTable = React.createClass({
     this.setState({
       columnsToShow: newColumns
     });
-  },
-  handleDeleteClick(){
-    console.log("Delete clicked ref");
   },
 
   createButton() {
