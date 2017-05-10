@@ -1,6 +1,6 @@
 class GoLinksUiController < ApplicationController
 
-  def index
+  def show
     go_alias = params[:path]
     if go_alias
       go_link = get_alias_info(go_alias)
