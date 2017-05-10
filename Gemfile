@@ -15,10 +15,7 @@ gem 'sprockets-rails', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails', '~> 5.0'
 gem 'httparty', '0.13.7'
-
-group :production do
-  gem 'exception_notification', '~> 4.1'
-end
+gem 'exception_notification', '~> 4.1'
 
 group :development, :test do
   gem 'capybara'
@@ -28,7 +25,6 @@ group :development, :test do
   gem 'letter_opener'
   gem 'awesome_print'
   gem 'passenger', '~> 5.0'
-  gem 'exception_notification', '~> 4.1'
 end
 group :test do
   gem 'rack_session_access', '~> 0.1.1'
