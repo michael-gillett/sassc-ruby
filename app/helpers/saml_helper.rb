@@ -19,26 +19,26 @@ module SamlHelper
     settings.assertion_consumer_service_url = "https://go-links01.liveramp.net/saml" # Must match destination in Okta Settings for Valid Response
 
     # IdP section
-    settings.idp_entity_id                  = "http://www.okta.com/exka4nz9xevBvKWga0h7" #Must match identity provider issuer in Okta.
-    settings.idp_sso_target_url             = "https://dev-141682.oktapreview.com/app/acxiomdev141682_golinks_1/exka4nz9xevBvKWga0h7/sso/saml"
+    settings.idp_entity_id                  = "http://www.okta.com/exk1czka6e8XSJDzk0h8" #Must match identity provider issuer in Okta.
+    settings.idp_sso_target_url             = "https://acxiom.okta.com/app/acxiom_golinks_1/exk1czka6e8XSJDzk0h8/sso/saml"
     settings.idp_cert                       = "-----BEGIN CERTIFICATE-----
-MIIDpDCCAoygAwIBAgIGAVmUrXSAMA0GCSqGSIb3DQEBBQUAMIGSMQswCQYDVQQGEwJVUzETMBEG
+MIIDnDCCAoSgAwIBAgIGAUtCLLrvMA0GCSqGSIb3DQEBBQUAMIGOMQswCQYDVQQGEwJVUzETMBEG
 A1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEU
-MBIGA1UECwwLU1NPUHJvdmlkZXIxEzARBgNVBAMMCmRldi0xNDE2ODIxHDAaBgkqhkiG9w0BCQEW
-DWluZm9Ab2t0YS5jb20wHhcNMTcwMTEyMjE1NDEyWhcNMjcwMTEyMjE1NTEyWjCBkjELMAkGA1UE
-BhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xDTALBgNV
-BAoMBE9rdGExFDASBgNVBAsMC1NTT1Byb3ZpZGVyMRMwEQYDVQQDDApkZXYtMTQxNjgyMRwwGgYJ
-KoZIhvcNAQkBFg1pbmZvQG9rdGEuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
-kuUA6RhLt10c+AiIZGuohG1PMY60u8NEEclj5hzR5RIkcyKlkUy2hYQ5WdPoBdC4hWcpBkNoESk7
-mlGjb+Z/8ReJkmImKVXXZyOBZ1/ZddOm7bPJ0KnbSJu1s5I2XAiPXrm88565MjIvzfZOjdkpAg78
-UrJsWzcfOa+jPB7kmS7SpiPhuwaP+MW1to5qppfitEC2hvdAIGzubQpy3kPsXWuchofZCmXY5PNm
-K5Py8L2/ad7Xxw511xb6+9kKxmvIqPPToIEeMLN0MoQtrsXqMEtQsub9IiIq+5+IVhemlbVa5PHj
-zEaDWDq6yIbmwbq/61Ki3OYSWZANbNu1Cyo6DQIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQBw15rv
-embcP/0mmtRWA38vZZ7p3ymGH/7p2XwBPet/XGneK9HO/jUq/taT2nbrKtZyQXa7DFifDd+Q63yW
-6/3Mc+jM4sB7U01JsJpvhMUdUa+u+lOwyX/dFY4KYtzkXKidRHv1SVv5zlX9/thQDRAS66kzgXbo
-ceUg6cmhwdmygQyEdUiJkXv88AI+iAqmf3L2dI0oNDToPiAz6LJN9KPJ5wB23vsKpJqUFuvSR3Zq
-MN4K5oBJXI3yMEgJNeBk6kcls8VXFKrQ5RCEP3Rqke5toUWi/nTUD3yZ8jH/2T5xA5w2KMu95x/b
-clrYBlXwvd342DWmIEgiqwIFNJZAKMuA
+MBIGA1UECwwLU1NPUHJvdmlkZXIxDzANBgNVBAMMBmFjeGlvbTEcMBoGCSqGSIb3DQEJARYNaW5m
+b0Bva3RhLmNvbTAeFw0xNTAxMzEyMjQ1NDJaFw00NTAxMzEyMjQ2NDJaMIGOMQswCQYDVQQGEwJV
+UzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwE
+T2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxDzANBgNVBAMMBmFjeGlvbTEcMBoGCSqGSIb3DQEJ
+ARYNaW5mb0Bva3RhLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALOXe5OBC4rE
+1Ymof0CZ8hsD9MQYS2r/HggAZubtdPyA7ulezRwjlQIaNaorlZQNDDXYHX8y82Q2sKzv8AfXEly4
+1OIGmLDL9I88QWXApJ6UPsw3w2auUr8l6ue7a5k6VLbr4dUJy942KYeHcq/R75afaxIWNWmoo7UA
+zSmbpIeHVndxfMNLi6gXcy1oKctubgo1/8nvFZ+OUcXneMdmuZjMqUNySUpGXi8SFeqKkLJAc2Wr
+QPpb/mRbi2UBaM1QSBHWiGnYpbFPiCaf3Ye0md3IQQpDrgBsv0D5XvgSaTQ0ONDSJpQI4r2Pkfy8
+yiP8D9K7pXqXlSdPfDMOj7gnigsCAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAhezmqCrjNGfYiyJM
+ldPUTHqTCrm9+tlHF0tLqedays3qS7nTlYNfpC9WSnh2buxscfSrXcJgs1MR3HnqqLJ4YwWbC0E5
+eNaAtn15qs/ELkfiaPLCSLEnnW6m++g3UTj/m9XqHxSBzvNfZThGS4srx+sM+NNGxfGcio/SrGmH
+zf1Wf+KcBBv2W6VhzzCnLotHDTqaTaSApu9F9AmzDyfYnsjiydc8iO+sjnsckyP6sKE4W1/L2PcV
++Zdwoz0GJiH8Dl/3+p/4JHz0F+R3y8XhwgQ57nAHwz3Uqo2+ipZhd3mwmdNZo8BmwT9Dk3Qjuswq
+M4zPZ0aI6h0IcmNW0IGyaw==
 -----END CERTIFICATE-----"
 
     settings.name_identifier_format         = "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
