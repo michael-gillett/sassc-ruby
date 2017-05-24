@@ -6,14 +6,14 @@ class Api::GoLinksController < ApplicationController
   before_action :init_active_user, only: [:create, :update, :destroy]
 
   def index
-    response = HTTParty.get('https://connect-staging-t04.liveramp.net/go_links_api')
+    response = HTTParty.get(API_PATH + '/all')
     alias_bank = response["entities"]
     render json: alias_bank
   end
 
   def create
     new_link = format_link_params(params)
-    response = HTTParty.post('https://connect-staging-t04.liveramp.net/go_links_api',
+    response = HTTParty.put(API_CHANGE_PATH,
       body: new_link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
@@ -27,7 +27,7 @@ class Api::GoLinksController < ApplicationController
 
   def update
     link = format_link_params(params)
-    response = HTTParty.put('https://connect-staging-t04.liveramp.net/go_links_api/link',
+    response = HTTParty.post(API_CHANGE_PATH,
       body: link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )
@@ -41,7 +41,7 @@ class Api::GoLinksController < ApplicationController
 
   def destroy
     link = format_link_params(params)
-    response = HTTParty.delete('https://connect-staging-t04.liveramp.net/go_links_api/link',
+    response = HTTParty.delete(API_CHANGE_PATH,
       body: link.to_json,
       headers: { 'Content-Type' => 'application/json' }
     )

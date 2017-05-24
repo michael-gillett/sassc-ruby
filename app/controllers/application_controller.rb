@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   helper_method [:init_active_user]
   before_action :init_active_user, only: :index
 
+  API_CHANGE_PATH = "http://wps.acxiom.com/go-api/admin"
+  API_PATH = 'http://wps.acxiom.com/go-api'
+
   def index
     gon.push(
       env: Rails.env,

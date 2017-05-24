@@ -12,7 +12,7 @@ class GoLinksUiController < ApplicationController
   private
 
   def get_alias_info(alias_name)
-    response = HTTParty.get("http://connect-staging-t04.liveramp.net/go_links_api/#{alias_name}")
+    response = HTTParty.get(API_PATH + '/exact/' + alias_name)
     go_link_info = response["entities"].first
     go_link_response = {
       status: response["ok"],
