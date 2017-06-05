@@ -58,6 +58,7 @@ var GoLinksForm = React.createClass ({
           validationState={this.validateAlias(this.props.goLinks.newGoLinkData.alias)}
           placeholder="e.g. shared_document"
           onChange={ (e) => { this.props.goLinksActions.setAlias(e.target.value); } }
+          disabled={this.props.disableAliasEdit}
         />
         <FieldGroup
           id="URL"
