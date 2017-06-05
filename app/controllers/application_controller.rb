@@ -7,10 +7,19 @@ class ApplicationController < ActionController::Base
   API_CHANGE_PATH = "http://wps.acxiom.com/go-api/admin"
   API_PATH = 'http://wps.acxiom.com/go-api'
 
+  ADMIN_USERS = [
+    "jeanne.lee@acxiom.com",
+    "tevy.jacobs-gomes@acxiom.com",
+    "jocelyn.neff@acxiom.com",
+    "shrif.nada@acxiom.com",
+    "james.true@acxiom.com"
+  ]
+
   def index
     gon.push(
       env: Rails.env,
-      active_user: session[:active_user]
+      active_user: @active_user,
+      is_admin_user: ADMIN_USERS.include?(@active_user)
     )
   end
 

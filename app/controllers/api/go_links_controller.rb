@@ -1,8 +1,5 @@
 class Api::GoLinksController < ApplicationController
-  include GoLinksHelper
 
-  # JL: Write go_links_api gem, fix error messages
-  # 2/24/2017
   before_action :init_active_user, only: [:create, :update, :destroy]
 
   def index
@@ -51,6 +48,26 @@ class Api::GoLinksController < ApplicationController
     else
       render json: { message: "Failed to save go/ link.", error_message: response["message"] }, status: 500
     end
+  end
+
+  private
+
+  def format_link_params(params)
+    alias_name = params.require(:alias)
+    url = params.require(:url)
+    owner = params.require(:owner)
+    description = params[:description]
+
+    go_links_owner = ADMIN_USERS.include?(@active_user) ? owner : @active_user
+
+    new_link = {
+      alias: alias_name,
+      url: url,
+      description: description,
+      owner: go_links_owner
+    }
+
+    new_link
   end
 
 end

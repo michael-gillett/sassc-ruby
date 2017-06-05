@@ -9,6 +9,7 @@ const defaultState = {
     alias: "",
     url: "",
     description: "",
+    owner: "",
   },
   goLinksFetchStatus: XhrStatusConstants.GO_LINKS.LOADING,
   goLinkSaveStatus: "",
@@ -101,7 +102,7 @@ function GoLinksReducer(state = defaultState, action) {
                                                  url: goLink.url,
                                                  description: goLink.description,
                                                  owner: goLink.owner,
-                                                 ownedByUser: gon.active_user == goLink.owner };
+                                                 ownedByUser: (gon.active_user == goLink.owner) || gon.is_admin_user };
       });
       return update(state, {
         goLinksList: { $set: newlyFetchedGoLinkList },
@@ -165,7 +166,8 @@ function GoLinksReducer(state = defaultState, action) {
         newGoLinkData: {
           alias: { $set: action.goLink.alias },
           url: { $set: action.goLink.url },
-          description: { $set: action.goLink.description }
+          description: { $set: action.goLink.description },
+          owner: { $set: action.goLink.owner }
         }
       });
 

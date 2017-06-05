@@ -20,6 +20,7 @@ var GoLinksEditForm = React.createClass ({
         <GoLinksForm
           submitButtonText="Edit"
           submitButtonAction={() => { this.props.goLinksActions.updateGoLink(this.props.goLinks.newGoLinkData) }}
+          disableAliasEdit={true}
         />
       </Col>
     );
