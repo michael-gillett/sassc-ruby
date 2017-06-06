@@ -7,6 +7,8 @@ import GoLinksForm from 'components/goLinksForm';
 var GoLinksEditForm = React.createClass ({
 
   render () {
+    const { goLinksActions, goLinks } = this.props;
+
     return (
       <Col
         id="main-container"
@@ -19,7 +21,7 @@ var GoLinksEditForm = React.createClass ({
         <PageHeader><strong>Edit go/ link.</strong></PageHeader>
         <GoLinksForm
           submitButtonText="Save"
-          submitButtonAction={() => { this.props.goLinksActions.updateGoLink(this.props.goLinks.newGoLinkData) }}
+          submitButtonAction={() => { goLinksActions.updateGoLink(goLinks.newGoLinkData) }}
           disableAliasEdit={true}
         />
       </Col>

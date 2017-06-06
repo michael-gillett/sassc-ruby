@@ -6,6 +6,8 @@ import GoLinksForm from 'components/goLinksForm';
 var GoLinksCreateForm = React.createClass ({
 
   render () {
+    const { goLinksActions, goLinks } = this.props;
+
     return (
       <Col
         id="main-container"
@@ -18,7 +20,7 @@ var GoLinksCreateForm = React.createClass ({
         <PageHeader><strong>Create a go/ link</strong></PageHeader>
         <GoLinksForm
           submitButtonText="Save"
-          submitButtonAction={() => {this.props.goLinksActions.createGoLink(this.props.goLinks.newGoLinkData)}}
+          submitButtonAction={() => {goLinksActions.createGoLink(goLinks.newGoLinkData)}}
         />
       </Col>
     );

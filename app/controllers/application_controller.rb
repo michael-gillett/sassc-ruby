@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
     "Tevy.Jacobs-Gomes@acxiom.com",
     "Jocelyn.Neff@acxiom.com",
     "Shrif.Nada@acxiom.com",
-    "James.True@acxiom.com"
+    "James.True@acxiom.com",
+    # "go-links-dev@liveramp.com" # for development
   ]
 
   def index

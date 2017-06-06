@@ -60,7 +60,8 @@ function GoLinksReducer(state = defaultState, action) {
     case GoLinksConstants.SET_ALIAS:
       return update(state, {
         newGoLinkData: {
-          alias: { $set: action.alias }
+          alias: { $set: action.alias },
+          owner: { $set: gon.active_user } // this needs to be done somewhere for link creation
         }
       });
 

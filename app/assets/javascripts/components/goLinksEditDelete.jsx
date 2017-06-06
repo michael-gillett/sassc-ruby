@@ -6,7 +6,7 @@ import { UiIcon } from 'liveramp-ui-toolkit';
 var GoLinksEditDelete = React.createClass({
   render() {
 
-    const { goLink } = this.props;
+    const { goLink, goLinksActions } = this.props;
     const editDeleteDisplayClass = this.getDisabledClass(goLink);
 
     return (
@@ -14,8 +14,8 @@ var GoLinksEditDelete = React.createClass({
         <UiIcon icon='edit'
           dimensions={[20, 20]}
           color='select-green'
-          onClick={ () => { this.props.goLinksActions.populateEditInfo(goLink)
-                           this.props.goLinksActions.redirect("/edit") } }
+          onClick={ () => { goLinksActions.populateEditInfo(goLink)
+                            goLinksActions.redirect("/edit") } }
           classes={ editDeleteDisplayClass }
         />
         <UiIcon icon='trash'

@@ -50,7 +50,6 @@ const getKeyMap = props => (
 const columnOrder = ['alias', 'url', 'description', 'actions'];
 const columnsToShow = ['alias', 'url', 'description', 'actions'];
 
-
 const GoLinksGlossaryTable = React.createClass({
   getInitialState() {
     return ({
