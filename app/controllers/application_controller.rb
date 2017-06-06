@@ -8,11 +8,11 @@ class ApplicationController < ActionController::Base
   API_PATH = 'http://wps.acxiom.com/go-api'
 
   ADMIN_USERS = [
-    "jeanne.lee@acxiom.com",
-    "tevy.jacobs-gomes@acxiom.com",
-    "jocelyn.neff@acxiom.com",
-    "shrif.nada@acxiom.com",
-    "james.true@acxiom.com"
+    "Jeanne.Lee@acxiom.com",
+    "Tevy.Jacobs-Gomes@acxiom.com",
+    "Jocelyn.Neff@acxiom.com",
+    "Shrif.Nada@acxiom.com",
+    "James.True@acxiom.com"
   ]
 
   def index
