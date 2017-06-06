@@ -18,7 +18,7 @@ var GoLinksEditForm = React.createClass ({
       >
         <PageHeader><strong>Edit go/ link.</strong></PageHeader>
         <GoLinksForm
-          submitButtonText="Edit"
+          submitButtonText="Save"
           submitButtonAction={() => { this.props.goLinksActions.updateGoLink(this.props.goLinks.newGoLinkData) }}
           disableAliasEdit={true}
         />

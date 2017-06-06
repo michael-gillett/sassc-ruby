@@ -25,6 +25,65 @@ class FieldGroup extends React.Component {
 }
 
 var GoLinksForm = React.createClass ({
+
+  render () {
+
+    const { goLinks, goLinksActions, disableAliasEdit, submitButtonAction, submitButtonText } = this.props;
+    const { newGoLinkData } = this.props.goLinks;
+    const linkAlias = goLinks.newGoLinkData.alias;
+    const originalLink = goLinks.goLinksList[linkAlias];
+
+    return (
+      <div className="row">
+        <FieldGroup
+          id="alias"
+          label="Alias"
+          help="Aliases must be lowercase, with no space, and unique."
+          type="text"
+          addon="go/"
+          value={newGoLinkData.alias}
+          validationState={this.validateAlias(newGoLinkData.alias)}
+          placeholder="e.g. shared_document"
+          onChange={ (e) => { goLinksActions.setAlias(e.target.value); } }
+          disabled={disableAliasEdit}
+        />
+        <FieldGroup
+          id="URL"
+          label="URL"
+          help="What is your alias redirecting to?"
+          type="text"
+          value={newGoLinkData.url}
+          validationState={this.validateUrl(newGoLinkData.url)}
+          placeholder="http://..."
+          onChange={ (e) => { goLinksActions.setUrl(e.target.value); } }
+        />
+        <FieldGroup
+          id="description"
+          label="Description"
+          help="Enter a small description of your link (optional)"
+          type="text"
+          value={newGoLinkData.description}
+          valid={true}
+          placeholder=""
+          onChange={ (e) => { goLinksActions.setDescription(e.target.value); } }
+        />
+        <ButtonGroup bsSize="large">
+          <Button onClick={() => {  goLinksActions.clearEditInfo()
+                                    goLinksActions.redirect("/") }}>
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            onClick={submitButtonAction}
+            disabled={this.disableState(originalLink, newGoLinkData)}
+          >
+            {submitButtonText}
+          </Button>
+        </ButtonGroup>
+      </div>
+    )
+  },
+
   validateAlias(alias) {
     if (alias.length > 0) {
       var re = /[a-z0-9_-]*/i;
@@ -39,62 +98,11 @@ var GoLinksForm = React.createClass ({
     return ValidURL.isWebUri(url) ? null : "error" ;
   },
 
-  disableState() {
-    var aliasValid = !this.validateAlias(this.props.goLinks.newGoLinkData.alias);
-    var urlValid = !this.validateUrl(this.props.goLinks.newGoLinkData.url);
-    return !aliasValid || !urlValid ;
-  },
-
-  render () {
-    return (
-      <div className="row">
-        <FieldGroup
-          id="alias"
-          label="Alias"
-          help="Aliases must be lowercase, with no space, and unique."
-          type="text"
-          addon="go/"
-          value={this.props.goLinks.newGoLinkData.alias}
-          validationState={this.validateAlias(this.props.goLinks.newGoLinkData.alias)}
-          placeholder="e.g. shared_document"
-          onChange={ (e) => { this.props.goLinksActions.setAlias(e.target.value); } }
-          disabled={this.props.disableAliasEdit}
-        />
-        <FieldGroup
-          id="URL"
-          label="URL"
-          help="What is your alias redirecting to?"
-          type="text"
-          value={this.props.goLinks.newGoLinkData.url}
-          validationState={this.validateUrl(this.props.goLinks.newGoLinkData.url)}
-          placeholder="http://..."
-          onChange={ (e) => { this.props.goLinksActions.setUrl(e.target.value); } }
-        />
-        <FieldGroup
-          id="description"
-          label="Description"
-          help="Enter a small description of your link (optional)"
-          type="text"
-          value={this.props.goLinks.newGoLinkData.description}
-          valid={true}
-          placeholder=""
-          onChange={ (e) => { this.props.goLinksActions.setDescription(e.target.value); } }
-        />
-        <ButtonGroup bsSize="large">
-          <Button onClick={() => {  this.props.goLinksActions.clearEditInfo()
-                                    this.props.goLinksActions.redirect("/") }}>
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            onClick={this.props.submitButtonAction}
-            disabled={this.disableState()}
-          >
-            {this.props.submitButtonText}
-          </Button>
-        </ButtonGroup>
-      </div>
-    )
+  disableState(originalLink, newGoLinkData) {
+    var aliasValid = !this.validateAlias(newGoLinkData.alias);
+    var urlValid = !this.validateUrl(newGoLinkData.url);
+    var linkDataUnchanged = _.isMatch(originalLink, newGoLinkData);
+    return !aliasValid || !urlValid || linkDataUnchanged;
   }
 });
 
