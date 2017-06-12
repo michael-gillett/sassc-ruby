@@ -29,7 +29,7 @@ var GoLinksForm = React.createClass ({
   render () {
 
     const { goLinks, goLinksActions, disableAliasEdit, submitButtonAction, submitButtonText } = this.props;
-    const { newGoLinkData } = this.props.goLinks;
+    const { newGoLinkData, goLinksList } = this.props.goLinks;
     const linkAlias = goLinks.newGoLinkData.alias;
     const originalLink = goLinks.goLinksList[linkAlias];
 
@@ -38,7 +38,7 @@ var GoLinksForm = React.createClass ({
         <FieldGroup
           id="alias"
           label="Alias"
-          help="Aliases must be lowercase, with no space, and unique."
+          help="Aliases must be lowercase, without spaces, and unique."
           type="text"
           addon="go/"
           value={newGoLinkData.alias}
@@ -84,11 +84,16 @@ var GoLinksForm = React.createClass ({
     )
   },
 
+  validateUniqueAlias(alias) {
+    return !_.contains(_.keys(this.props.goLinks.goLinksList), alias)
+  },
+
   validateAlias(alias) {
     if (alias.length > 0) {
       var re = /[a-z0-9_-]*/i;
       var m = alias.match(re)[0];
-      return (m.length == alias.length) ? null : "error";
+      var uniqueAlias = this.validateUniqueAlias(alias);
+      return ((m.length == alias.length) && uniqueAlias) ? null : "error";
     } else {
       return "error";
     }
