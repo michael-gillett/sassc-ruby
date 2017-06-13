@@ -31,7 +31,7 @@ var GoLinksForm = React.createClass ({
     const { goLinks, goLinksActions, disableAliasEdit, submitButtonAction, submitButtonText } = this.props;
     const { newGoLinkData, goLinksList } = this.props.goLinks;
     const linkAlias = goLinks.newGoLinkData.alias;
-    const originalLink = goLinks.goLinksList[linkAlias];
+    const originalLink = _.find(goLinks.goLinksList, function(link){ return link.id == linkAlias });
 
     return (
       <div className="row">

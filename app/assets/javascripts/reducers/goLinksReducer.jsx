@@ -19,13 +19,21 @@ const defaultState = {
 
 const updateGoLinksList = (originalGoLinksList, updatedGoLink) => {
   updatedGoLink["ownedByUser"] = true;
-  originalGoLinksList[updatedGoLink.alias] = updatedGoLink;
+  const goLinkIndex = originalGoLinksList.map(function(link) {return link.alias;}).indexOf(updatedGoLink.alias);
+
+  if (goLinkIndex > 0) { // update
+    originalGoLinksList[goLinkIndex] = updatedGoLink;
+  } else { // create
+    originalGoLinksList.unshift(updatedGoLink);
+  }
+
   return originalGoLinksList;
 }
 
 const deleteFromGoLinksList = (originalGoLinksList, deletedGoLink) => {
-  const updatedGoLinksList = _.omit(originalGoLinksList, deletedGoLink.alias);
-  return updatedGoLinksList;
+  const deletedGoLinkIndex = originalGoLinksList.map(function(link) {return link.alias;}).indexOf(deletedGoLink.alias);
+  originalGoLinksList.splice(deletedGoLinkIndex, 1);
+  return originalGoLinksList;
 }
 
 const filterGoLinksListByOwner = (list, ownerFilter, GoLinksConstants) => {
@@ -98,12 +106,13 @@ function GoLinksReducer(state = defaultState, action) {
       const newlyFetchedGoLinkList = [];
       var sortedList = _.sortBy(action.data, function(link) { return link.alias; });
       _.each(sortedList, function(goLink) {
-        newlyFetchedGoLinkList[goLink.alias] = { id: goLink.alias,
-                                                 alias: goLink.alias,
-                                                 url: goLink.url,
-                                                 description: goLink.description,
-                                                 owner: goLink.owner,
-                                                 ownedByUser: (gon.active_user == goLink.owner) || gon.is_admin_user };
+        newlyFetchedGoLinkList.push( { id: goLink.alias,
+                                       alias: goLink.alias,
+                                       url: goLink.url,
+                                       description: goLink.description,
+                                       owner: goLink.owner,
+                                       ownedByUser: (gon.active_user == goLink.owner) || gon.is_admin_user }
+                                    );
       });
       return update(state, {
         goLinksList: { $set: newlyFetchedGoLinkList },
