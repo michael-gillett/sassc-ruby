@@ -1,10 +1,6 @@
 class SamlController < ApplicationController
   include SamlHelper
-
-  def index
-    render json: { redirect_url: generate_okta_login_url }, status: :ok
-  end
-
+  
   def create
     redirect_url = root_url
     redirect_url += "create" if params[:RelayState] == "create"
