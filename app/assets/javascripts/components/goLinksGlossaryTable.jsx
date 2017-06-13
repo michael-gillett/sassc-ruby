@@ -68,8 +68,10 @@ const GoLinksGlossaryTable = React.createClass({
 
   componentWillReceiveProps(newProps) {
     let filteredList = newProps.goLinks.filteredGoLinksList;
+    let fullListLength = Object.keys(newProps.goLinks.goLinksList).length;
     this.setState({
-      elements: filteredList
+      elements: filteredList,
+      totalElements: fullListLength
     });
   },
 

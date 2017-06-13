@@ -42,7 +42,7 @@ var GoLinksForm = React.createClass ({
           type="text"
           addon="go/"
           value={newGoLinkData.alias}
-          validationState={this.validateAlias(newGoLinkData.alias)}
+          validationState={this.validateAlias(newGoLinkData.alias, disableAliasEdit)}
           placeholder="e.g. shared_document"
           onChange={ (e) => { goLinksActions.setAlias(e.target.value); } }
           disabled={disableAliasEdit}
@@ -75,7 +75,7 @@ var GoLinksForm = React.createClass ({
           <Button
             type="submit"
             onClick={submitButtonAction}
-            disabled={this.disableState(originalLink, newGoLinkData)}
+            disabled={this.disableState(originalLink, newGoLinkData, disableAliasEdit)}
           >
             {submitButtonText}
           </Button>
@@ -84,15 +84,15 @@ var GoLinksForm = React.createClass ({
     )
   },
 
-  validateUniqueAlias(alias) {
-    return !_.contains(_.keys(this.props.goLinks.goLinksList), alias)
+  validateUniqueAlias(alias, disableAliasEdit) {
+    return !_.contains(_.keys(this.props.goLinks.goLinksList), alias) || disableAliasEdit;
   },
 
-  validateAlias(alias) {
+  validateAlias(alias, disableAliasEdit) {
     if (alias.length > 0) {
       var re = /[a-z0-9_-]*/i;
       var m = alias.match(re)[0];
-      var uniqueAlias = this.validateUniqueAlias(alias);
+      var uniqueAlias = this.validateUniqueAlias(alias, disableAliasEdit);
       return ((m.length == alias.length) && uniqueAlias) ? null : "error";
     } else {
       return "error";
@@ -103,8 +103,8 @@ var GoLinksForm = React.createClass ({
     return ValidURL.isWebUri(url) ? null : "error" ;
   },
 
-  disableState(originalLink, newGoLinkData) {
-    var aliasValid = !this.validateAlias(newGoLinkData.alias);
+  disableState(originalLink, newGoLinkData, disableAliasEdit) {
+    var aliasValid = !this.validateAlias(newGoLinkData.alias, disableAliasEdit);
     var urlValid = !this.validateUrl(newGoLinkData.url);
     var linkDataUnchanged = _.isMatch(originalLink, newGoLinkData);
     return !aliasValid || !urlValid || linkDataUnchanged;

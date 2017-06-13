@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :go_links, only: [:index, :create, :update, :destroy]
   end
 
+  get 'create' => 'application#index'
   get '*path' => 'go_links_ui#show'
 
 end
