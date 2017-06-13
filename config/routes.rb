@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root :to => 'application#index'
 
-  resources :saml, only: [:index, :create]
+  resources :saml, only: [:create]
 
   get 'logout' => 'application#logout'
 

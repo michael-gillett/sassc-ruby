@@ -31,7 +31,7 @@ var GoLinksForm = React.createClass ({
     const { goLinks, goLinksActions, disableAliasEdit, submitButtonAction, submitButtonText } = this.props;
     const { newGoLinkData, goLinksList } = this.props.goLinks;
     const linkAlias = goLinks.newGoLinkData.alias;
-    const originalLink = _.find(goLinks.goLinksList, function(link){ return link.id == linkAlias });
+    const originalLink = _.find(goLinks.goLinksList, function(link){ return link.alias == linkAlias });
 
     return (
       <div className="row">
@@ -85,7 +85,9 @@ var GoLinksForm = React.createClass ({
   },
 
   validateUniqueAlias(alias, disableAliasEdit) {
-    return !_.contains(_.keys(this.props.goLinks.goLinksList), alias) || disableAliasEdit;
+    var indexOfAlias = this.props.goLinks.goLinksList.map(function(link){return link.alias;}).indexOf(alias);
+    // return value > 0 means the link was found in the list, i.e. not unique
+    return !( indexOfAlias > 0) || disableAliasEdit;
   },
 
   validateAlias(alias, disableAliasEdit) {
