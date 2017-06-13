@@ -21,7 +21,7 @@ const updateGoLinksList = (originalGoLinksList, updatedGoLink) => {
   updatedGoLink["ownedByUser"] = true;
   const goLinkIndex = originalGoLinksList.map(function(link) {return link.alias;}).indexOf(updatedGoLink.alias);
 
-  if (goLinkIndex > 0) { // update
+  if (goLinkIndex > -1) { // update
     originalGoLinksList[goLinkIndex] = updatedGoLink;
   } else { // create
     originalGoLinksList.unshift(updatedGoLink);
