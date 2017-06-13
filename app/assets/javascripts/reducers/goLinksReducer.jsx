@@ -7,7 +7,7 @@ const defaultState = {
   filteredGoLinksList: {},
   newGoLinkData: {
     alias: "",
-    url: "",
+    url: GoLinksConstants.DEFAULT_URL_PREFIX,
     description: "",
     owner: "",
   },
@@ -192,7 +192,7 @@ function GoLinksReducer(state = defaultState, action) {
       return update(state, {
         newGoLinkData: {
           alias: { $set: "" },
-          url: {  $set: "" },
+          url: {  $set: GoLinksConstants.DEFAULT_URL_PREFIX },
           description: {  $set: "" }
         }
       });

@@ -24,5 +24,7 @@ export default {
   DEFAULT_QUERY_PARAMS: {
     owner: 'all',
     search_query: ''
-  }
+  },
+
+  DEFAULT_URL_PREFIX: "http://"
 };
