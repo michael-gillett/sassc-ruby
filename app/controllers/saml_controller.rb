@@ -6,7 +6,8 @@ class SamlController < ApplicationController
   end
 
   def create
-    redirect_url = params[:relayState] == "create" ? root_url + "/create" : "root_url"
+    redirect_url = root_url
+    redirect_url += "create" if params[:RelayState] == "create"
     settings = get_saml_settings
     response = OneLogin::RubySaml::Response.new(params.require(:SAMLResponse), :settings => settings)
     response.is_valid? ? session[:active_user] = response.nameid : flash[:errors] = "Something went wrong"

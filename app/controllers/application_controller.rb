@@ -31,13 +31,13 @@ class ApplicationController < ActionController::Base
   private
 
   def init_active_user
-    session[:active_user] = "go-links-dev@liveramp.com" if Rails.env.development?
+    # session[:active_user] = "go-links-dev@liveramp.com" if Rails.env.development?
 
     if session[:active_user]
       @active_user = session[:active_user]
     else
       redirect_url = generate_okta_login_url
-      redirect_url = generate_okta_login_url + "?relayState=create" if (params[:path] == "create")
+      redirect_url += "&RelayState=create" if request.path == "/create"
       return redirect_to redirect_url
     end
   end
