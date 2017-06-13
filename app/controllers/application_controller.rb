@@ -36,7 +36,9 @@ class ApplicationController < ActionController::Base
     if session[:active_user]
       @active_user = session[:active_user]
     else
-      return redirect_to generate_okta_login_url
+      redirect_url = generate_okta_login_url
+      redirect_url = generate_okta_login_url + "?relayState=create" if (params[:path] == "create")
+      return redirect_to redirect_url
     end
   end
 
