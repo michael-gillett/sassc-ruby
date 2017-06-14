@@ -5,6 +5,7 @@ import GoLinksConstants from 'constants/goLinksConstants';
 import AlertsConstants from 'constants/alertsConstants';
 import GoLinksEditDelete from 'components/goLinksEditDelete';
 import GoLinksFilterGroup from 'components/goLinksFilterGroup';
+import logo from '../../images/logos/GoLinksLogo.png';
 
 const getKeyMap = props => (
   {
@@ -91,7 +92,7 @@ const GoLinksGlossaryTable = React.createClass({
     return (
       <div>
         <UiTable
-          title={"Go/ Links Glossary"}
+          title={this.getGoLinksLogo()}
           initialFetchComplete={true}
           selectedRows={this.state.selectedRows}
           haveChildren={false}
@@ -119,6 +120,15 @@ const GoLinksGlossaryTable = React.createClass({
           loadingRowsCount={3}
           />
       </div>
+    );
+  },
+
+  getGoLinksLogo() {
+    return(
+      <img
+        className='go-links-logo'
+        src={logo}
+      />
     );
   },
 

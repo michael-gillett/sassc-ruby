@@ -38,8 +38,8 @@ var defaultConfig = {
       },
       {
         test: /\.png?$/,
-        loader: 'file-loader',
-        query: {name: '/[name]-[sha256:hash:hex:64].[ext]', emitFile: false}
+        loader: 'file-loader?name=/images/logos/[name].[ext]',
+        query: {name: '/[name]-[sha256:hash:hex:64].[ext]', emitFile: true}
       }
     ]
   },
