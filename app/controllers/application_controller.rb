@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   private
 
   def init_active_user
-    session[:active_user] = "go-links-dev@liveramp.com" #if Rails.env.development?
+    session[:active_user] = "go-links-dev@liveramp.com" if Rails.env.development?
 
     if session[:active_user]
       @active_user = session[:active_user]
