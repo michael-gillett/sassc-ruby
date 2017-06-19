@@ -13,8 +13,10 @@ class ApplicationController < ActionController::Base
     "Jocelyn.Neff@acxiom.com",
     "Shrif.Nada@acxiom.com",
     "James.True@acxiom.com",
-    # "go-links-dev@liveramp.com" # for development
+    "go-links-dev@liveramp.com" # for development
   ]
+
+  logger_filter :go_links
 
   def index
     gon.push(
@@ -31,7 +33,7 @@ class ApplicationController < ActionController::Base
   private
 
   def init_active_user
-    session[:active_user] = "go-links-dev@liveramp.com" if Rails.env.development?
+    session[:active_user] = "go-links-dev@liveramp.com" #if Rails.env.development?
 
     if session[:active_user]
       @active_user = session[:active_user]

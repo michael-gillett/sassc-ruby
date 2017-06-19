@@ -16,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails', '~> 5.0'
 gem 'httparty', '0.13.7'
 gem 'exception_notification', '~> 4.1'
+gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
 
 group :development, :test do
   gem 'capybara'
