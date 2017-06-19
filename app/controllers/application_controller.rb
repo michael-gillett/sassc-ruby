@@ -37,8 +37,6 @@ class ApplicationController < ActionController::Base
 
     if session[:active_user]
       @active_user = session[:active_user]
-      # need this for rails logger to log user email to kibana
-      @active_user.define_singleton_method(:primary_email){ self }
     else
       redirect_url = generate_okta_login_url
       redirect_url += "&RelayState=create" if request.path == "/create"
