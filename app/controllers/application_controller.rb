@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
   def index
     gon.push(
       env: Rails.env,
-      active_user: @active_user,
-      is_admin_user: ADMIN_USERS.include?(@active_user)
+      active_user: @active_user_email,
+      is_admin_user: ADMIN_USERS.include?(@active_user_email)
     )
   end
 
@@ -36,7 +36,10 @@ class ApplicationController < ActionController::Base
     session[:active_user] = "go-links-dev@liveramp.com" #if Rails.env.development?
 
     if session[:active_user]
-      @active_user = session[:active_user]
+      @active_user_email = session[:active_user]
+      # need this for rails logger to log user email to kibana
+      @active_user = { primary_email: session[:active_user] }
+      @active_user.define_singleton_method(:primary_email){ self[:primary_email] }
     else
       redirect_url = generate_okta_login_url
       redirect_url += "&RelayState=create" if request.path == "/create"
