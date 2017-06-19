@@ -58,7 +58,7 @@ class Api::GoLinksController < ApplicationController
     owner = params.require(:owner)
     description = params[:description]
 
-    go_links_owner = ADMIN_USERS.include?(@active_user_email) ? owner : @active_user_email
+    go_links_owner = ADMIN_USERS.include?(@active_user) ? owner : @active_user
 
     new_link = {
       alias: alias_name,
