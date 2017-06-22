@@ -3,6 +3,7 @@ class GoLinksUiController < ApplicationController
   def show
     go_alias = params[:path]
     if go_alias
+      go_alias = go_alias.gsub("_","-")
       go_link = get_alias_info(go_alias)
       return redirect_to go_link[:query][:url] if !go_link[:query].nil? && go_link[:status]
     end
