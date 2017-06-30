@@ -14,7 +14,7 @@ class GoLinksUiController < ApplicationController
 
   def get_alias_info(alias_name)
     response = HTTParty.get(API_PATH + '/exact/' + alias_name)
-    go_link_info = response["entities"].first
+    go_link_info = response["entities"].try(:first)
     go_link_response = {
       status: response["ok"],
       message: response["message"],
