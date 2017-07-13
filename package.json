@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "author": "Go Links UI",
   "scripts": {
-    "build": "npm install; webpack"
+    "install:packages": "npm install --quiet --no-save",
+    "webpack": "webpack --bail"
   },
   "devDependencies": {
     "babel-core": "6.2.4",
