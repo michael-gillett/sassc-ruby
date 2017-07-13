@@ -92,7 +92,7 @@ var GoLinksForm = React.createClass ({
 
   validateAlias(alias, disableAliasEdit) {
     if (alias.length > 0) {
-      var re = /[a-z0-9_-]*/i;
+      var re = /[a-z0-9_#-]*/i;
       var m = alias.match(re)[0];
       var uniqueAlias = this.validateUniqueAlias(alias, disableAliasEdit);
       return ((m.length == alias.length) && uniqueAlias) ? null : "error";

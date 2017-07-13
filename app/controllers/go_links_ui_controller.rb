@@ -1,11 +1,14 @@
 class GoLinksUiController < ApplicationController
 
   def show
-    go_alias = params[:path]
+    path_params = params[:path].split("&")
+    go_alias = path_params.first
+    go_params = path_params.slice(1..-1)
     if go_alias
       go_alias = go_alias.gsub("_","-")
       go_link = get_alias_info(go_alias)
-      return redirect_to go_link[:query][:url] if !go_link[:query].nil? && go_link[:status]
+      link_url = !go_link[:query].nil? && go_link[:status] ? add_go_link_params(go_link[:query][:url], go_params) : nil
+      return redirect_to link_url if link_url
     end
     return redirect_to root_url
   end
@@ -21,6 +24,13 @@ class GoLinksUiController < ApplicationController
       query: go_link_info.nil? ? nil : go_link_info.symbolize_keys
     }
     go_link_response
+  end
+
+  def add_go_link_params(link_url, go_params)
+    go_params.each do |p|
+      link_url.sub!("&param", p)
+    end
+    link_url
   end
 
 end
