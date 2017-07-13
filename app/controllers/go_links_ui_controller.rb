@@ -1,7 +1,8 @@
 class GoLinksUiController < ApplicationController
 
   def show
-    path_params = params[:path].split("&")
+    path_params = params[:path].split("/")
+    print path_params
     go_alias = path_params.first
     go_params = path_params.slice(1..-1)
     if go_alias
@@ -30,7 +31,7 @@ class GoLinksUiController < ApplicationController
 
   def add_go_link_params(link_url, go_params)
     go_params.each do |p|
-      link_url.sub!("&param", p)
+      link_url.sub!("<param>", p)
     end
     link_url
   end

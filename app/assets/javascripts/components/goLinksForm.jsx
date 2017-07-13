@@ -50,7 +50,8 @@ var GoLinksForm = React.createClass ({
         <FieldGroup
           id="URL"
           label="URL"
-          help="What is your alias redirecting to?"
+          help={"What is your alias redirecting to?\
+            Note: You can add parameters with \"<param>\". For example, http://audience.admin.liveramp.net/<param> could be called as go/audience/111419 or go/audience/145536."}
           type="text"
           value={newGoLinkData.url}
           validationState={this.validateUrl(newGoLinkData.url)}
@@ -102,7 +103,7 @@ var GoLinksForm = React.createClass ({
   },
 
   validateUrl(url) {
-    return ValidURL.isWebUri(url) ? null : "error" ;
+    return ValidURL.isWebUri(url.replace("<param>","")) ? null : "error" ;
   },
 
   disableState(originalLink, newGoLinkData, disableAliasEdit) {
