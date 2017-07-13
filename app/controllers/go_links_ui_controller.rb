@@ -7,8 +7,10 @@ class GoLinksUiController < ApplicationController
     if go_alias
       go_alias = go_alias.gsub("_","-")
       go_link = get_alias_info(go_alias)
-      link_url = !go_link[:query].nil? && go_link[:status] ? add_go_link_params(go_link[:query][:url], go_params) : nil
-      return redirect_to link_url if link_url
+      if !go_link[:query].nil? && go_link[:status]
+        link_url = add_go_link_params(go_link[:query][:url], go_params)
+        return redirect_to link_url
+      end
     end
     return redirect_to root_url
   end
