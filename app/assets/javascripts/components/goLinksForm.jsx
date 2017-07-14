@@ -44,12 +44,11 @@ var GoLinksForm = React.createClass ({
         if (this.state.alertVisible) {
           return (
             <Alert bsStyle="info" onDismiss={this.handleAlertDismiss}>
-              Include "&lt;param&gt;" in the URL to add parameters! For 
-              example:
+              Just include "&lt;param&gt;" in the URL one or more times! For example:
               <ul>
-                <li>Alias: "go/audience"</li>
-                <li>URL: "http://audience.admin.liveramp.net/&lt;param&gt;"</li>
-                <li>Used as: "go/audience/111419" or "go/audience/145536"</li>
+                <li>Alias: "go/adminhelper"</li>
+                <li>URL: "http://&lt;param&gt;.admin.liveramp.net/&lt;param&gt;"</li>
+                <li>Used as: "go/adminhelper/audience/111419" or "go/adminhelper/company/488408"</li>
               </ul>
 
             </Alert>
