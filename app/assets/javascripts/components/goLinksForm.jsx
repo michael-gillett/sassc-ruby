@@ -34,6 +34,7 @@ var GoLinksForm = React.createClass ({
     const originalLink = _.find(goLinks.goLinksList, function(link){ return link.alias == linkAlias });
 
     const ParamAlert = React.createClass({
+      // Inline alert to tell people how to use parameters
       getInitialState() {
         return {
           alertVisible: false

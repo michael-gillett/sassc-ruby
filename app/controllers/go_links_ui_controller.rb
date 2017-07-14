@@ -2,14 +2,17 @@ class GoLinksUiController < ApplicationController
   PARAM_FLAG = "<param>"
 
   def show
+    # Split the parameters from the URL
     path_params = params[:path].split("/")
     print path_params
     go_alias = path_params.first
     go_params = path_params.slice(1..-1)
+
     if go_alias
       go_alias = go_alias.gsub("_","-")
       go_link = get_alias_info(go_alias)
       if !go_link[:query].nil? && go_link[:status]
+        # Gets URL and adds parameters if given
         link_url = add_go_link_params(go_link[:query][:url], go_params)
         return redirect_to link_url
       end
@@ -31,6 +34,7 @@ class GoLinksUiController < ApplicationController
   end
 
   def add_go_link_params(link_url, go_params)
+    # Adds given parameters in place of the param flag
     go_params.each do |p|
       link_url.sub!(PARAM_FLAG, p)
     end
