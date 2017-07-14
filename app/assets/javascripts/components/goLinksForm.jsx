@@ -1,4 +1,4 @@
-import { FormGroup, ControlLabel, FormControl, HelpBlock, InputGroup, Button, ButtonGroup } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, InputGroup, Button, ButtonGroup, Alert } from 'react-bootstrap';
 import { UiHeader, UiInput } from 'liveramp-ui-toolkit';
 import GoLinksConstants from 'constants/goLinksConstants';
 import GoLinksActions from 'actions/goLinksActions';
@@ -33,6 +33,43 @@ var GoLinksForm = React.createClass ({
     const linkAlias = goLinks.newGoLinkData.alias;
     const originalLink = _.find(goLinks.goLinksList, function(link){ return link.alias == linkAlias });
 
+    const ParamAlert = React.createClass({
+      getInitialState() {
+        return {
+          alertVisible: true
+        };
+      },
+
+      render() {
+        if (this.state.alertVisible) {
+          return (
+            <Alert bsStyle="info" onDismiss={this.handleAlertDismiss}>
+              Include "&lt;param&gt;" in the URL to add parameters! For 
+              example:
+              <ul>
+                <li>Alias: "go/audience"</li>
+                <li>URL: "http://audience.admin.liveramp.net/&lt;param&gt;"</li>
+                <li>Used as: "go/audience/111419" or "go/audience/145536"</li>
+              </ul>
+
+            </Alert>
+          );
+        }
+
+        return (
+          <Button onClick={this.handleAlertShow}>See How</Button>
+        );
+      },
+
+      handleAlertDismiss() {
+        this.setState({alertVisible: false});
+      },
+
+      handleAlertShow() {
+        this.setState({alertVisible: true});
+      }
+    });
+
     return (
       <div className="row">
         <FieldGroup
@@ -50,25 +87,20 @@ var GoLinksForm = React.createClass ({
         <FieldGroup
           id="URL"
           label="URL"
+          help="What is your alias redirecting to?"
           type="text"
           value={newGoLinkData.url}
           validationState={this.validateUrl(newGoLinkData.url)}
           placeholder="http://..."
           onChange={ (e) => { goLinksActions.setUrl(e.target.value); } }
         >
-          <HelpBlock id="url_param_tip" bsSize="lg">
-            What is your alias redirecting to?
-            <br /><br />
-            <ControlLabel>Note on Parameters</ControlLabel>
-            <br />
-            You can now add parameters to the URL with "&lt;param&gt;"! E.g.:
-            <ul>
-              <li>Alias: "go/audience"</li>
-              <li>URL: "http://audience.admin.liveramp.net/&lt;param&gt;"</li>
-              <li>Used as: "go/audience/111419" or "go/audience/145536"</li>
-            </ul>
-          </HelpBlock>
         </FieldGroup>
+        <HelpBlock id="url_tip" bsSize="lg">
+            <ControlLabel>Did you know? You can now add parameters to Go Links.</ControlLabel>
+            <br />
+            <ParamAlert id="test"/>
+        </HelpBlock>
+        <br />
         <FieldGroup
           id="description"
           label="Description"
