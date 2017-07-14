@@ -36,7 +36,7 @@ var GoLinksForm = React.createClass ({
     const ParamAlert = React.createClass({
       getInitialState() {
         return {
-          alertVisible: true
+          alertVisible: false
         };
       },
 
