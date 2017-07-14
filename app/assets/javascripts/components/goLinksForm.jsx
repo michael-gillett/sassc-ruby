@@ -92,8 +92,7 @@ var GoLinksForm = React.createClass ({
           validationState={this.validateUrl(newGoLinkData.url)}
           placeholder="http://..."
           onChange={ (e) => { goLinksActions.setUrl(e.target.value); } }
-        >
-        </FieldGroup>
+        />
         <HelpBlock id="url_tip" bsSize="lg">
             <ControlLabel>Did you know? You can now add parameters to Go Links.</ControlLabel>
             <br />
