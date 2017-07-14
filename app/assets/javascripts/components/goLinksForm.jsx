@@ -50,14 +50,25 @@ var GoLinksForm = React.createClass ({
         <FieldGroup
           id="URL"
           label="URL"
-          help={"What is your alias redirecting to?\
-            Note: You can add parameters with \"<param>\". For example, http://audience.admin.liveramp.net/<param> could be called as go/audience/111419 or go/audience/145536."}
           type="text"
           value={newGoLinkData.url}
           validationState={this.validateUrl(newGoLinkData.url)}
           placeholder="http://..."
           onChange={ (e) => { goLinksActions.setUrl(e.target.value); } }
-        />
+        >
+          <HelpBlock id="url_param_tip" bsSize="lg">
+            What is your alias redirecting to?
+            <br /><br />
+            <ControlLabel>Note on Parameters</ControlLabel>
+            <br />
+            You can now add parameters to the URL with "&lt;param&gt;"! E.g.:
+            <ul>
+              <li>Alias: "go/audience"</li>
+              <li>URL: "http://audience.admin.liveramp.net/&lt;param&gt;"</li>
+              <li>Used as: "go/audience/111419" or "go/audience/145536"</li>
+            </ul>
+          </HelpBlock>
+        </FieldGroup>
         <FieldGroup
           id="description"
           label="Description"
