@@ -1,4 +1,5 @@
 class GoLinksUiController < ApplicationController
+  PARAM_FLAG = "<param>"
 
   def show
     path_params = params[:path].split("/")
@@ -31,7 +32,7 @@ class GoLinksUiController < ApplicationController
 
   def add_go_link_params(link_url, go_params)
     go_params.each do |p|
-      link_url.sub!("<param>", p)
+      link_url.sub!(PARAM_FLAG, p)
     end
     link_url
   end

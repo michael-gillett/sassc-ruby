@@ -103,7 +103,11 @@ var GoLinksForm = React.createClass ({
   },
 
   validateUrl(url) {
-    return ValidURL.isWebUri(url.replace("<param>","")) ? null : "error" ;
+    return ValidURL.isWebUri(this.removeAll(GoLinksConstants.PARAM_FLAG, url)) ? null : "error" ;
+  },
+
+  removeAll(find, str) {
+    return str.replace(new RegExp(find, 'g'), "")
   },
 
   disableState(originalLink, newGoLinkData, disableAliasEdit) {
