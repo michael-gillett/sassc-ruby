@@ -13,8 +13,7 @@ class GoLinksUiController < ApplicationController
       go_link = get_alias_info(go_alias)
       if !go_link[:query].nil? && go_link[:status]
         # Gets URL and adds parameters if given
-        link_url = add_go_link_params(go_link[:query][:url], go_params)
-        return redirect_to link_url
+       return add_go_link_params(go_link[:query][:url], go_params, go_alias)
       end
     end
     return redirect_to root_url
@@ -33,12 +32,25 @@ class GoLinksUiController < ApplicationController
     go_link_response
   end
 
-  def add_go_link_params(link_url, go_params)
-    # Adds given parameters in place of the param flag
+  def add_go_link_params(link_url, go_params, go_alias)
+    # Check that the proper number of params was given
+    url_param_count = link_url.scan(/#{PARAM_FLAG}/).count
+    if url_param_count != go_params.count
+      return param_error(link_url, go_params, go_alias, url_param_count)
+    end
+
     go_params.each do |p|
       link_url.sub!(PARAM_FLAG, p)
     end
-    link_url
+    return redirect_to link_url
+  end
+
+  def param_error(link_url, go_params, go_alias, url_param_count)
+    @link_url = link_url
+    @go_params_count = go_params.count
+    @go_alias = go_alias
+    @url_param_count = url_param_count
+    render "paramerror", :status => 400
   end
 
 end
