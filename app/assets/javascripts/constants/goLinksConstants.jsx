@@ -26,5 +26,7 @@ export default {
     search_query: ''
   },
 
-  DEFAULT_URL_PREFIX: "http://"
+  DEFAULT_URL_PREFIX: "http://",
+
+  PARAM_FLAG: "<param>"
 };

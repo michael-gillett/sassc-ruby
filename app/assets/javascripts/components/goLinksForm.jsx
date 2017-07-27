@@ -1,4 +1,4 @@
-import { FormGroup, ControlLabel, FormControl, HelpBlock, InputGroup, Button, ButtonGroup } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, HelpBlock, InputGroup, Button, ButtonGroup, Alert } from 'react-bootstrap';
 import { UiHeader, UiInput } from 'liveramp-ui-toolkit';
 import GoLinksConstants from 'constants/goLinksConstants';
 import GoLinksActions from 'actions/goLinksActions';
@@ -33,6 +33,43 @@ var GoLinksForm = React.createClass ({
     const linkAlias = goLinks.newGoLinkData.alias;
     const originalLink = _.find(goLinks.goLinksList, function(link){ return link.alias == linkAlias });
 
+    const ParamAlert = React.createClass({
+      // Inline alert to tell people how to use parameters
+      getInitialState() {
+        return {
+          alertVisible: false
+        };
+      },
+
+      render() {
+        if (this.state.alertVisible) {
+          return (
+            <Alert bsStyle="info" onDismiss={this.handleAlertDismiss}>
+              Just include "&lt;param&gt;" in the URL one or more times! For example:
+              <ul>
+                <li>Alias: "go/adminhelper"</li>
+                <li>URL: "http://&lt;param&gt;.admin.liveramp.net/&lt;param&gt;"</li>
+                <li>Used as: "go/adminhelper/audience/111419" or "go/adminhelper/company/488408"</li>
+              </ul>
+
+            </Alert>
+          );
+        }
+
+        return (
+          <Button onClick={this.handleAlertShow}>See How</Button>
+        );
+      },
+
+      handleAlertDismiss() {
+        this.setState({alertVisible: false});
+      },
+
+      handleAlertShow() {
+        this.setState({alertVisible: true});
+      }
+    });
+
     return (
       <div className="row">
         <FieldGroup
@@ -57,6 +94,12 @@ var GoLinksForm = React.createClass ({
           placeholder="http://..."
           onChange={ (e) => { goLinksActions.setUrl(e.target.value); } }
         />
+        <HelpBlock id="url_tip" bsSize="lg">
+            <ControlLabel>Did you know? You can now add parameters to Go Links.</ControlLabel>
+            <br />
+            <ParamAlert id="test"/>
+        </HelpBlock>
+        <br />
         <FieldGroup
           id="description"
           label="Description"
@@ -102,7 +145,11 @@ var GoLinksForm = React.createClass ({
   },
 
   validateUrl(url) {
-    return ValidURL.isWebUri(url) ? null : "error" ;
+    return ValidURL.isWebUri(this.removeAll(GoLinksConstants.PARAM_FLAG, url)) ? null : "error" ;
+  },
+
+  removeAll(find, str) {
+    return str.replace(new RegExp(find, 'g'), "")
   },
 
   disableState(originalLink, newGoLinkData, disableAliasEdit) {
