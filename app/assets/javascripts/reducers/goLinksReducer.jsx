@@ -10,7 +10,6 @@ const defaultState = {
     url: GoLinksConstants.DEFAULT_URL_PREFIX,
     description: "",
     owner: "",
-    creator: 'bob',
   },
   goLinksFetchStatus: XhrStatusConstants.GO_LINKS.LOADING,
   goLinkSaveStatus: "",
