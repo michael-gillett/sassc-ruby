@@ -11,7 +11,7 @@ const getKeyMap = props => (
     alias: {
       columnName: 'Alias',
       sortable: true,
-      width: 5,
+      width: 4,
       display: (alias) => {
         return (
           <span>{alias}</span>
@@ -33,11 +33,16 @@ const getKeyMap = props => (
       sortable: false,
       width: 7,
     },
+    owner: {
+      columnName: 'Owner',
+      sortable: true,
+      width: 3,
+    },
     actions: {
       columnName: 'Edit/Delete',
       sortable: false,
       justification: 'center',
-      width: 5,
+      width: 3,
       display: (value, element) => {
         return (
           <GoLinksEditDelete goLink={element} />
@@ -47,8 +52,8 @@ const getKeyMap = props => (
   }
 );
 
-const columnOrder = ['alias', 'url', 'description', 'actions'];
-const columnsToShow = ['alias', 'url', 'description', 'actions'];
+const columnOrder = ['alias', 'url', 'description', 'owner', 'actions'];
+const columnsToShow = ['alias', 'url', 'description', 'owner', 'actions'];
 
 const GoLinksGlossaryTable = React.createClass({
   getInitialState() {
