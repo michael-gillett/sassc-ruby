@@ -17,12 +17,10 @@ spec:
       labels:
         app: go-links
     spec:
-
       containers:
         - name: go-links-server
-          image: docker.liveramp.net:5000/go-links:latest
+          image: 609251445204.dkr.ecr.us-west-2.amazonaws.com/go-links:latest
           imagePullPolicy: Always
-
           resources:
             limits:
               memory: "512Mi"

@@ -1,13 +1,14 @@
 kind: Service
-apiVersion: "v1"
+apiVersion: v1
 metadata:
-  name: go-links-service
+  name: go-links
+  namespace: tupperware-test
+  labels:
+    app: go-links
 spec:
-  type: NodePort
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
   selector:
     app: go-links
-  ports:
-  - protocol: TCP
-    port: 8080
-    nodePort: 31000
-    name: go-links-server
