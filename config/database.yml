@@ -1,0 +1,32 @@
+production:
+  database: go_links_production
+  username: go_links_user
+  password: "<%= Rails.application.secrets.go_links_password %>"
+  host: "<%= Rails.application.secrets.go_links_host %>"
+  encoding: utf8
+  reconnect: 'true'
+  adapter: mysql2
+  retries: 0
+  pool: 5
+  reaping_frequency: 60
+  wait_timeout: 28800
+development:
+  database: go_links_development
+  username: go_links_user
+  password: "<%= Rails.application.secrets.go_links_password %>"
+  host: "<%= Rails.application.secrets.go_links_host %>"
+  encoding: utf8
+  reconnect: 'true'
+  adapter: mysql2
+  retries: 0
+  pool: 5
+  reaping_frequency: 60
+  wait_timeout: 28800
+test:
+  adapter: mysql2
+  username: root
+  password:
+  host: 127.0.0.1
+  database: go_links_test
+  encoding: utf8
+  reconnect: true
