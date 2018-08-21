@@ -29,7 +29,9 @@ group :development, :test do
   gem 'awesome_print'
   gem 'passenger', '~> 5.0'
 end
+
 group :test do
+  gem 'rspec-rails'
   gem 'rack_session_access', '~> 0.1.1'
   gem 'selenium-webdriver'
   gem 'shoulda'
