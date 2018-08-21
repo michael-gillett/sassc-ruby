@@ -117,6 +117,7 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
+    mysql2 (0.4.4)
     newrelic_rpm (3.16.2.321)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
@@ -243,6 +244,7 @@ DEPENDENCIES
   jquery-rails (~> 4.1)
   jquery-ui-rails (~> 5.0)
   letter_opener
+  mysql2 (~> 0.4)
   newrelic_rpm (~> 3.14)
   passenger (~> 5.0)
   pry-byebug
@@ -260,4 +262,4 @@ DEPENDENCIES
   uglifier (= 2.7.2)
 
 BUNDLED WITH
-   1.14.6
+   1.16.0
