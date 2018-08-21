@@ -18,6 +18,7 @@ gem 'httparty', '0.13.7'
 gem 'exception_notification', '~> 4.1'
 gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
 gem 'mysql2', '~> 0.4'
+gem 'validate_url', '~> 1.0'
 
 group :development, :test do
   gem 'capybara'

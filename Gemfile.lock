@@ -220,6 +220,9 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    validate_url (1.0.2)
+      activemodel (>= 3.0.0)
+      addressable
     websocket (1.2.3)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
@@ -260,6 +263,7 @@ DEPENDENCIES
   shoulda
   sprockets-rails (~> 2.0)
   uglifier (= 2.7.2)
+  validate_url (~> 1.0)
 
 BUNDLED WITH
    1.16.0
