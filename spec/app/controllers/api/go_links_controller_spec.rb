@@ -48,7 +48,7 @@ describe Api::GoLinksController, :type => :controller do
 
   context "create" do
     let(:url) { "http://test.com" }
-    let(:alias_) { "an-alias" }
+    let(:alias_) { "an_alias" }
     let(:specified_owner) { "an_owner@owner.com" }
     let(:desc) { nil }
 
@@ -67,7 +67,7 @@ describe Api::GoLinksController, :type => :controller do
 
       it "includes correct go_link in response object" do
         expect(JSON.parse(response.body)["go_link"]).to include(
-          "alias" => alias_,
+          "alias" => "an-alias",
           "url"=> url,
           "owner" => expected_owner,
           "description" => desc
@@ -76,6 +76,12 @@ describe Api::GoLinksController, :type => :controller do
 
       it "redirects to root" do
         expect(JSON.parse response.body).to include("redirect_to" => "/")
+      end
+
+      it "persists the link" do
+        expect(
+          Link.pluck(:alias, :url, :owner, :description)
+        ).to include [ "an-alias", url, expected_owner, desc ]
       end
     end
 
@@ -123,6 +129,79 @@ describe Api::GoLinksController, :type => :controller do
 
       it_behaves_like "failing without all required parameters"
     end
+  end
+
+  context "update" do
+    let!(:link) { FactoryGirl.create(:link) }
+    let(:url) { link.url + ".com" }
+    let(:alias_) { link.alias + "foo" }
+    let(:specified_owner) { "lol_" + link.owner }
+    let(:desc) { "abc" * 1000 }
+
+    shared_examples_for "updating successfully" do
+      let(:params) {
+        params = {
+          id: link.id,
+          url: url,
+          owner: specified_owner,
+          alias: alias_,
+          description: desc
+        }
+      }
+
+      before(:each) {
+        post :update, params: params
+      }
+
+      it "succeeds" do
+        assert_response :success
+      end
+
+      it "includes correct go_link in response object" do
+        expect(JSON.parse(response.body)["go_link"]).to include(
+          "alias" => alias_,
+          "url"=> url,
+          "owner" => expected_owner,
+          "description" => desc
+        )
+      end
+
+      it "redirects to root" do
+        expect(JSON.parse response.body).to include("redirect_to" => "/")
+      end
+
+      it "persists the update" do
+        expect(Link.find(link.id).as_json).to include(
+          "alias" => alias_,
+          "url" => url,
+          "owner" => expected_owner,
+          "description" => desc
+        )
+      end
+    end
+
+    shared_examples_for "failing to update" do
+      let(:base_params) { { owner: specified_owner, url: url, alias: alias_ } }
+
+      it "fails if link id not found" do
+        post :create, params: base_params.merge(param_sym.merge(id: link.id + 1))
+        assert_response :error
+      end
+    end
+
+    context "non-admin active_user" do
+      let(:expected_owner) { non_admin_active_user }
+      it_behaves_like "updating successfully"
+    end
+
+    context "admin active_user" do
+      before(:each) {
+        controller.instance_variable_set :@active_user, admin_active_user
+      }
+      let(:expected_owner) { specified_owner }
+      it_behaves_like "updating successfully"
+    end
+
   end
 
 end
