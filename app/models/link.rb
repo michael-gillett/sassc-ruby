@@ -1,5 +1,6 @@
 class Link < ActiveRecord::Base
   validates :url, url: true
+  validates :alias, uniqueness: true
   before_save :change_alias_underscores_to_dashes
 
   private
