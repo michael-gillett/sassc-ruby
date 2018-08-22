@@ -86,10 +86,10 @@ describe Api::GoLinksController, :type => :controller do
     end
 
     shared_examples_for "failing without all required parameters" do
-      let(:base_params) { { owner: specified_owner, url: url, alias: alias_ } }
+      let(:params) { { owner: specified_owner, url: url, alias: alias_ } }
       [ :url, :alias, :owner ].each do |param_sym|
         it "fails when not given #{param_sym}" do
-          post :create, params: base_params.except(param_sym)
+          post :create, params: params.except(param_sym)
           assert_response :error
         end
       end
@@ -181,10 +181,17 @@ describe Api::GoLinksController, :type => :controller do
     end
 
     shared_examples_for "failing to update" do
-      let(:base_params) { { owner: specified_owner, url: url, alias: alias_ } }
+      let(:params) {
+        {
+          id: link.id + 1,
+          owner: specified_owner,
+          url: url,
+          alias: alias_,
+        }
+      }
 
       it "fails if link id not found" do
-        post :create, params: base_params.merge(param_sym.merge(id: link.id + 1))
+        post :update, params: params
         assert_response :error
       end
     end
@@ -192,6 +199,7 @@ describe Api::GoLinksController, :type => :controller do
     context "non-admin active_user" do
       let(:expected_owner) { non_admin_active_user }
       it_behaves_like "updating successfully"
+      it_behaves_like "failing to update"
     end
 
     context "admin active_user" do
@@ -200,6 +208,7 @@ describe Api::GoLinksController, :type => :controller do
       }
       let(:expected_owner) { specified_owner }
       it_behaves_like "updating successfully"
+      it_behaves_like "failing to update"
     end
 
   end

@@ -19,7 +19,8 @@ class Api::GoLinksController < ApplicationController
 
   def update
     formatted_params = format_link_params(params)
-    link = Link.find(params.require(:id)).update! formatted_params
+    link = Link.find(params.require(:id))
+    link.update! formatted_params
     render json: { redirect_to: "/", go_link: link }, status: 200
   rescue => e
     render json: {
