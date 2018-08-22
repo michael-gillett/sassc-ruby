@@ -39,4 +39,11 @@ describe Link do
       end
     end
   end
+
+  it "replaces underscores with dashes" do
+    link = FactoryGirl.build(:link, alias: "foo_bar")
+    link.save!
+    link.reload
+    expect(link.alias).to eq "foo-bar"
+  end
 end
