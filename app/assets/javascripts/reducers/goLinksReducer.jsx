@@ -106,7 +106,7 @@ function GoLinksReducer(state = defaultState, action) {
       const newlyFetchedGoLinkList = [];
       var sortedList = _.sortBy(action.data, function(link) { return link.alias; });
       _.each(sortedList, function(goLink) {
-        newlyFetchedGoLinkList.push( { id: goLink.alias,
+        newlyFetchedGoLinkList.push( { id: goLink.id,
                                        alias: goLink.alias,
                                        url: goLink.url,
                                        description: goLink.description,
