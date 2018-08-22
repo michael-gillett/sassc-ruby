@@ -219,9 +219,45 @@ describe Api::GoLinksController, :type => :controller do
   end
 
   context "destroy" do
-    let(:link) { FactoryGirl.create(:link) }
+    let!(:link) { FactoryGirl.create(:link, owner: non_admin_active_user + ".tz") }
     it "fails to delete a link that doesn't exist" do
+      post :destroy, params: { id: link.id + 1 }
+      assert_response :error
+    end
 
+    it "returns forbidden if link is not owned by active_user" do
+      post :destroy, params: { id: link.id }
+      assert_response :forbidden
+    end
+
+    describe "non admin active user deleting own link" do
+      before(:each) {
+        link.update!(owner: non_admin_active_user)
+        post :destroy, params: { id: link.id }
+      }
+
+      it "succeeds" do
+        assert_response :success
+      end
+
+      it "link no longer exists" do
+        expect(Link.all).to be_empty
+      end
+    end
+
+    describe "admin active user deleting any link" do
+      before(:each) {
+        controller.instance_variable_set :@active_user, admin_active_user
+        post :destroy, params: { id: link.id }
+      }
+
+      it "succeeds" do
+        assert_response :success
+      end
+
+      it "link no longer exists" do
+        expect(Link.all).to be_empty
+      end
     end
   end
 
