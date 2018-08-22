@@ -2,7 +2,8 @@ describe GoLinksUiController, :type => :controller do
   it { should be_kind_of ApplicationController }
 
   context "show" do
-    let(:link) { FactoryGirl.create(:link) }
+    let(:original_url) { "http://foo.com" }
+    let(:link) { FactoryGirl.create(:link, url: original_url) }
 
     it "redirects to url of Link if alias exists and has no params" do
       get :show, params: { path: link.alias }
@@ -14,11 +15,26 @@ describe GoLinksUiController, :type => :controller do
       expect(response).to redirect_to root_url
     end
 
-    it "works as expected with params" do
-      # get :show, params: { path: link.alias + "?query=foo" }
-      # expect(response).to redirect_to(link.url + "?query=foo")
+    describe "works as expected with params" do
+      let(:param_url) { link.url + "/<param>/blah/<param>" }
+      before(:each) { link.update!(url: param_url) }
 
-      # TODO: uhhhh what is this supposed to do?
+      it "fails with too few params" do
+        get :show, params: { path: link.alias + "/a_thing" }
+        assert_response :bad_request
+      end
+
+      it "fails with too many params" do
+        get :show, params: { path: link.alias + "/a_thing/bhhahaha/jkjk" }
+        assert_response :bad_request
+      end
+
+      it "succeeds in redirect with correct params" do
+        get :show, params: { path: link.alias + "/a_thing/another_thing" }
+        expect(
+          response
+        ).to redirect_to(original_url + "/a_thing/blah/another_thing")
+      end
     end
 
   end

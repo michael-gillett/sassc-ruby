@@ -36,5 +36,4 @@ class GoLinksUiController < ApplicationController
     @url_param_count = url_param_count
     render "paramerror", :status => 400
   end
-
 end
