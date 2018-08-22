@@ -220,6 +220,7 @@ describe Api::GoLinksController, :type => :controller do
 
   context "destroy" do
     let!(:link) { FactoryGirl.create(:link, owner: non_admin_active_user + ".tz") }
+
     it "fails to delete a link that doesn't exist" do
       post :destroy, params: { id: link.id + 1 }
       assert_response :error
