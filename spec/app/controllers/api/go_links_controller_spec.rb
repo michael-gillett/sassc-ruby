@@ -36,6 +36,14 @@ describe Api::GoLinksController, :type => :controller do
         expect(link).to include "id", "alias", "url", "owner", "description"
       end
     end
+
+    it "deleting links removes them from result" do
+      link4.delete
+      get :index
+      expect(JSON.parse response.body).to contain_exactly(
+        *[ link1, link2, link3 ].map(&:as_json)
+      )
+    end
   end
 
   context "create" do
