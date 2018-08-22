@@ -4,32 +4,17 @@ class GoLinksUiController < ApplicationController
   def show
     # Split the parameters from the URL
     path_params = params[:path].split("/")
-    print path_params
     go_alias = path_params.first
     go_params = path_params.slice(1..-1)
+    return redirect_to root_url unless go_alias
+    go_link = Link.find_by_alias go_alias
+    return redirect_to root_url unless go_link
 
-    if go_alias
-      go_alias = go_alias.gsub("_","-")
-      go_link = get_alias_info(go_alias)
-      if !go_link[:query].nil? && go_link[:status]
-        # Gets URL and adds parameters if given
-       return add_go_link_params(go_link[:query][:url], go_params, go_alias)
-      end
-    end
-    return redirect_to root_url
+    # Gets URL and adds parameters if given
+    add_go_link_params(go_link.url, go_params, go_alias)
   end
 
   private
-
-  def get_alias_info(alias_name)
-    link = Link.find_by_alias alias_name
-    go_link_response = {
-      status: response["ok"],
-      message: response["message"],
-      query: go_link_info.nil? ? nil : go_link_info.symbolize_keys
-    }
-    go_link_response
-  end
 
   def add_go_link_params(link_url, go_params, go_alias)
     # Check that the proper number of params was given
