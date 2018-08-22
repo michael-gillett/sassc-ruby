@@ -1,7 +1,7 @@
 production:
   database: go_links_db
-  username: "<%= Rails.application.secrets.go_links_user %>"
-  password: "<%= Rails.application.secrets.go_links_password %>"
+  username: go_links_user
+  password: "<%= Rails.application.secrets.go_links_user_password %>"
   host: apex-dbs.liveramp.net
   encoding: utf8
   reconnect: 'true'
