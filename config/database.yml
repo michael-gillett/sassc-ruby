@@ -1,0 +1,28 @@
+production:
+  database: go_links_db
+  username: go_links_user
+  password: "<%= Rails.application.secrets.go_links_user_password %>"
+  host: apex-dbs.liveramp.net
+  encoding: utf8
+  reconnect: 'true'
+  adapter: mysql2
+  retries: 0
+  pool: 5
+  reaping_frequency: 60
+  wait_timeout: 28800
+development:
+  adapter: mysql2
+  username: root
+  password:
+  database: go_links_local_db
+  host: localhost
+  encoding: utf8
+  reconnect: true
+test:
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
+  database: go_links_test_db
+  encoding: utf8
+  reconnect: true
