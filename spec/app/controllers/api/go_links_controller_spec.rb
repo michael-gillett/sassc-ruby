@@ -85,7 +85,7 @@ describe Api::GoLinksController, :type => :controller do
       end
     end
 
-    shared_examples_for "failing without all required parameters" do
+    shared_examples_for "failing to create without all required parameters" do
       let(:params) { { owner: specified_owner, url: url, alias: alias_ } }
       [ :url, :alias, :owner ].each do |param_sym|
         it "fails when not given #{param_sym}" do
@@ -108,7 +108,7 @@ describe Api::GoLinksController, :type => :controller do
         it_behaves_like "creating successfully"
       end
 
-      it_behaves_like "failing without all required parameters"
+      it_behaves_like "failing to create without all required parameters"
     end
 
     context "admin active_user" do
@@ -127,12 +127,12 @@ describe Api::GoLinksController, :type => :controller do
         it_behaves_like "creating successfully"
       end
 
-      it_behaves_like "failing without all required parameters"
+      it_behaves_like "failing to create without all required parameters"
     end
   end
 
   context "update" do
-    let!(:link) { FactoryGirl.create(:link) }
+    let!(:link) { FactoryGirl.create(:link, owner: non_admin_active_user) }
     let(:url) { link.url + ".com" }
     let(:alias_) { link.alias + "foo" }
     let(:specified_owner) { "lol_" + link.owner }
@@ -194,6 +194,12 @@ describe Api::GoLinksController, :type => :controller do
         post :update, params: params
         assert_response :error
       end
+
+      it "fails if active_user is not an owner or an admin" do
+        controller.instance_variable_set :@active_user, non_admin_active_user + ".tz"
+        post :update, params: params.merge(id: link.id)
+        assert_response :forbidden
+      end
     end
 
     context "non-admin active_user" do
@@ -210,7 +216,13 @@ describe Api::GoLinksController, :type => :controller do
       it_behaves_like "updating successfully"
       it_behaves_like "failing to update"
     end
+  end
 
+  context "destroy" do
+    let(:link) { FactoryGirl.create(:link) }
+    it "fails to delete a link that doesn't exist" do
+
+    end
   end
 
 end

@@ -20,8 +20,14 @@ class Api::GoLinksController < ApplicationController
   def update
     formatted_params = format_link_params(params)
     link = Link.find(params.require(:id))
-    link.update! formatted_params
-    render json: { redirect_to: "/", go_link: link }, status: 200
+    if link.owner == @active_user || ADMIN_USERS.include?(@active_user)
+      link.update! formatted_params
+      render json: { redirect_to: "/", go_link: link }, status: 200
+    else
+      render json: {
+        message: "Unable to update go/ link you do not own."
+      }, status: :forbidden
+    end
   rescue => e
     render json: {
       message: "Failed to save go/ link.",
@@ -30,7 +36,15 @@ class Api::GoLinksController < ApplicationController
   end
 
   def destroy
-    Link.find(params.require(:id)).destroy!
+    link = Link.find(params.require(:id))
+    if link.owner == @active_user || ADMIN_USERS.include?(@active_user)
+      link.destroy!
+      render json: { redirect_to: "/" }, status: 200
+    else
+      render json: {
+        message: "Unable to delete go/ link you do not own."
+      }, status: :forbidden
+    end
   rescue => e
     render json: {
       message: "Failed to delete go/ link.",
