@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180821101102) do
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.index ["alias"], name: "index_links_on_alias", unique: true, using: :btree
   end
 
 end

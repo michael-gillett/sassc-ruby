@@ -6,6 +6,8 @@ class CreateLinks < ActiveRecord::Migration[5.0]
       t.string :owner, null: false
       t.text :description
       t.timestamps
+
+      t.index :alias, unique: true
     end
   end
 end
