@@ -39,7 +39,7 @@ class Api::GoLinksController < ApplicationController
     link = Link.find(params.require(:id))
     if link.owner == @active_user || ADMIN_USERS.include?(@active_user)
       link.destroy!
-      render json: { redirect_to: "/" }, status: 200
+      render json: { redirect_to: "/", go_link: link }, status: 200
     else
       render json: {
         message: "Unable to delete go/ link you do not own."

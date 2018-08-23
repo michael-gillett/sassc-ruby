@@ -231,12 +231,7 @@ describe Api::GoLinksController, :type => :controller do
       assert_response :forbidden
     end
 
-    describe "non admin active user deleting own link" do
-      before(:each) {
-        link.update!(owner: non_admin_active_user)
-        post :destroy, params: { id: link.id }
-      }
-
+    shared_examples_for "deleting a link" do
       it "succeeds" do
         assert_response :success
       end
@@ -244,6 +239,19 @@ describe Api::GoLinksController, :type => :controller do
       it "link no longer exists" do
         expect(Link.all).to be_empty
       end
+
+      it "returns the link in the response" do
+        expect(JSON.parse(response.body)).to include("go_link" => link.as_json)
+      end
+    end
+
+    describe "non admin active user deleting own link" do
+      before(:each) {
+        link.update!(owner: non_admin_active_user)
+        post :destroy, params: { id: link.id }
+      }
+
+      it_behaves_like "deleting a link"
     end
 
     describe "admin active user deleting any link" do
@@ -252,13 +260,7 @@ describe Api::GoLinksController, :type => :controller do
         post :destroy, params: { id: link.id }
       }
 
-      it "succeeds" do
-        assert_response :success
-      end
-
-      it "link no longer exists" do
-        expect(Link.all).to be_empty
-      end
+      it_behaves_like "deleting a link"
     end
   end
 
