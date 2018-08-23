@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   before_action :init_active_user, only: :index
 
   ADMIN_USERS = [
-    "Jeanne.Lee@acxiom.com",
     "Tevy.Jacobs-Gomes@acxiom.com",
     "Jocelyn.Neff@acxiom.com",
     "Shrif.Nada@acxiom.com",
     "James.True@acxiom.com",
+    "lerickson@liveramp.com", # yussss
     "go-links-dev@liveramp.com" # for development
   ]
 

@@ -68,7 +68,7 @@ describe Api::GoLinksController, :type => :controller do
       it "includes correct go_link in response object" do
         expect(JSON.parse(response.body)["go_link"]).to include(
           "alias" => "an-alias",
-          "url"=> url,
+          "url" => url,
           "owner" => expected_owner,
           "description" => desc
         )
@@ -160,7 +160,7 @@ describe Api::GoLinksController, :type => :controller do
       it "includes correct go_link in response object" do
         expect(JSON.parse(response.body)["go_link"]).to include(
           "alias" => alias_,
-          "url"=> url,
+          "url" => url,
           "owner" => expected_owner,
           "description" => desc
         )

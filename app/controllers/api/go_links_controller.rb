@@ -55,7 +55,7 @@ class Api::GoLinksController < ApplicationController
   private
 
   def format_link_params(params)
-    alias_name = params.require(:alias).gsub("_", "-")
+    alias_name = params.require(:alias)
     url = params.require(:url)
     owner = params.require(:owner)
     description = params[:description]
