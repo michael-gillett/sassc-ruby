@@ -17,6 +17,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'httparty', '0.13.7'
 gem 'exception_notification', '~> 4.1'
 gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
+gem 'mysql2', '~> 0.4'
+gem 'validate_url', '~> 1.0'
 
 group :development, :test do
   gem 'capybara'
@@ -27,7 +29,9 @@ group :development, :test do
   gem 'awesome_print'
   gem 'passenger', '~> 5.0'
 end
+
 group :test do
+  gem 'rspec-rails'
   gem 'rack_session_access', '~> 0.1.1'
   gem 'selenium-webdriver'
   gem 'shoulda'
