@@ -62,14 +62,12 @@ class Api::GoLinksController < ApplicationController
 
     go_links_owner = ADMIN_USERS.include?(@active_user) ? owner : @active_user
 
-    new_link = {
+    {
       alias: alias_name,
       url: url,
       description: description,
       owner: go_links_owner
     }
-
-    new_link
   end
 
 end
