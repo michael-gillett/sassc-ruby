@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180821101102) do
+ActiveRecord::Schema.define(version: 20180824200215) do
 
   create_table "links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "alias",                     null: false
-    t.string   "url",                       null: false
+    t.text     "url",         limit: 65535, null: false
     t.string   "owner",                     null: false
     t.text     "description", limit: 65535
     t.datetime "created_at",                null: false
