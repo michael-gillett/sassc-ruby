@@ -38,6 +38,16 @@ describe Link do
         expect(link).to be_valid
       end
     end
+
+    it "allows <param> flags" do
+      [
+        "http://<param>.foo",
+        "https://foo.com/<param>",
+      ].each do |url|
+        link.url = url
+        expect(link).to be_valid
+      end
+    end
   end
 
   it "replaces underscores with dashes" do
