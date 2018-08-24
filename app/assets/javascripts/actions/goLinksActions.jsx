@@ -76,7 +76,7 @@ const GoLinksActions = {
     return (dispatch, getState) => {
       dispatch({ type: GoLinksConstants.GO_LINK_UPDATING });
       $.ajax({
-        url: '/api/go_links/' + goLink.alias,
+        url: '/api/go_links/' + goLink.id,
         type: 'PATCH',
         data: goLink,
         success (data) {
@@ -118,7 +118,7 @@ const GoLinksActions = {
     return (dispatch, getState) => {
       dispatch({ type: GoLinksConstants.GO_LINK_DELETING });
       $.ajax({
-        url: '/api/go_links/' + goLink.alias,
+        url: '/api/go_links/' + goLink.id,
         type: 'DELETE',
         data: goLink,
         success (data) {

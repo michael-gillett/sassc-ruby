@@ -4,15 +4,12 @@ class ApplicationController < ActionController::Base
   helper_method [:init_active_user]
   before_action :init_active_user, only: :index
 
-  API_CHANGE_PATH = "http://wps.acxiom.com/go-api/admin"
-  API_PATH = 'http://wps.acxiom.com/go-api'
-
   ADMIN_USERS = [
-    "Jeanne.Lee@acxiom.com",
     "Tevy.Jacobs-Gomes@acxiom.com",
     "Jocelyn.Neff@acxiom.com",
     "Shrif.Nada@acxiom.com",
     "James.True@acxiom.com",
+    "lerickson@liveramp.com", # yussss
     "go-links-dev@liveramp.com" # for development
   ]
 
