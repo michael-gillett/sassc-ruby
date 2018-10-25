@@ -15,10 +15,14 @@ gem 'sprockets-rails', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'sass-rails', '~> 5.0'
 gem 'httparty', '0.13.7'
-gem 'exception_notification', '~> 4.1'
 gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
 gem 'mysql2', '~> 0.4'
 gem 'validate_url', '~> 1.0'
+
+group :production do
+  gem 'exception_notification', '4.2.2.rc2'
+  gem 'dogapi', '1.23.0'
+end
 
 group :development, :test do
   gem 'capybara'
