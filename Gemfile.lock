@@ -7,7 +7,7 @@ GIT
       railties (>= 3.0)
 
 GEM
-  remote: https://gemserver.liveramp.net/
+  remote: https://public-gems.liveramp.net/
   specs:
     actioncable (5.0.1)
       actionpack (= 5.0.1)
@@ -254,38 +254,38 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  awesome_print
-  bootstrap-sass (~> 3.3)
-  capybara
-  dogapi (= 1.23.0)
-  exception_notification (= 4.2.2.rc2)
-  factory_girl_rails (~> 4.0)
-  font-awesome-rails (= 4.6.3.1)
-  gon (~> 6.0)
-  haml (~> 4.0)
-  headless (= 1.0.2)
-  httparty (= 0.13.7)
-  jquery-rails (~> 4.1)
-  jquery-ui-rails (~> 5.0)
-  letter_opener
-  mysql2 (~> 0.4)
-  newrelic_rpm (~> 3.14)
-  passenger (~> 5.0)
-  pry-byebug
-  pry-rails
-  rack_session_access (~> 0.1.1)
-  rails (= 5.0.1)
+  awesome_print!
+  bootstrap-sass (~> 3.3)!
+  capybara!
+  dogapi (= 1.23.0)!
+  exception_notification (= 4.2.2.rc2)!
+  factory_girl_rails (~> 4.0)!
+  font-awesome-rails (= 4.6.3.1)!
+  gon (~> 6.0)!
+  haml (~> 4.0)!
+  headless (= 1.0.2)!
+  httparty (= 0.13.7)!
+  jquery-rails (~> 4.1)!
+  jquery-ui-rails (~> 5.0)!
+  letter_opener!
+  mysql2 (~> 0.4)!
+  newrelic_rpm (~> 3.14)!
+  passenger (~> 5.0)!
+  pry-byebug!
+  pry-rails!
+  rack_session_access (~> 0.1.1)!
+  rails (= 5.0.1)!
   rails_logger!
-  redis-rails (= 5.0.1)
-  rspec-rails
-  ruby-saml
-  sass-rails (~> 5.0)
-  select2-rails (= 3.5.9)
-  selenium-webdriver
-  shoulda
-  sprockets-rails (~> 2.0)
-  uglifier (= 2.7.2)
-  validate_url (~> 1.0)
+  redis-rails (= 5.0.1)!
+  rspec-rails!
+  ruby-saml!
+  sass-rails (~> 5.0)!
+  select2-rails (= 3.5.9)!
+  selenium-webdriver!
+  shoulda!
+  sprockets-rails (~> 2.0)!
+  uglifier (= 2.7.2)!
+  validate_url (~> 1.0)!
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
