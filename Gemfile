@@ -1,6 +1,3 @@
-gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
-
-
 source 'https://public-gems.liveramp.net' do
   gem 'tzinfo-data'
   gem 'haml', '~> 4.0'
