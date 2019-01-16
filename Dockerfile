@@ -29,7 +29,7 @@ RUN npm run install:packages
 # git gems.
 COPY --chown=app:app Gemfile Gemfile.lock ./
 COPY --chown=app:app vendor vendor
-RUN bundle install --deployment --jobs 30 --local \
+RUN bundle install --deployment --jobs 30 \
   && bundle clean
 
 # Webpack bundle compilation. Doing this after gem installation to optimize
@@ -43,7 +43,6 @@ RUN npm run webpack
 # them after the expensive steps allows us to tweak them without invalidating
 # the cache of the expensive steps like gem installation.
 COPY --chown=app:app config config
-RUN mv config/database.yml.docker config/database.yml
 COPY --chown=app:app lib lib
 COPY --chown=app:app bin bin
 COPY --chown=app:app db db
@@ -54,7 +53,7 @@ COPY --chown=app:app config.ru ./
 # Rails asset pipeline. Runs here due to Rake having dependencies
 # on a ton of files.
 # see https://blog.eq8.eu/article/rails-assets-pipeline-and-docker.html for problems with this. Ignoring for now
-RUN bundle exec rake assets:precompile
+RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 # Copy the nginx and passenger configs. Doing them last so we can change them
 # without busting the cache for the more expensive steps.
