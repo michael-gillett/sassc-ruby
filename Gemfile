@@ -2,6 +2,7 @@ gem 'rails_logger', git: 'git@git.liveramp.net:RailsRepos/rails_logger.git'
 
 
 source 'https://public-gems.liveramp.net' do
+  gem 'tzinfo-data'
   gem 'haml', '~> 4.0'
   gem 'gon', '~> 6.0'
   gem 'uglifier', '2.7.2'
@@ -21,7 +22,7 @@ source 'https://public-gems.liveramp.net' do
   gem 'validate_url', '~> 1.0'
 
   group :production do
-    gem 'exception_notification', '4.2.2.rc2'
+    gem 'exception_notification', '4.2.2'
     gem 'dogapi', '1.23.0'
   end
 

@@ -70,7 +70,7 @@ GEM
     dogapi (1.23.0)
       multi_json
     erubis (2.7.0)
-    exception_notification (4.2.2.rc2)
+    exception_notification (4.2.2)
       actionmailer (>= 4.0, < 6)
       activesupport (>= 4.0, < 6)
     execjs (2.7.0)
@@ -237,6 +237,8 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2018.9)
+      tzinfo (>= 1.0.0)
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
@@ -258,7 +260,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3)!
   capybara!
   dogapi (= 1.23.0)!
-  exception_notification (= 4.2.2.rc2)!
+  exception_notification (= 4.2.2)!
   factory_girl_rails (~> 4.0)!
   font-awesome-rails (= 4.6.3.1)!
   gon (~> 6.0)!
@@ -284,6 +286,7 @@ DEPENDENCIES
   selenium-webdriver!
   shoulda!
   sprockets-rails (~> 2.0)!
+  tzinfo-data!
   uglifier (= 2.7.2)!
   validate_url (~> 1.0)!
 
