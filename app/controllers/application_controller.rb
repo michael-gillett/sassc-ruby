@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
     "go-links-dev@liveramp.com" # for development
   ]
 
-  logger_filter :go_links
-
   def index
     gon.push(
       env: Rails.env,
