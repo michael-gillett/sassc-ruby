@@ -56,5 +56,5 @@ USER appuser
 # Env Vars
 ENV CONTAINERIZED=1
 
-EXPOSE 80
-CMD ["bundle", "exec", "puma"]
+EXPOSE 3000
+CMD ["bundle", "exec", "rails", "server"]
