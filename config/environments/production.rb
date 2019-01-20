@@ -77,25 +77,25 @@ Rails.application.configure do
   # Send notifications on exceptions
   # For issues in production, send events to datadog
   # For issues on staging, dev (QA) environments, send alerts via email
-  if defined?(ENVIRONMENT_TAG) && ['local', 'staging', 'dev'].include?(ENVIRONMENT_TAG)
-    config.action_mailer.default_url_options = { host: 'localhost:3000' }
-    Rails.application.config.middleware.use ExceptionNotification::Rack, email: {
-      email_prefix: '[Admin Error] ',
-      sender_address: %{"Admin" <admin-errors@liveramp.com>},
-      exception_recipients: %w{admin-errors@liveramp.com},
-      email_format: :html
-    }
-  else
-    config.middleware.use ExceptionNotification::Rack, {
-      datadog: {
-        client: Dogapi::Client.new(
-          Rails.application.secrets.datadog['api_key'],
-          Rails.application.secrets.datadog['app_key']
-        ),
-        tags: ["go-links"]
-      }
-    }
-  end
+  # if defined?(ENVIRONMENT_TAG) && ['local', 'staging', 'dev'].include?(ENVIRONMENT_TAG)
+  #   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  #   Rails.application.config.middleware.use ExceptionNotification::Rack, email: {
+  #     email_prefix: '[Admin Error] ',
+  #     sender_address: %{"Admin" <admin-errors@liveramp.com>},
+  #     exception_recipients: %w{admin-errors@liveramp.com},
+  #     email_format: :html
+  #   }
+  # else
+  #   config.middleware.use ExceptionNotification::Rack, {
+  #     datadog: {
+  #       client: Dogapi::Client.new(
+  #         Rails.application.secrets.datadog['api_key'],
+  #         Rails.application.secrets.datadog['app_key']
+  #       ),
+  #       tags: ["go-links"]
+  #     }
+  #   }
+  # end
 
   # Set up Redis cache store
   if File.exist?("#{Rails.root}/config/redis.yml")
