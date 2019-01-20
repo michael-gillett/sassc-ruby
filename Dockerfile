@@ -27,7 +27,7 @@ ENV RAILS_ENV=production
 # App Config
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler -v 1.16.3
-RUN bundle install --deployment --jobs 30 && \
+RUN bundle install --without development test --jobs 30 && \
     bundle clean
 
 # Copy application files that are unlikely to change
