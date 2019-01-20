@@ -14,13 +14,15 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash && apt-get install -y n
   && npm i -g webpack
 
 # Working Directory
-ENV APP_ROOT=/home/appuser/connect_destinations_api
+ENV APP_ROOT=/home/appuser/go_links
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 
 # Production Environment
 ENV RAILS_ENV=production
-ENV NODE_ENV=production
+
+# we can use this once we reorganize the package.json
+# ENV NODE_ENV=production
 
 # App Config
 COPY Gemfile Gemfile.lock ./
@@ -28,21 +30,21 @@ RUN gem install bundler -v 1.16.3
 RUN bundle install --deployment --jobs 30 && \
     bundle clean
 
-# Install packages and run webpack
-COPY package.json package-lock.json .npmrc ./
-RUN npm run install:packages
-RUN npm run webpack
-
-# Copy everything else the application needs. These steps are cheap, so doing
-# them after the expensive steps allows us to tweak them without invalidating
-# the cache of the expensive steps like gem installation.
+# Copy application files that are unlikely to change
 COPY config config
-COPY lib lib
 COPY bin bin
 COPY db db
 COPY public public
 COPY Rakefile ./
 COPY config.ru ./
+
+# Copy app directory
+COPY app app
+
+# Install packages and run webpack
+COPY package.json package-lock.json .npmrc ./
+RUN npm run install:packages
+# RUN npm run webpack
 
 # Rails asset pipeline. Runs here due to Rake having dependencies
 # on a ton of files.
@@ -57,4 +59,4 @@ USER appuser
 ENV CONTAINERIZED=1
 
 EXPOSE 3000
-CMD ["bundle", "exec", "rails", "server"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

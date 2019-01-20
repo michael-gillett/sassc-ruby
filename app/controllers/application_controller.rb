@@ -28,7 +28,8 @@ class ApplicationController < ActionController::Base
   private
 
   def init_active_user
-    session[:active_user] = "go-links-dev@liveramp.com" if Rails.env.development?
+    #NB this is only to test go links on docker because Okta will always redirect to golinks.liveramp.net
+    session[:active_user] = "go-links-dev@liveramp.com" #if Rails.env.development?
 
     if session[:active_user]
       @active_user = session[:active_user].dup
