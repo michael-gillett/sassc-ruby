@@ -17,6 +17,7 @@ source 'https://public-gems.liveramp.net' do
   gem 'httparty', '0.13.7'
   gem 'mysql2', '~> 0.4'
   gem 'validate_url', '~> 1.0'
+  gem 'puma'
 
   group :production do
     gem 'exception_notification', '4.2.2'
