@@ -1,0 +1,8 @@
+production:
+  adapter: mysql2
+  username: root
+  password:
+  database: go_links_local_db
+  host: host.docker.internal #Trying to test with local db
+  encoding: utf8
+  reconnect: true

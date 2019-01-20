@@ -32,6 +32,7 @@ RUN bundle install --deployment --jobs 30 && \
 
 # Copy application files that are unlikely to change
 COPY config config
+RUN mv config/database.docker.yml config/database.yml
 COPY bin bin
 COPY db db
 COPY public public
@@ -59,4 +60,4 @@ USER appuser
 ENV CONTAINERIZED=1
 
 EXPOSE 3000
-CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "server"]
