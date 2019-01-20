@@ -14,7 +14,6 @@ source 'https://public-gems.liveramp.net' do
   gem 'sprockets-rails', '~> 2.0'
   gem 'bootstrap-sass', '~> 3.3'
   gem 'sass-rails', '~> 5.0'
-  gem 'httparty', '0.13.7'
   gem 'mysql2', '~> 0.4'
   gem 'validate_url', '~> 1.0'
   gem 'puma'
@@ -31,7 +30,6 @@ source 'https://public-gems.liveramp.net' do
     gem 'pry-rails'
     gem 'letter_opener'
     gem 'awesome_print'
-    gem 'passenger', '~> 5.0'
   end
 
   group :test do
