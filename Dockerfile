@@ -10,25 +10,26 @@ RUN apt-get update
 RUN TZ=America/Los_Angeles ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install node
-RUN curl -sL https://deb.nodesource.com/setup_9.x | bash && apt-get install -y nodejs \
-  && npm i -g webpack
+RUN curl -sL https://deb.nodesource.com/setup_9.x | bash && apt-get install -y nodejs
 
 # Working Directory
-ENV APP_ROOT=/home/appuser/go_links
-RUN mkdir -p $APP_ROOT
-WORKDIR $APP_ROOT
+WORKDIR /home/appuser/go_links
 
 # Production Environment
 ENV RAILS_ENV=production
-
-# we can use this once we reorganize the package.json
-# ENV NODE_ENV=production
+ENV RAILS_SERVE_STATIC_FILES=true
+ENV RAILS_LOG_TO_STDOUT=true
+ENV NODE_ENV=production
 
 # App Config
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler -v 1.16.3
 RUN bundle install --without development test --jobs 30 && \
     bundle clean
+
+# Install packages
+COPY package.json package-lock.json .npmrc ./
+RUN npm run install:packages
 
 # Copy application files that are unlikely to change
 COPY config config
@@ -42,10 +43,9 @@ COPY config.ru ./
 # Copy app directory
 COPY app app
 
-# Install packages and run webpack
-COPY package.json package-lock.json .npmrc ./
-RUN npm run install:packages
-# RUN npm run webpack
+# webpack
+COPY webpack.config.js ./
+RUN npm run webpack
 
 # Rails asset pipeline. Runs here due to Rake having dependencies
 # on a ton of files.
