@@ -1,3 +1,7 @@
+source 'https://private-gems.liveramp.net' do
+  gem 'liveramp_health_checks'
+end
+
 source 'https://public-gems.liveramp.net' do
   gem 'tzinfo-data'
   gem 'haml', '~> 4.0'
@@ -17,6 +21,7 @@ source 'https://public-gems.liveramp.net' do
   gem 'mysql2', '~> 0.4'
   gem 'validate_url', '~> 1.0'
   gem 'puma'
+  gem 'rails_semantic_logger'
 
   group :production do
     gem 'exception_notification', '4.2.2'
