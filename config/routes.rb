@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   get 'create' => 'application#index'
+  get 'liveramp_health_check' => 'liveramp_health_checks/liveramp_health_checks#index'
+
   get '*path' => 'go_links_ui#show'
 
 end
