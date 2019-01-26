@@ -22,7 +22,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = :info
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -37,7 +37,7 @@ Rails.application.configure do
     config.rails_semantic_logger.rendered = true
     config.rails_semantic_logger.quiet_assets = true
     config.rails_semantic_logger.format = :json
-    config.semantic_logger.backtrace_level = :info
+    config.semantic_logger.backtrace_level = :error
     config.semantic_logger.add_appender(
       io: STDOUT,
       level: config.log_level,
@@ -95,28 +95,15 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # Send notifications on exceptions
-  # For issues in production, send events to datadog
-  # For issues on staging, dev (QA) environments, send alerts via email
-  # if defined?(ENVIRONMENT_TAG) && ['local', 'staging', 'dev'].include?(ENVIRONMENT_TAG)
-  #   config.action_mailer.default_url_options = { host: 'localhost:3000' }
-  #   Rails.application.config.middleware.use ExceptionNotification::Rack, email: {
-  #     email_prefix: '[Admin Error] ',
-  #     sender_address: %{"Admin" <admin-errors@liveramp.com>},
-  #     exception_recipients: %w{admin-errors@liveramp.com},
-  #     email_format: :html
-  #   }
-  # else
-  #   config.middleware.use ExceptionNotification::Rack, {
-  #     datadog: {
-  #       client: Dogapi::Client.new(
-  #         Rails.application.secrets.datadog['api_key'],
-  #         Rails.application.secrets.datadog['app_key']
-  #       ),
-  #       tags: ["go-links"]
-  #     }
-  #   }
-  # end
+  config.middleware.use ExceptionNotification::Rack, {
+    datadog: {
+      client: Dogapi::Client.new(
+        Rails.application.secrets.datadog['api_key'],
+        Rails.application.secrets.datadog['app_key']
+      ),
+      tags: ["go-links"]
+    }
+  }
 
   # Set up Redis cache store
   if File.exist?("#{Rails.root}/config/redis.yml")

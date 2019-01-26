@@ -41,9 +41,18 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.eager_load = false
-end
 
-# Disable ActiveRecord debug logging if in server
-# if ['script/rails'].include?($0)
-#   ActiveRecord::Base.logger = Logger.new('/dev/null')
-# end
+  config.web_console.whiny_requests = false
+   # Semantic logger
+  config.log_level = :debug
+  config.semantic_logger.backtrace_level = :debug 
+  config.rails_semantic_logger.format = :color
+  config.rails_semantic_logger.started = true
+  config.semantic_logger.add_appender(
+    io: STDOUT,
+    level: config.log_level,
+    formatter: config.rails_semantic_logger.format,
+    application: 'go_links'
+  )
+
+end

@@ -28,19 +28,19 @@ source 'https://public-gems.liveramp.net' do
     gem 'dogapi', '1.23.0'
   end
 
-  group :development, :test do
-    gem 'capybara'
-    gem 'headless', '1.0.2'
+  group :development do
+    gem 'awesome_print'
+    gem 'better_errors'
+    gem 'binding_of_caller'
+    gem 'letter_opener'
     gem 'pry-byebug'
     gem 'pry-rails'
-    gem 'letter_opener'
-    gem 'awesome_print'
+    gem 'spring'
+    gem 'web-console'
   end
 
   group :test do
     gem 'rspec-rails'
-    gem 'rack_session_access', '~> 0.1.1'
-    gem 'selenium-webdriver'
     gem 'shoulda'
     gem 'factory_girl_rails', '~> 4.0'
   end

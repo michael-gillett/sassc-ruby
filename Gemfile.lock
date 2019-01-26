@@ -44,24 +44,25 @@ GEM
     autoprefixer-rails (6.5.3)
       execjs
     awesome_print (1.7.0)
+    better_errors (2.5.0)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
+    bindex (0.5.0)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
-    capybara (2.5.0)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (~> 2.0)
-    childprocess (0.5.9)
-      ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
     concurrent-ruby (1.0.5)
+    debug_inspector (0.0.3)
     diff-lcs (1.3)
     dogapi (1.23.0)
       multi_json
+    erubi (1.8.0)
     erubis (2.7.0)
     exception_notification (4.2.2)
       actionmailer (>= 4.0, < 6)
@@ -72,7 +73,6 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
-    ffi (1.9.18)
     font-awesome-rails (4.6.3.1)
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
@@ -84,7 +84,6 @@ GEM
       request_store (>= 1.0)
     haml (4.0.7)
       tilt
-    headless (1.0.2)
     i18n (0.8.1)
     jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
@@ -127,9 +126,6 @@ GEM
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rack_session_access (0.1.1)
-      builder (>= 2.0.0)
-      rack (>= 1.0.0)
     rails (5.0.1)
       actioncable (= 5.0.1)
       actionmailer (= 5.0.1)
@@ -194,7 +190,6 @@ GEM
     rspec-support (3.5.0)
     ruby-saml (1.4.1)
       nokogiri (>= 1.5.10)
-    rubyzip (1.2.0)
     sass (3.4.22)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -204,10 +199,6 @@ GEM
       tilt (>= 1.1, < 3)
     select2-rails (3.5.9)
       thor (~> 0.14)
-    selenium-webdriver (2.53.0)
-      childprocess (~> 0.5)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
     semantic_logger (4.3.1)
       concurrent-ruby (~> 1.0)
     shoulda (3.5.0)
@@ -217,6 +208,8 @@ GEM
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     slop (3.6.0)
+    spring (2.0.2)
+      activesupport (>= 4.2)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -237,27 +230,29 @@ GEM
     validate_url (1.0.2)
       activemodel (>= 3.0.0)
       addressable
-    websocket (1.2.3)
+    web-console (3.7.0)
+      actionview (>= 5.0)
+      activemodel (>= 5.0)
+      bindex (>= 0.4.0)
+      railties (>= 5.0)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-    xpath (2.0.0)
-      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   awesome_print!
+  better_errors!
+  binding_of_caller!
   bootstrap-sass (~> 3.3)!
-  capybara!
   dogapi (= 1.23.0)!
   exception_notification (= 4.2.2)!
   factory_girl_rails (~> 4.0)!
   font-awesome-rails (= 4.6.3.1)!
   gon (~> 6.0)!
   haml (~> 4.0)!
-  headless (= 1.0.2)!
   jquery-rails (~> 4.1)!
   jquery-ui-rails (~> 5.0)!
   letter_opener!
@@ -267,7 +262,6 @@ DEPENDENCIES
   pry-byebug!
   pry-rails!
   puma!
-  rack_session_access (~> 0.1.1)!
   rails (= 5.0.1)!
   rails_semantic_logger!
   redis-rails (= 5.0.1)!
@@ -275,12 +269,13 @@ DEPENDENCIES
   ruby-saml!
   sass-rails (~> 5.0)!
   select2-rails (= 3.5.9)!
-  selenium-webdriver!
   shoulda!
+  spring!
   sprockets-rails (~> 2.0)!
   tzinfo-data!
   uglifier (= 2.7.2)!
   validate_url (~> 1.0)!
+  web-console!
 
 BUNDLED WITH
    1.16.1

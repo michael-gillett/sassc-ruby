@@ -17,6 +17,9 @@ class ApplicationController < ActionController::Base
   end
 
   def index
+    if params[:error]
+      whatever
+    end
     gon.push(
       env: Rails.env,
       active_user: @active_user,
