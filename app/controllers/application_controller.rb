@@ -5,13 +5,16 @@ class ApplicationController < ActionController::Base
   before_action :init_active_user, only: :index
 
   ADMIN_USERS = [
-    "Tevy.Jacobs-Gomes@acxiom.com",
-    "Jocelyn.Neff@acxiom.com",
-    "Shrif.Nada@acxiom.com",
-    "James.True@acxiom.com",
+    "tjacobs@liveramp.com",
     "lerickson@liveramp.com", # yussss
     "go-links-dev@liveramp.com" # for development
   ]
+
+  define_method(:append_info_to_payload) do |payload|
+    super(payload)
+    payload[:user_email] = @active_user
+    payload[:remote_ip] = request.remote_ip
+  end
 
   def index
     gon.push(
@@ -33,8 +36,6 @@ class ApplicationController < ActionController::Base
 
     if session[:active_user]
       @active_user = session[:active_user].dup
-      # need this for rails logger to log user email to kibana
-      @active_user.define_singleton_method(:primary_email){ self }
     else
       redirect_url = generate_okta_login_url
       redirect_url += "&RelayState=create" if request.path == "/create"
