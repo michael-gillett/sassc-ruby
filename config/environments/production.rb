@@ -20,10 +20,34 @@ Rails.application.configure do
   # NGINX, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
+  # Use the lowest log level to ensure availability of diagnostic information
+  # when problems arise.
+  config.log_level = :debug
+
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  # in container check for env variable
+  # in container check for env variable. This should probably always be set to true
+  # now because we are using puma
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    STDOUT.sync = true
+    config.rails_semantic_logger.add_file_appender = false
+    config.rails_semantic_logger.started = false
+    config.rails_semantic_logger.rendered = true
+    config.rails_semantic_logger.quiet_assets = true
+    config.rails_semantic_logger.format = :json
+    config.semantic_logger.backtrace_level = :info
+    config.semantic_logger.add_appender(
+      io: STDOUT,
+      level: config.log_level,
+      formatter: config.rails_semantic_logger.format,
+      application: 'go_links',
+      # Don't log health checks
+      filter: ->(log) { log.name != 'LiverampHealthChecks::LiverampHealthChecksController' }
+    )
+  end
+
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -44,10 +68,6 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
-
-  # Use the lowest log level to ensure availability of diagnostic information
-  # when problems arise.
-  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
