@@ -1,3 +1,4 @@
+
 source 'https://private-gems.liveramp.net' do
   gem 'liveramp_health_checks'
 end
@@ -24,8 +25,10 @@ source 'https://public-gems.liveramp.net' do
   gem 'rails_semantic_logger'
 
   group :production do
-    gem 'exception_notification', '4.2.2'
-    gem 'dogapi', '1.23.0'
+    gem 'dogapi'
+    # exception notifier does not require dogapi notifier need to use this version
+    # https://github.com/smartinez87/exception_notification/blob/master/lib/exception_notifier.rb
+    gem 'exception_notification', git: 'https://github.com/smartinez87/exception_notification.git'
   end
 
   group :development do

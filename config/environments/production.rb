@@ -95,12 +95,13 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
+  client = Dogapi::Client.new(
+    Rails.application.secrets.datadog['api_key'],
+    Rails.application.secrets.datadog['app_key']
+  )
   config.middleware.use ExceptionNotification::Rack, {
     datadog: {
-      client: Dogapi::Client.new(
-        Rails.application.secrets.datadog['api_key'],
-        Rails.application.secrets.datadog['app_key']
-      ),
+      client: client,
       tags: ["go-links"]
     }
   }
@@ -114,5 +115,4 @@ Rails.application.configure do
   end
 
   config.eager_load = true
-  config.log_level = :info
 end
