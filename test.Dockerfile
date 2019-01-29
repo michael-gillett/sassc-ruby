@@ -4,5 +4,4 @@ ENV RAILS_ENV=test
 RUN bundle install --deployment --with test
 CMD ["bundle", "exec", "rake", "app:test"]
 COPY --chown=appuser:appuser .rspec ./
-COPY --chown=appuser:appuser db db
 COPY --chown=appuser:appuser spec spec
