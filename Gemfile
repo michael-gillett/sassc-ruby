@@ -10,7 +10,7 @@ source 'https://public-gems.liveramp.net' do
   gem 'uglifier', '2.7.2'
   gem 'rails', '5.0.1'
   gem 'redis-rails', '5.0.1'
-  gem 'ruby-saml'
+  gem 'ruby-saml', '~> 1'
   gem 'newrelic_rpm', '~> 3.14'
   gem 'select2-rails', '3.5.9'
   gem 'font-awesome-rails', '4.6.3.1'
@@ -21,14 +21,11 @@ source 'https://public-gems.liveramp.net' do
   gem 'sass-rails', '~> 5.0'
   gem 'mysql2', '~> 0.4'
   gem 'validate_url', '~> 1.0'
-  gem 'puma'
-  gem 'rails_semantic_logger'
+  gem 'puma', '~> 3'
+  gem 'rails_semantic_logger', '~> 4'
 
   group :production do
-    gem 'dogapi'
-    # exception notifier does not require dogapi notifier need to use this version
-    # https://github.com/smartinez87/exception_notification/blob/master/lib/exception_notifier.rb
-    gem 'exception_notification', git: 'https://github.com/smartinez87/exception_notification.git'
+
   end
 
   group :development do
