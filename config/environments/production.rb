@@ -30,23 +30,21 @@ Rails.application.configure do
   # now because we are using puma
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    STDOUT.sync = true
-    config.rails_semantic_logger.add_file_appender = false
-    config.rails_semantic_logger.started = false
-    config.rails_semantic_logger.rendered = true
-    config.rails_semantic_logger.quiet_assets = true
-    config.rails_semantic_logger.format = :json
-    config.semantic_logger.backtrace_level = :error
-    config.semantic_logger.add_appender(
-      io: STDOUT,
-      level: config.log_level,
-      formatter: config.rails_semantic_logger.format,
-      application: 'go_links',
-      # Don't log health checks
-      filter: ->(log) { log.name != 'LiverampHealthChecks::LiverampHealthChecksController' }
-    )
-  end
+  STDOUT.sync = true
+  config.rails_semantic_logger.add_file_appender = false
+  config.rails_semantic_logger.started = false
+  config.rails_semantic_logger.rendered = false
+  config.rails_semantic_logger.quiet_assets = true
+  config.rails_semantic_logger.format = :json
+  config.semantic_logger.backtrace_level = :error
+  config.semantic_logger.add_appender(
+    io: STDOUT,
+    level: config.log_level,
+    formatter: config.rails_semantic_logger.format,
+    application: 'go_links',
+    # Don't log health checks
+    filter: ->(log) { log.name != 'LiverampHealthChecks::LiverampHealthChecksController' }
+  )
 
 
   # Compress JavaScripts and CSS.
@@ -94,17 +92,6 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-
-  client = Dogapi::Client.new(
-    Rails.application.secrets.datadog['api_key'],
-    Rails.application.secrets.datadog['app_key']
-  )
-  config.middleware.use ExceptionNotification::Rack, {
-    datadog: {
-      client: client,
-      tags: ["go-links"]
-    }
-  }
 
   # Set up Redis cache store
   if File.exist?("#{Rails.root}/config/redis.yml")
