@@ -10,7 +10,9 @@ RUN TZ=America/Los_Angeles ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && ech
 
 
 # Install node
-RUN apt-get update && curl -sL https://deb.nodesource.com/setup_9.x | bash && apt-get install -y nodejs
+RUN apt-get update \
+    && curl -sL https://deb.nodesource.com/setup_9.x | bash \
+    && apt-get install -y nodejs
 
 
 # Working Directory
@@ -23,7 +25,8 @@ RUN mkdir -p vendor/bundle/ruby/2.3.0
 RUN chown appuser:appuser /home/appuser/go_links/vendor/bundle/ruby/2.3.0
 
 # Production Environment
-ENV RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true NODE_ENV=production
+ENV RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true NODE_ENV=production \
+    GO_LINKS_DATABASE_URL=
 
 
 # App Config
@@ -42,6 +45,7 @@ COPY --chown=appuser:appuser config config
 RUN mv config/database.docker.yml config/database.yml
 COPY --chown=appuser:appuser bin bin
 COPY --chown=appuser:appuser db db
+COPY --chown=appuser:appuser lib lib
 COPY --chown=appuser:appuser public public
 COPY --chown=appuser:appuser Rakefile ./
 COPY --chown=appuser:appuser config.ru ./

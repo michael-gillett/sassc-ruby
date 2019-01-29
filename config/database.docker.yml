@@ -1,8 +1,11 @@
-production:
+go_links_db_base: &GO_LINKS_DB_BASE
   adapter: mysql2
-  username: root
-  password:
-  database: go_links_local_db
-  host: host.docker.internal #Trying to test with local db
+  url: <%= ENV.fetch('GO_LINKS_DATABASE_URL') %>
   encoding: utf8
   reconnect: true
+
+production:
+  <<: *GO_LINKS_DB_BASE
+
+test:
+  <<: *GO_LINKS_DB_BASE

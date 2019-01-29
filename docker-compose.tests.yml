@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+  go-links_tests:
+    image: local-registry/go-links_test
+    environment:
+      - GO_LINKS_DATABASE_URL="mysql2://root@mysqlhost:3306/go_links_db"
+    depends_on:
+      mysqlhost:
+        condition: service_healthy
+  mysqlhost:
+    image: mysql:5.7.22
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    healthcheck:
+      test: ["CMD-SHELL", "mysql -h 'localhost' -u 'root' -e 'SELECT VERSION();'"]
+      interval: 5s
+      timeout: 30s
+      retries: 3
