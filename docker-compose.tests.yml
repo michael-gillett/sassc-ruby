@@ -2,6 +2,7 @@ version: '2.1'
 services:
   go-links_tests:
     image: local-registry/go-links_test
+    command: "echo"
     environment:
       - GO_LINKS_DATABASE_URL="mysql2://root@mysqlhost:3306/go_links_db"
     depends_on:
