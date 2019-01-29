@@ -1,0 +1,51 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: go-links
+  labels:
+    app: go-links
+spec:
+  template:
+    metadata:
+      labels:
+        app: go-links
+    spec:
+      containers:
+      - name: go-links
+        image: local-registry/go-links:latest
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: 500m
+        ports:
+        - name: app-server-port
+          containerPort: 3000
+        env:
+        - name: RAILS_ENV
+          value: production
+
+        - name: GO_LINKS_DATABASE_URL
+          value: mysql2://root@host.docker.internal:3306/go_links_db
+
+        readinessProbe:
+          httpGet:
+            path: /liveramp_health_check
+            port: app-server-port
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          timeoutSeconds: 3
+        livenessProbe:
+          httpGet:
+            path: /liveramp_health_check
+            port: app-server-port
+          initialDelaySeconds: 45
+          periodSeconds: 20
+          timeoutSeconds: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0 # For single replica
+      maxSurge: 1
+  replicas: 1
