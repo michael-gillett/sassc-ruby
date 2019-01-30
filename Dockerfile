@@ -18,11 +18,7 @@ RUN apt-get update \
 # Working Directory
 WORKDIR /home/appuser/go_links
 RUN chown appuser:appuser /home/appuser/go_links
-
 USER appuser:appuser
-
-RUN mkdir -p vendor/bundle/ruby/2.3.0
-RUN chown appuser:appuser /home/appuser/go_links/vendor/bundle/ruby/2.3.0
 
 # Production Environment
 ENV RAILS_ENV=production RAILS_SERVE_STATIC_FILES=true NODE_ENV=production \

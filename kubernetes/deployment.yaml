@@ -27,7 +27,10 @@ spec:
           value: production
 
         - name: GO_LINKS_DATABASE_URL
-          value: mysql2://root@host.docker.internal:3306/go_links_db
+          valueFrom:
+            secretKeyRef:
+              name: go-links--go-links-db-creds
+              key: url
 
         readinessProbe:
           httpGet:
