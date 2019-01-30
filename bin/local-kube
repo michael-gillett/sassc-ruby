@@ -1,0 +1,155 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'yaml'
+require 'colorize'
+require 'optparse'
+require 'net/http'
+
+class LocalKuber
+  GO_LINKS_DB_PORT = 3307
+  GO_LINKS_IMAGE_TAG = "local-registry/go-links"
+
+  def initialize(context: 'docker-for-desktop')
+    @context = context
+  end
+
+  def run
+    puts 'STARTING LOCAL KUBE SCRIPT'.colorize(:magenta)
+    create_secrets
+    build_go_links
+    init_go_links_db
+    deploy_go_links_service
+    print_final_instructions
+    puts 'DONE!'.colorize(:magenta)
+  end
+
+  private
+
+  def build_go_links
+    run_cmd("docker build . -t #{GO_LINKS_IMAGE_TAG}")
+  end
+
+  def init_go_links_db
+    unless system("docker run -d -p #{GO_LINKS_DB_PORT}:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=yes mysql:5.7")
+      puts(
+        "WARNING: was unable to start database on port #{GO_LINKS_DB_PORT}, \
+        perhaps it is already running?".colorize(:yellow)
+      )
+      # return
+    end
+    wait_for_mysql(port: GO_LINKS_DB_PORT)
+    run_cmd(
+      <<~COMMAND
+        docker run --rm --tty --entrypoint=sh \
+        --env GO_LINKS_DATABASE_URL=#{go_links_db_url} \
+        --env DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
+        #{GO_LINKS_IMAGE_TAG} \
+        -c 'bundle exec rake db:create db:migrate'
+      COMMAND
+    )
+  end
+
+  def host_port_mapping(id, container_port)
+    JSON.parse(`docker inspect #{id}`)[0]['NetworkSettings']['Ports'][container_port][0]['HostPort']
+  end
+
+  def deploy_go_links_service
+    # deleting the deployments makes it clear when the changes are live locally.
+    # without deleting, it is unclear if you are accessing the old pod or the new pod from the browser
+    kubectl('delete deployment go-links || true')
+    #kubectl('apply -f build/kubernetes/local/staging/default/')
+    kubectl('apply -f kubernetes/')
+
+  end
+
+  def create_secrets
+    create_go_links_db_secret
+  end
+
+  def go_links_db_url
+    build_db_url(
+      username: 'root',
+      password: '',
+      database: 'go_links_db',
+      host: 'host.docker.internal', port: GO_LINKS_DB_PORT
+    )
+  end
+
+  def create_go_links_db_secret
+    kubectl('delete secret go-links--go-links-db-creds || true')
+    command = <<~COMMAND
+      create secret generic go-links--go-links-db-creds \
+      --from-literal=url="#{go_links_db_url}"
+    COMMAND
+
+    kubectl(
+      command,
+      custom_print_message: 'Creating secret go-links-service--go-links-db-creds (REDACTED)'
+    )
+  end
+
+  def build_db_url(username:, password:, database:, host:, port:)
+    "mysql2://#{username}:#{password}@#{host}:#{port}/#{database}"
+  end
+
+  def wait_for_mysql(host: '127.0.0.1', port:, username: 'root', max_time_seconds: 60)
+    start_time = Time.now
+    until system("mysql -h #{host} -P #{port} -u #{username} -e 'SELECT 1' > /dev/null 2>&1")
+      puts 'Waiting for MySQL server to boot...'
+      if Time.now - start_time >= max_time_seconds
+        raise "gave up on mysql, could not connect after #{max_time_seconds} seconds"
+      end
+      sleep 1
+    end
+  end
+
+  def print_final_instructions
+    puts "App is live at http://localhost:#{get_service_nodeport('go-links')} (might have to wait ~30 seconds)".colorize(:green)
+  end
+
+  def get_service_nodeport(service)
+    service_port_command = kubectl(
+      "get service #{service} -o=jsonpath='{ .spec.ports[0].nodePort }'",
+      run_command: false
+    )
+    `#{service_port_command}`
+  end
+
+  # a plain system call doesn't raise an exception if the command fails / returns an error code
+  def run_cmd(command, custom_print_message: nil)
+    delimiter = ('-' * 80).colorize(:green)
+    command_to_print = custom_print_message.nil? ? command : custom_print_message
+    puts(
+      <<~COMMAND
+        #{command_to_print.colorize(:blue)}
+        #{delimiter}
+      COMMAND
+    )
+    succeeded = system(command)
+    if succeeded
+      puts "#{delimiter}\n\n\n"
+      return
+    end
+    puts "#{delimiter.colorize(:red)}\n"
+    raise "COMMAND FAILED: \"#{command}\""
+  end
+
+  def kubectl(command, run_command: true, custom_print_message: nil)
+    kubectl_command = "kubectl --context=#{@context} #{command}"
+    return kubectl_command unless run_command
+    run_cmd(kubectl_command, custom_print_message: custom_print_message)
+  end
+end
+
+if $PROGRAM_NAME == __FILE__
+  OptionParser.new do |o|
+    o.banner = <<~HELP
+      Usage: local-kube
+
+      local-kube builds the Docker images, creates and applies local Kubernetes
+      configurations, and launches the application in a local cluster.
+    HELP
+  end.parse!
+  LocalKuber.new.run
+end

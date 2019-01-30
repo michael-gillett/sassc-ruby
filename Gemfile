@@ -32,6 +32,7 @@ source 'https://public-gems.liveramp.net' do
     gem 'awesome_print'
     gem 'better_errors'
     gem 'binding_of_caller'
+    gem 'colorize'
     gem 'letter_opener'
     gem 'pry-byebug'
     gem 'pry-rails'
