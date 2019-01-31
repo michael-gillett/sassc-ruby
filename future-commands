@@ -1,0 +1,5 @@
+# create secret command
+kubectl create secret generic go-links--go-links-db-creds --from-literal=url="mysql2://user:password@host:port/db_name"
+
+#deploy
+kdt deploy --project=go_links --build=dev --artifact=gcp-prod --context=gke_liveramp-eng-actfs_us-central1_act-fs-temp-dev --dry-run=false
