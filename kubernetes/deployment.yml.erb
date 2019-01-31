@@ -50,4 +50,4 @@ spec:
     rollingUpdate:
       maxUnavailable: 0 # For single replica
       maxSurge: 1
-  replicas: 1
+  replicas: <%= config['environment'] == 'prod' ? 3 : 1 %>

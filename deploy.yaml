@@ -9,12 +9,6 @@ artifacts:
       target: gcp-prod
       environment: prod
       cloud: gcp
-  - name: colo-prod
-    image_registry: aws
-    flags:
-      target: colo
-      environment: prod
-      cloud: colo
   - name: local
     image_registry: local-registry
     flags:
@@ -31,8 +25,3 @@ image_registries:                 # define image registries used here
   - name: local-registry                     # build local image
     prefix: local-registry
     driver: noop
-  - name: aws
-    prefix: 609251445204.dkr.ecr.us-west-2.amazonaws.com
-    driver: aws
-    config:
-      region: us-west-2
