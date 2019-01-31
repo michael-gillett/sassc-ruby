@@ -16,11 +16,13 @@ class LocalKuber
 
   def run
     puts 'STARTING LOCAL KUBE SCRIPT'.colorize(:magenta)
+    run_cmd('bundle install --gemfile=kdt.Gemfile --path=vendor/bundle-kdt')
     create_secrets
     build_go_links
     init_go_links_db
     deploy_go_links_service
     print_final_instructions
+    run_cmd('rm -rf .bundle', custom_print_message: 'Nuke the effects of bundler commands which produce state :(')
     puts 'DONE!'.colorize(:magenta)
   end
 
@@ -57,10 +59,9 @@ class LocalKuber
   def deploy_go_links_service
     # deleting the deployments makes it clear when the changes are live locally.
     # without deleting, it is unclear if you are accessing the old pod or the new pod from the browser
+    run_cmd('env BUNDLE_GEMFILE=kdt.Gemfile BUNDLE_BIN_PATH=vendor/bundle-kdt bundle exec kdt generate')
     kubectl('delete deployment go-links || true')
-    #kubectl('apply -f build/kubernetes/local/staging/default/')
-    kubectl('apply -f kubernetes/')
-
+    kubectl('apply -f build/kubernetes/local_default')
   end
 
   def create_secrets

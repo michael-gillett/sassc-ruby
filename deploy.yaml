@@ -1,0 +1,38 @@
+---
+version: 2                        # version of kdt to be used
+default_flags:
+  pull_policy: IfNotPresent
+artifacts:
+  - name: gcp-prod
+    image_registry: gcp
+    flags:
+      target: gcp-prod
+      environment: prod
+      cloud: gcp
+  - name: colo-prod
+    image_registry: aws
+    flags:
+      target: colo
+      environment: prod
+      cloud: colo
+  - name: local
+    image_registry: local-registry
+    flags:
+      image_tag: latest
+      target: local
+      environment: staging
+      pull_policy: Never
+flavors:
+  default: {}
+image_registries:                 # define image registries used here
+  - name: gcp                     # deploy to gcr
+    driver: gcp
+    prefix: gcr.io/liveramp-eng-actfs
+  - name: local-registry                     # build local image
+    prefix: local-registry
+    driver: noop
+  - name: aws
+    prefix: 609251445204.dkr.ecr.us-west-2.amazonaws.com
+    driver: aws
+    config:
+      region: us-west-2

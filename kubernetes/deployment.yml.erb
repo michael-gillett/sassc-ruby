@@ -2,6 +2,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
+  namespace: default
   name: go-links
   labels:
     app: go-links
@@ -13,8 +14,8 @@ spec:
     spec:
       containers:
       - name: go-links
-        image: local-registry/go-links:latest
-        imagePullPolicy: Never
+        image: <%= "#{config['image_registry']}/go-links:#{config['image_tag']}" %>
+        imagePullPolicy: <%= "#{config['pull_policy']}" %>
         resources:
           limits:
             memory: 256Mi
@@ -25,13 +26,11 @@ spec:
         env:
         - name: RAILS_ENV
           value: production
-
         - name: GO_LINKS_DATABASE_URL
           valueFrom:
             secretKeyRef:
               name: go-links--go-links-db-creds
               key: url
-
         readinessProbe:
           httpGet:
             path: /liveramp_health_check

@@ -1,0 +1,18 @@
+GEM
+  remote: https://private-gems.liveramp.net/
+  specs:
+    artifactory (2.8.2)
+    colorize (0.8.1)
+    kube_deploy_tools (2.1.11)
+      artifactory (~> 2.0)
+      colorize (~> 0.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize!
+  kube_deploy_tools (~> 2.0)!
+
+BUNDLED WITH
+   1.16.1
