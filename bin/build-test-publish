@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -euo pipefail
+image_name=go-links
+
+build_image() {
+  docker build . -t "local-registry/$image_name" --progress=plain
+}
+
+run_tests() {
+  bin/tests
+}
+
+publish_container_and_artifacts() {
+  bundle install --gemfile=kdt.Gemfile --path=vendor/bundle-kdt
+  export BUNDLE_GEMFILE=kdt.Gemfile BUNDLE_BIN_PATH=vendor/bundle-kdt
+  bundle exec kdt push "$image_name" --registry=gcp
+  bundle exec kdt generate
+  bundle exec kdt publish
+}
+
+main() {
+  build_image
+  run_tests
+  publish_container_and_artifacts
+}
+
+main "$@"
