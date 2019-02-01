@@ -3,3 +3,6 @@ kubectl create secret generic go-links--go-links-db-creds --from-literal=url="my
 
 #deploy
 kdt deploy --project=go_links --build=dev --artifact=gcp-prod --context=gke_liveramp-eng-actfs_us-central1_act-fs-temp-dev --dry-run=false
+
+#port forwarding for now since the kubecluster is not available on the network.
+ kubectl port-forward svc/go-links 3001:80
