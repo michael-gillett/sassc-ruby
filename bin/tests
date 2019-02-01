@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -euxo pipefail
-docker build -t local_registry/go-links .
+docker build -t local-registry/go-links .
 
 # Do not cache this build to ensure changes to the parent images are picked up
 docker build -t local-registry/go-links_test . --file=test.Dockerfile --no-cache
