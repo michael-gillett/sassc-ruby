@@ -8,13 +8,13 @@ metadata:
       ---
       apiVersion: ambassador/v1
       kind:  Mapping
-      name:  go-links-mapping
-      host: go-links-gcp.admin.liveramp.net
+      name:  go-links
+      host: gcp-go-links.liveramp.net
       prefix: /
       service: go-links
-      host_rewrite: go-links.admin.liveramp.net
+      host_rewrite: gcp-go-links.liveramp.net
       # This is  for ambassador’s impatience to get a response from your app.
-      # timeout_ms: 3000 # add and tune this for your app. 3000ms is the default
+      timeout_ms: 6000 # add and tune this for your app. 3000ms is the default
   labels:
     app: go-links
   name: go-links
