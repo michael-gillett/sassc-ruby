@@ -11,7 +11,7 @@ source 'https://public-gems.liveramp.net' do
   gem 'jquery-rails', '~> 4.1'
   gem 'jquery-ui-rails', '~> 5.0'
   gem 'mysql2', '~> 0.4'
-  gem 'newrelic_rpm', '~> 3.14'
+  gem 'newrelic_rpm'
   gem 'puma', '~> 3'
   gem 'rails', '5.0.1'
   gem 'rails_semantic_logger', '~> 4'

@@ -106,7 +106,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mysql2 (0.4.4)
-    newrelic_rpm (3.16.2.321)
+    newrelic_rpm (6.1.0.352)
     nio4r (1.2.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
@@ -254,7 +254,7 @@ DEPENDENCIES
   letter_opener!
   liveramp_health_checks!
   mysql2 (~> 0.4)!
-  newrelic_rpm (~> 3.14)!
+  newrelic_rpm!
   pry-byebug!
   pry-rails!
   puma (~> 3)!
