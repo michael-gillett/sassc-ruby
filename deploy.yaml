@@ -2,6 +2,8 @@
 version: 2                        # version of kdt to be used
 default_flags:
   pull_policy: IfNotPresent
+  cloudsql_instance_name: liveramp-eng-actfs:us-central1-a:go-links
+  cloudsql_port: 3306
 artifacts:
   - name: gcp-prod
     image_registry: gcp
