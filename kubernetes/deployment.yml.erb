@@ -45,6 +45,7 @@ spec:
           initialDelaySeconds: 45
           periodSeconds: 20
           timeoutSeconds: 3
+      <% if config['target'] == 'gcp-prod' %>
       - name: cloudsql-proxy
         image: "gcr.io/cloudsql-docker/gce-proxy:1.11"
         command: ["/cloud_sql_proxy",
@@ -60,12 +61,15 @@ spec:
             mountPath: /secrets/cloudsql
             readOnly: true
       # [END proxy_container]
+      <% end %>
+      <% if config['target'] == 'gcp-prod' %>
       # [START volumes]
       volumes:
       - name: cloudsql-instance-credentials
         secret:
           secretName: go-links--cloudsql-instance-credentials
       # [END volumes]
+      <% end %>
   strategy:
     type: RollingUpdate
     rollingUpdate:
