@@ -50,7 +50,11 @@ spec:
         image: "gcr.io/cloudsql-docker/gce-proxy:1.11"
         command: ["/cloud_sql_proxy",
                   "-instances=<%= config['cloudsql_instance_name'] %>=tcp:<%= config['cloudsql_port'] %>",
-                  "-credential_file=/secrets/cloudsql/key.json"]
+                  "-credential_file=/secrets/cloudsql/key.json",
+                  # This timeout matches the terminationGracePeriod for pods. Without this, the cloudsql_proxy will shut down
+                  # immediately on SIGTERM, while the application will continue finishing out any currrent requests, meaning
+                  # the app will be trying to talk to a dead cloudsql proxy.
+                  "-term_timeout=30s"]
         # [START cloudsql_security_context]
         securityContext:
           runAsUser: 2  # non-root user
