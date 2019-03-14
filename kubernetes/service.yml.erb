@@ -22,7 +22,9 @@ spec:
   ports:
   - port: 80
     protocol: TCP
-    targetPort: 8081
+    targetPort: app-server-port
   selector:
     app: go-links
+<% if config['target'] == 'local' %>
   type: NodePort
+<% end %>
