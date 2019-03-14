@@ -3,23 +3,23 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: <%= config['namespace'] %>
-  getambassador.io/config: |
-    ---
-    apiVersion: ambassador/v1
-    kind: Mapping
-    name: go-links
-    host: gcp-go-links.liveramp.net
-    prefix: /
-    service: go-links.<%= config['namespace'] %>
-    timeout_ms: 6000
-    ---
-    apiVersion: ambassador/v1
-    kind: Mapping
-    name: go-links-gcp-temp
-    host: gcp-go-links.liveramp.net
-    prefix: /
-    service: go-links.<%= config['namespace'] %>
-
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: go-links
+      host: gcp-go-links.liveramp.net
+      prefix: /
+      service: go-links.<%= config['namespace'] %>
+      timeout_ms: 6000
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: go-links-gcp-temp
+      host: gcp-go-links.liveramp.net
+      prefix: /
+      service: go-links.<%= config['namespace'] %>
   labels:
     app: go-links
   name: go-links
@@ -30,7 +30,7 @@ spec:
     targetPort: 3000
   selector:
     app: go-links
-  type: <%= config['target'] == 'local' ? 'NodePort' : 'LoadBalancer' %>
+  type: <%= config['target'] == 'local' ? 'NodePort' : 'ClusterIP' %>
 <% unless config['target'] == 'local' %>
 ---
 apiVersion: v1
