@@ -11,6 +11,14 @@ artifacts:
       cloud: gcp
       cloudsql_instance_name: liveramp-eng-actfs:us-central1-a:go-links
       cloudsql_port: 3306
+  - name: gcp-dev
+    image_registry: gcp
+    flags:
+      target: gcp-dev
+      environment: staging
+      cloud: gcp
+      cloudql_instance_name: liveramp-eng-actfs-dev: us-central1-a:go-links-development
+      cloudsql_port: 3306
   - name: local
     image_registry: local-registry
     flags:
