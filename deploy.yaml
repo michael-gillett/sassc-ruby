@@ -2,6 +2,7 @@
 version: 2                        # version of kdt to be used
 default_flags:
   pull_policy: IfNotPresent
+  namespace: default
 artifacts:
   - name: gcp-prod
     image_registry: gcp
