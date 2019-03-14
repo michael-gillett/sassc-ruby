@@ -2,19 +2,24 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: default
-  annotations:
-    getambassador.io/config: |
-      ---
-      apiVersion: ambassador/v1
-      kind:  Mapping
-      name:  go-links
-      host: gcp-go-links.liveramp.net
-      prefix: /
-      service: go-links
-      host_rewrite: gcp-go-links.liveramp.net
-      # This is  for ambassador’s impatience to get a response from your app.
-      timeout_ms: 6000 # add and tune this for your app. 3000ms is the default
+  namespace: <%= config['namespace'] %>
+  getambassador.io/config: |
+    ---
+    apiVersion: ambassador/v1
+    kind: Mapping
+    name: go-links
+    host: gcp-go-links.liveramp.net
+    prefix: /
+    service: go-links.<%= config['namespace'] %>
+    timeout_ms: 6000
+    ---
+    apiVersion: ambassador/v1
+    kind: Mapping
+    name: go-links-gcp-temp
+    host: gcp-go-links.liveramp.net
+    prefix: /
+    service: go-links.<%= config['namespace'] %>
+
   labels:
     app: go-links
   name: go-links
