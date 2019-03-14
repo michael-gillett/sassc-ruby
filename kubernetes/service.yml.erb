@@ -7,17 +7,11 @@ metadata:
     getambassador.io/config: |
       ---
       name: go-links
+      kind: Mapping
       host: gcp-go-links.liveramp.net
       prefix: /
       service: go-links.<%= config['namespace'] %>
       timeout_ms: 6000
-      ---
-      apiVersion: ambassador/v1
-      kind: Mapping
-      name: go-links-gcp-temp
-      host: gcp-go-links.liveramp.net
-      prefix: /
-      service: go-links.<%= config['namespace'] %>
   labels:
     app: go-links
   name: go-links
