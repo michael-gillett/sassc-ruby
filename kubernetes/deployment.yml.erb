@@ -47,7 +47,7 @@ spec:
           timeoutSeconds: 3
       <% unless config['target'] == 'local' %>
       - name: cloudsql-proxy
-        image: "gcr.io/cloudsql-docker/gce-proxy:1.11"
+        image: "gcr.io/cloudsql-docker/gce-proxy:1.13"
         command: ["/cloud_sql_proxy",
                   "-instances=<%= config['cloudsql_instance_name'] %>=tcp:<%= config['cloudsql_port'] %>",
                   "-credential_file=/secrets/cloudsql/key.json",
