@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+main() {
+  npm run test
+
+  bundle exec rake db:create
+  bundle exec rake db:migrate
+  bundle exec rspec
+}
+
+main
+
