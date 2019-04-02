@@ -24,7 +24,7 @@ USER appuser:appuser
 ENV RAILS_ENV=production \
     RAILS_SERVE_STATIC_FILES=true \
     NODE_ENV=production \
-    GO_LINKS_DATABASE_URL= \
+    GO_LINKS_DATABASE_URL= 
 
 # App Config
 COPY --chown=appuser:appuser Gemfile Gemfile.lock ./

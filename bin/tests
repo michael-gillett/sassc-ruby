@@ -12,3 +12,4 @@ docker-compose -f docker-compose.tests.yml run go-links_tests sh -c "bundle exec
 rc=$?
 docker-compose -f docker-compose.tests.yml down
 exit $rc
+
