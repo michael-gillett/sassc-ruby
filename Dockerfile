@@ -1,19 +1,21 @@
-FROM ruby:2.3.8
+FROM ruby:2.3.8-alpine
 
 # Create "appuser"
-RUN groupadd -g 999 appuser && \
-    useradd -r -u 999 -g appuser -m -d /home/appuser appuser
+RUN addgroup -g 1000 appuser && \
+    adduser -D -u 1000 -G appuser -h /home/appuser appuser
 
+RUN apk add --update --no-cache \
+    nodejs \
+    nodejs-npm \
+    python \
+    openssh-client \
+    git \
+    build-base \
+    mysql-dev \
+    tzdata
 
 # System
 RUN TZ=America/Los_Angeles ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-
-# Install node
-RUN apt-get update \
-    && curl -sL https://deb.nodesource.com/setup_9.x | bash \
-    && apt-get install -y nodejs
-
 
 # Working Directory
 WORKDIR /home/appuser/go_links
@@ -28,7 +30,7 @@ ENV RAILS_ENV=production \
 
 # App Config
 COPY --chown=appuser:appuser Gemfile Gemfile.lock ./
-RUN gem install bundler -v 1.16.3
+RUN gem install bundler -v 1.17.3
 RUN bundle install --deployment --without development test --jobs 30 && \
     bundle clean
 
@@ -62,3 +64,4 @@ RUN bundle exec rake assets:precompile
 
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "server"]
+
