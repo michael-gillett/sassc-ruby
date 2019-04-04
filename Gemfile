@@ -22,7 +22,7 @@ source 'https://public-gems.liveramp.net' do
   gem 'sprockets-rails', '~> 2.0'
   gem 'tzinfo-data'
   gem 'uglifier', '2.7.2'
-  gem 'validate_url', '~> 1.0'
+	gem 'validate_url', '1.0.2'
 
   group :production do
 

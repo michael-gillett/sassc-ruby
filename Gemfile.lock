@@ -235,9 +235,9 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    validate_url (1.0.8)
+    validate_url (1.0.2)
       activemodel (>= 3.0.0)
-      public_suffix
+      addressable
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -281,7 +281,7 @@ DEPENDENCIES
   sprockets-rails (~> 2.0)!
   tzinfo-data!
   uglifier (= 2.7.2)!
-  validate_url (~> 1.0)!
+  validate_url (= 1.0.2)!
   web-console!
 
 BUNDLED WITH
