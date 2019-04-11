@@ -7,17 +7,17 @@ module SassC
   module Native
     extend FFI::Library
 
-    spec = Gem.loaded_specs["sassc"]
-    gem_root = spec.gem_dir
-    lib_paths = ["#{gem_root}/ext/libsass/lib/libsass.so"]
-
     sys_libsass = PackageConfig.new('libsass')
     if sys_libsass.exist?
       sys_libsass_path = sys_libsass.libs_only_L.partition('-L').last
-      lib_paths.unshift(
+      lib_paths = [
         "#{sys_libsass_path}/libsass.so",
         "#{sys_libsass_path}/libsass.dylib"
-      )
+      ]
+    else
+      spec = Gem.loaded_specs["sassc"]
+      gem_root = spec.gem_dir
+      lib_paths = ["#{gem_root}/ext/libsass/lib/libsass.so"]
     end
 
     ffi_lib lib_paths
