@@ -37,14 +37,9 @@ Gem::Specification.new do |spec|
 
   gem_dir = File.expand_path(File.dirname(__FILE__)) + "/"
   `git submodule --quiet foreach pwd`.split($\).each do |submodule_path|
-    Dir.chdir(submodule_path) do
-      submodule_relative_path = submodule_path.sub gem_dir, ""
-      # issue git ls-files in submodule's directory and
-      # prepend the submodule path to create absolute file paths
-      `git ls-files`.split($\).each do |filename|
-        spec.files << "#{submodule_relative_path}/#{filename}"
-      end
+    submodule_relative_path = submodule_path.sub gem_dir, ""
+    `git --git-dir #{submodule_relative_path}/.git ls-files`.split($\).each do |filename|
+      spec.files << "#{submodule_relative_path}/#{filename}"
     end
   end
-
 end
