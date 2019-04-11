@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "ffi"
+require "pkg-config"
 
 module SassC
   module Native
@@ -8,7 +9,18 @@ module SassC
 
     spec = Gem.loaded_specs["sassc"]
     gem_root = spec.gem_dir
-    ffi_lib "#{gem_root}/ext/libsass/lib/libsass.so"
+    lib_paths = ["#{gem_root}/ext/libsass/lib/libsass.so"]
+
+    sys_libsass = PackageConfig.new('libsass')
+    if sys_libsass.exist?
+      sys_libsass_path = sys_libsass.libs_only_L.partition('-L').last
+      lib_paths.unshift(
+        "#{sys_libsass_path}/libsass.so",
+        "#{sys_libsass_path}/libsass.dylib"
+      )
+    end
+
+    ffi_lib lib_paths
 
     require_relative "native/sass_value"
 

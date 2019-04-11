@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "test_helper"
+require "pkg-config"
 
 module SassC
   module NativeTest
@@ -11,7 +12,12 @@ module SassC
 
     class General < MiniTest::Test
       def test_it_reports_the_libsass_version
-        assert_equal "3.5.2", Native.version
+        sys_libsass = PackageConfig.new('libsass')
+        if sys_libsass.exist?
+          assert_equal sys_libsass.version, Native.version
+        else
+          assert_equal "3.5.2", Native.version
+        end
       end
     end
 
