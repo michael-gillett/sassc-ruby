@@ -9,7 +9,7 @@ module SassC
 
     sys_libsass = PackageConfig.new('libsass')
     if sys_libsass.exist?
-      sys_libsass_path = sys_libsass.libs_only_L.partition('-L').last
+      sys_libsass_path = sys_libsass.variable('libdir')
       lib_paths = [
         "#{sys_libsass_path}/libsass.so",
         "#{sys_libsass_path}/libsass.dylib"
