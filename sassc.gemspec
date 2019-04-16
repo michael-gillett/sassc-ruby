@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/sass/sassc-ruby"
   spec.license       = "MIT"
 
-  spec.files         = Dir['**/*']
+  spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
 
@@ -30,9 +30,21 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "test_construct"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "bundler"
+  spec.add_development_dependency "pkg-config"
 
-  spec.add_dependency "pkg-config"
   spec.add_dependency "rake"
   spec.add_dependency "ffi", "~> 1.9"
+
+  gem_dir = File.expand_path(File.dirname(__FILE__)) + "/"
+  `git submodule --quiet foreach pwd`.split($\).each do |submodule_path|
+    Dir.chdir(submodule_path) do
+      submodule_relative_path = submodule_path.sub gem_dir, ""
+      # issue git ls-files in submodule's directory and
+      # prepend the submodule path to create absolute file paths
+      `git ls-files`.split($\).each do |filename|
+        spec.files << "#{submodule_relative_path}/#{filename}"
+      end
+    end
+  end
 
 end
