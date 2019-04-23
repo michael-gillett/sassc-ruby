@@ -25,7 +25,7 @@ spec:
           containerPort: 3000
         env:
         - name: RAILS_ENV
-          value: production
+          value: <%= config['environment'] %>
         - name: GO_LINKS_DATABASE_URL
           valueFrom:
             secretKeyRef:
@@ -74,5 +74,4 @@ spec:
     rollingUpdate:
       maxUnavailable: 0 # For single replica
       maxSurge: 1
-  replicas: <%= config['environment'] == 'prod' ? 3 : 1 %>
-
+  replicas: <%= config['environment'] == 'production' ? 3 : 1 %>

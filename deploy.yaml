@@ -8,7 +8,7 @@ artifacts:
     image_registry: gcp
     flags:
       target: gcp-prod
-      environment: prod
+      environment: production
       cloud: gcp
       cloudsql_instance_name: liveramp-eng-actfs:us-central1-a:go-links
       cloudsql_port: 3306
@@ -25,7 +25,7 @@ artifacts:
     flags:
       image_tag: latest
       target: local
-      environment: staging
+      environment: development
       pull_policy: Never
 flavors:
   default: {}
