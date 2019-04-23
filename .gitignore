@@ -6,3 +6,4 @@ npm-debug.log
 .byebug_history
 build/
 .bundle/
+bundle-kdt/
