@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Pulls the appropriate Dockerfile to build the rails app from infra repo
+# There are two build files:
+#   - fullstack.Dockerfile: Used for rails apps with react frontend
+#   - backend.Dockerfile: Used for rails apps that are just API
+
+# NOTE: These images are generalized and can be used to build any ACT-FS project
+#   but can't be built ahead of time and pushed to GCR because they need to
+#   install and compile app specific code (bundle, npm, asset precompile, etc)
+
+set -e -o pipefail
+
+REMOTE_NAME='infra'
+INFRA_REPO_URL='git@github.com:LiveRamp/infrastructure'
+BRANCH='actfs-docker'
+VALID_IMAGES=('fullstack' 'backend')
+CHECKOUT_DIR='tmp'
+
+# Check that a valid build file type is specified
+if [ "$#" != 1 ] || \
+   [ "$1" != "${VALID_IMAGES[0]}" ] && \
+   [ "$1" != "${VALID_IMAGES[1]}" ]; then
+  echo 'USAGE: ./fetch-dockerfile {fullstack | backend}'
+  exit 1
+else
+  DOCKER_FILE_PATH="gcp/actfs/docker/${1}.Dockerfile"
+fi
+
+# Add the infrastructure repo as a fetch-only remote
+#  by setting push to a dummy URL
+if ! git remote get-url infra > /dev/null; then
+  echo "> Adding ${REMOTE_NAME} remote..."
+  git remote add ${REMOTE_NAME} ${INFRA_REPO_URL}
+  git remote set-url --push ${REMOTE_NAME} DISABLED
+fi
+
+# Fetch the latest infra state
+echo "> Fetching ${REMOTE_NAME}..."
+git fetch --quiet ${REMOTE_NAME} ${BRANCH}
+
+# Pull the appropriate docker file into a tmp directory
+echo "> Checking out ${REMOTE_NAME}/${BRANCH}..."
+mkdir -p ${CHECKOUT_DIR}
+git --work-tree=${CHECKOUT_DIR} checkout --quiet "${REMOTE_NAME}/${BRANCH}" \
+    -- ${DOCKER_FILE_PATH} \
+
+# Move the dockerfile to './Dockerfile' overwriting any existing one
+# We use git mv first to prevent file changes from being staged
+echo "> Moving Dockerfile into place..."
+git --work-tree=${CHECKOUT_DIR} mv -f "${DOCKER_FILE_PATH}" 'Dockerfile'
+mv -f "${CHECKOUT_DIR}/Dockerfile" 'Dockerfile'
+
+echo "> Cleaning up..."
+# Remove Dockerfile from staged changes
+git rm --quiet --cached Dockerfile
+rm -r "${CHECKOUT_DIR}/gcp"
+
+echo "> Successfully pulled Dockerfile"

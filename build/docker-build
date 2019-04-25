@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+def build(options)
+  succeeded = system(
+    <<~COMMAND
+    DOCKER_BUILDKIT=1 docker build . \
+       -t #{options[:tag]} \
+       --ssh=default \
+       --build-arg RAILS_ENV=#{options[:env]} \
+       --build-arg NODE_ENV=#{options[:env]} \
+       --no-cache=#{!options[:cache]} \
+       --squash
+    COMMAND
+  )
+  if !succeeded
+    raise "Failed to build docker image"
+  end
+end
+
+
+if $PROGRAM_NAME == __FILE__
+  options = {
+    cache: true,
+    env: 'production'
+  }
+  OptionParser.new do |o|
+    o.on('-t', '--tag STR', 'The docker image tag') do |t|
+      options[:tag] = t
+    end
+
+    o.on('-e', '--env ENUM', [:test, :development, :staging, :production], 'The environment to run (sets RAILS_ENV and NODE_ENV)') do |e|
+      options[:env] = e
+    end
+
+    o.on('-c', '--[no-]cache', 'Whether the docker image should be cached') do |c|
+      options[:cache] = c
+    end
+  end.parse!
+
+  # Require a tag to be specified
+  if options[:tag].nil?
+    raise OptionParser::MissingArgument,"'tag' not specified for the docker build"
+  end
+
+  build(options)
+end

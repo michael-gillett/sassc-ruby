@@ -4,7 +4,7 @@ node_modules/
 *bundle.js
 npm-debug.log
 .byebug_history
-build/
+build/kubernetes
 .bundle/
 bundle-kdt/
 Dockerfile

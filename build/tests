@@ -12,4 +12,3 @@ docker-compose -f docker-compose.tests.yml run go-links_tests bin/run-tests
 rc=$?
 docker-compose -f docker-compose.tests.yml down
 exit $rc
-

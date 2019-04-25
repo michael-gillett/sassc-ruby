@@ -8,7 +8,7 @@ build_image() {
 }
 
 run_tests() {
-  bin/tests
+  build/tests
 }
 
 publish_container_and_artifacts() {

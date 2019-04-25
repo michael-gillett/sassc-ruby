@@ -29,7 +29,7 @@ class LocalKuber
   private
 
   def build_go_links
-    run_cmd("docker build . -t #{GO_LINKS_IMAGE_TAG}")
+    run_cmd("./build/docker-build -t #{GO_LINKS_IMAGE_TAG} --env development")
   end
 
   def init_go_links_db
