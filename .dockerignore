@@ -1,0 +1,24 @@
+# Ignore everything
+**
+
+# Bundler
+!Rakefile
+!config.ru
+!Gemfile
+!Gemfile.lock
+
+# JS
+!webpack.config.js
+!.npmrc
+!package.json
+!package-lock.json
+
+# Tests
+!.rspec
+!spec/
+
+!app/
+!bin/
+!config/
+!db/
+!public/

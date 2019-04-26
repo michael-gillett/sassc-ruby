@@ -1,6 +1,6 @@
 version: '2.1'
 services:
-  go-links_tests:
+  tests:
     image: local-registry/go-links_test
     command: "echo"
     environment:

@@ -1,14 +1,12 @@
 #!/bin/bash
 
 set -euxo pipefail
-docker build -t local-registry/go-links .
 
-# Do not cache this build to ensure changes to the parent images are picked up
-docker build -t local-registry/go-links_test . --file=test.Dockerfile --no-cache
+./build/docker-build -t local-registry/go-links_test --env test
 
 docker-compose -f docker-compose.tests.yml up -d
 set +e
-docker-compose -f docker-compose.tests.yml run go-links_tests bin/run-tests
+docker-compose -f docker-compose.tests.yml run --entrypoint bin/run-tests tests
 rc=$?
 docker-compose -f docker-compose.tests.yml down
 exit $rc
